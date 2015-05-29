@@ -16,6 +16,8 @@ integtests/target-ide/*
 webapp/target-ide/*
 fixture/bin/*
 integtests/bin/*
+fixture/*
+integtests/*
 dom/bin/*
 
 #Eclipse
