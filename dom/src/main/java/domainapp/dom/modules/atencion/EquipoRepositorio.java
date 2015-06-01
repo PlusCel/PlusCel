@@ -38,7 +38,7 @@ public class EquipoRepositorio {
     }
     //endregion
 
-    //region > findByApellido (action)
+    //region > findByMarca (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
@@ -67,6 +67,8 @@ public class EquipoRepositorio {
     		) {
         final Equipo obj = container.newTransientInstance(Equipo.class);
         obj.setMarca(marca);
+        obj.setModelo(modelo);
+        
         container.persistIfNotAlready(obj);
         return obj;
     }
