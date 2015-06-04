@@ -32,24 +32,24 @@ public class EquipoRepositorio {
     }
     //endregion
 
-    //region > findByMarca (action)
-//    @Action(
-//            semantics = SemanticsOf.SAFE
-//    )
-//    @ActionLayout(
-//            bookmarking = BookmarkPolicy.AS_ROOT
-//    )
-//    @MemberOrder(sequence = "2")
-//    public List<Equipo> findByMarca(
-//            @ParameterLayout(named="Marca")
-//            final String marca
-//    ) {
-//        return container.allMatches(
-//                new QueryDefault<>(
-//                        Equipo.class,
-//                        "findByMarca",
-//                        "marca", marca));
-//    }
+   // region > findByMarca (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "2")
+    public List<Equipo> findByMarca(
+            @ParameterLayout(named="Marca")
+            final String marca
+    ) {
+        return container.allMatches(
+                new QueryDefault<>(
+                        Equipo.class,
+                        "findByMarca",
+                        "marca", marca));
+    }
     //endregion
 
     //region > create (action)

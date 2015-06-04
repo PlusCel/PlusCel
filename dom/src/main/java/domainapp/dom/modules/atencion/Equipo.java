@@ -14,25 +14,25 @@ import org.apache.isis.applib.util.ObjectContracts;
 
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
-//@javax.jdo.annotations.DatastoreIdentity(
-//        strategy=javax.jdo.annotations.IdGeneratorStrategy.IDENTITY,
-//         column="id")
-//@javax.jdo.annotations.Version(
-//        strategy=VersionStrategy.VERSION_NUMBER, 
-//        column="version")
-//@javax.jdo.annotations.Queries({
-//        @javax.jdo.annotations.Query(
-//                name = "find", language = "JDOQL",
-//                value = "SELECT "
-//                        + "FROM domainapp.dom.modules.atencion.Equipo "),
-//        @javax.jdo.annotations.Query(name = "findByMarca", language = "JDOQL", value = "SELECT "
-//                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca == :marca"),
-//        @javax.jdo.annotations.Query(
-//                name = "findByModelo", language = "JDOQL",
-//                value = "SELECT "
-//                        + "FROM domainapp.dom.modules.atencion.Modelo "
-//                        + "WHERE modelo.startsWith(:modelo)")
-//})
+@javax.jdo.annotations.DatastoreIdentity(
+        strategy=javax.jdo.annotations.IdGeneratorStrategy.IDENTITY,
+         column="id")
+@javax.jdo.annotations.Version(
+        strategy=VersionStrategy.VERSION_NUMBER, 
+        column="version")
+@javax.jdo.annotations.Queries({
+        @javax.jdo.annotations.Query(
+                name = "find", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.dom.modules.atencion.Equipo "),
+        @javax.jdo.annotations.Query(name = "findByMarca", language = "JDOQL", value = "SELECT "
+                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca == :marca"),
+        @javax.jdo.annotations.Query(
+                name = "findByModelo", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.dom.modules.atencion.Modelo "
+                        + "WHERE modelo.startsWith(:modelo)")
+})
 
 
 //@javax.jdo.annotations.Unique(name="Equipo_name_UNQ", members = {"marca"})
