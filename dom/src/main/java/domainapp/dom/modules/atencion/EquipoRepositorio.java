@@ -12,13 +12,7 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
-import org.joda.time.LocalDate;
 
-import domainapp.dom.modules.servicios.Direccion;
-import domainapp.dom.modules.servicios.Localidad;
-import domainapp.dom.modules.servicios.Localidad.E_localidades;
-import domainapp.dom.modules.servicios.Persona.E_nacionalidad;
-import domainapp.dom.modules.servicios.Persona.E_sexo;
 
 @DomainService(repositoryFor = Equipo.class)
 @DomainServiceLayout(menuOrder = "10" , named="Equipo")
@@ -39,36 +33,42 @@ public class EquipoRepositorio {
     //endregion
 
     //region > findByMarca (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "2")
-    public List<Equipo> findByMarca(
-            @ParameterLayout(named="Marca")
-            final String marca
-    ) {
-        return container.allMatches(
-                new QueryDefault<>(
-                        Equipo.class,
-                        "findByMarca",
-                        "marca", marca));
-    }
+//    @Action(
+//            semantics = SemanticsOf.SAFE
+//    )
+//    @ActionLayout(
+//            bookmarking = BookmarkPolicy.AS_ROOT
+//    )
+//    @MemberOrder(sequence = "2")
+//    public List<Equipo> findByMarca(
+//            @ParameterLayout(named="Marca")
+//            final String marca
+//    ) {
+//        return container.allMatches(
+//                new QueryDefault<>(
+//                        Equipo.class,
+//                        "findByMarca",
+//                        "marca", marca));
+//    }
     //endregion
 
     //region > create (action)
     @MemberOrder(sequence = "3")
     public Equipo create(
             final @ParameterLayout(named="Marca") String marca,
-            final @ParameterLayout(named="Modelo") String modelo           
+            final @ParameterLayout(named="Modelo") String modelo  , 
+            final @ParameterLayout(named="Estado") String estado ,  
+            final @ParameterLayout(named="Accesorio") String accesorio,   
+            final @ParameterLayout(named="IMEI") String imei   
             
     		) {
         final Equipo obj = container.newTransientInstance(Equipo.class);
         obj.setMarca(marca);
         obj.setModelo(modelo);
-        
+        obj.setEstado(estado);
+        obj.setAccesorio(accesorio);
+        obj.setImei(imei);
+   
         container.persistIfNotAlready(obj);
         return obj;
     }

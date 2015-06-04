@@ -52,35 +52,66 @@ public class Equipo {
 	public void setContainer(DomainObjectContainer container) {
 		this.container = container;
 	}
-
-	private String marca;
+	//
+	
+	  
+    
+    private String marca;
 
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
-    @Title(sequence="1")
-    @Property(
-            editing = Editing.DISABLED
-    )
+	
     public String getMarca() {
         return marca;
     }
-
     public void setMarca(final String marca) {
         this.marca = marca;
     }
+    
+    //
     private String modelo;
-
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
-    @Title(sequence="1")
-    @Property(
-            editing = Editing.DISABLED
-    )
     public String getModelo() {
         return modelo;
     }
-
     public void setModelo(final String modelo) {
         this.modelo = modelo;
     }
+    
+        
+    
+    private String estado;    
+    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(final String estado) {
+        this.estado = estado;
+    }
+  
+        
+    //
+    private String accesorio;
+    @javax.jdo.annotations.Column(allowsNull="false", length = 40)   
+    public String getAccesorio() {
+        return accesorio;
+    }
+    public void setAccesorio(final String accesorio) {
+        this.accesorio = accesorio;
+    }
+    
+    private String Imei;
+    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    public String getImei(){
+        return Imei;
+    }
+    public void setImei(final String Imei) {
+        this.Imei = Imei;
+    }
+        
+    
+    
+        
+   
 	@javax.inject.Inject
 
 	private DomainObjectContainer container;
