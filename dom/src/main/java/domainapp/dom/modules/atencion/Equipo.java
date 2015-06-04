@@ -1,6 +1,7 @@
 package domainapp.dom.modules.atencion;
 
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.DomainObjectContainer;
@@ -8,6 +9,7 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.Editing;
+import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.util.ObjectContracts;
@@ -53,11 +55,12 @@ public class Equipo {
 		this.container = container;
 	}
 	//
-	
 	  
     
     private String marca;
-
+    
+    @Persistent
+	@MemberOrder(sequence = "1")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
 	
     public String getMarca() {
@@ -69,6 +72,8 @@ public class Equipo {
     
     //
     private String modelo;
+    @Persistent
+	@MemberOrder(sequence = "2")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
     public String getModelo() {
         return modelo;
@@ -79,7 +84,9 @@ public class Equipo {
     
         
     
-    private String estado;    
+    private String estado;  
+    @Persistent
+	@MemberOrder(sequence = "3")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
     public String getEstado() {
         return estado;
@@ -91,6 +98,8 @@ public class Equipo {
         
     //
     private String accesorio;
+    @Persistent
+	@MemberOrder(sequence = "4")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)   
     public String getAccesorio() {
         return accesorio;
@@ -100,6 +109,8 @@ public class Equipo {
     }
     
     private String Imei;
+    @Persistent
+	@MemberOrder(sequence = "6")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
     public String getImei(){
         return Imei;
