@@ -14,6 +14,15 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 
 
+
+
+
+import domainapp.dom.modules.atencion.Marca;
+import domainapp.dom.modules.servicios.Localidad;
+import domainapp.dom.modules.servicios.Persona.E_nacionalidad;
+
+
+
 @DomainService(repositoryFor = Equipo.class)
 @DomainServiceLayout(menuOrder = "10" , named="Equipo")
 
@@ -55,9 +64,9 @@ public class EquipoRepositorio {
     //region > create (action)
     @MemberOrder(sequence = "3")
     public Equipo create(
-            final @ParameterLayout(named="Marca") String marca,
-            final @ParameterLayout(named="Modelo") String modelo  , 
-            final @ParameterLayout(named="Estado") String estado ,  
+            final @ParameterLayout(named="Marca") String marca,    		           
+            final @ParameterLayout(named="Modelo") String modelo, 
+            final @ParameterLayout(named="Estado") String estado,  
             final @ParameterLayout(named="Accesorio") String accesorio,   
             final @ParameterLayout(named="IMEI") String imei   
             

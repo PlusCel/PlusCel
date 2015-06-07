@@ -28,7 +28,7 @@ import org.apache.isis.applib.util.ObjectContracts;
                 value = "SELECT "
                         + "FROM domainapp.dom.modules.atencion.Equipo "),
         @javax.jdo.annotations.Query(name = "findByMarca", language = "JDOQL", value = "SELECT "
-                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca == :marca"),
+                    			+ "FROM dom.modules.atencion.Marca " + "WHERE marca == :marca"),
         @javax.jdo.annotations.Query(
                 name = "findByModelo", language = "JDOQL",
                 value = "SELECT "
@@ -54,7 +54,7 @@ public class Equipo {
 	public void setContainer(DomainObjectContainer container) {
 		this.container = container;
 	}
-	//
+
 	  
     
     private String marca;
@@ -70,7 +70,6 @@ public class Equipo {
         this.marca = marca;
     }
     
-    //
     private String modelo;
     @Persistent
 	@MemberOrder(sequence = "2")
@@ -117,11 +116,9 @@ public class Equipo {
     }
     public void setImei(final String Imei) {
         this.Imei = Imei;
-    }
-        
+    }      
     
-    
-        
+            
    
 	@javax.inject.Inject
 
