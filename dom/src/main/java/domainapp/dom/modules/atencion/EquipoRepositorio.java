@@ -12,14 +12,9 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
-
-
-
-
-
-import domainapp.dom.modules.atencion.Marca;
-import domainapp.dom.modules.servicios.Localidad;
-import domainapp.dom.modules.servicios.Persona.E_nacionalidad;
+//import domainapp.dom.modules.atencion.Marca;
+//import domainapp.dom.modules.servicios.Localidad;
+//import domainapp.dom.modules.servicios.Persona.E_nacionalidad;
 
 
 
@@ -28,7 +23,7 @@ import domainapp.dom.modules.servicios.Persona.E_nacionalidad;
 
 public class EquipoRepositorio {
 	
-	//region > listAll (action)
+	//region > listarTodos (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
@@ -36,12 +31,12 @@ public class EquipoRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "1")
-    public List<Equipo> listAll() {
+    public List<Equipo> listarTodos() {
         return container.allInstances(Equipo.class);
     }
     //endregion
 
-   // region > findByMarca (action)
+   // region > buscarPorMarca (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
@@ -49,21 +44,21 @@ public class EquipoRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public List<Equipo> findByMarca(
+    public List<Equipo> buscarPorMarca(
             @ParameterLayout(named="Marca")
             final String marca
     ) {
         return container.allMatches(
                 new QueryDefault<>(
                         Equipo.class,
-                        "findByMarca",
+                        "buscarPorMarca",
                         "marca", marca));
     }
     //endregion
 
     //region > create (action)
     @MemberOrder(sequence = "3")
-    public Equipo create(
+    public Equipo Alta(
             final @ParameterLayout(named="Marca") String marca,    		           
             final @ParameterLayout(named="Modelo") String modelo, 
             final @ParameterLayout(named="Estado") String estado,  

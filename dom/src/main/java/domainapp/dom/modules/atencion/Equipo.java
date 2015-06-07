@@ -12,6 +12,7 @@ import org.apache.isis.applib.annotation.Editing;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Title;
+import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.util.ObjectContracts;
 
 
@@ -37,7 +38,7 @@ import org.apache.isis.applib.util.ObjectContracts;
 })
 
 
-//@javax.jdo.annotations.Unique(name="Equipo_name_UNQ", members = {"marca"})
+@javax.jdo.annotations.Unique(name="Equipo_name_UNQ", members = {"marca"})
 
 @DomainObject(
         objectType = "EQUIPO"
@@ -55,7 +56,17 @@ public class Equipo {
 		this.container = container;
 	}
 
-	  
+//	//region > identificatiom
+//    public TranslatableString title() {
+//        return TranslatableString.tr("Object: {marca}", "marca", getMarca());
+//    }
+//    //endregion
+	
+	
+	public String title() {
+		return getMarca() + ", " + getModelo();
+	}
+
     
     private String marca;
     
@@ -80,8 +91,7 @@ public class Equipo {
     public void setModelo(final String modelo) {
         this.modelo = modelo;
     }
-    
-        
+           
     
     private String estado;  
     @Persistent
