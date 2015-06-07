@@ -45,7 +45,7 @@ public class RepositorioTecnico {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public List<Tecnico> findByApellido(
+    public List<Tecnico> buscarPorApellido(
             @ParameterLayout(named="Apellido")
             final String apellido
     ) {
@@ -66,12 +66,14 @@ public class RepositorioTecnico {
             final @ParameterLayout(named="Sexo") E_sexo sexo,
             final @ParameterLayout(named="Fecha Nacimiento") LocalDate nacimiento,
             final @ParameterLayout(named="Nacionalidad") E_nacionalidad nacionalidad,
-            final @ParameterLayout(named="Domicilio.Localidad") E_localidades localidad,
-            final @ParameterLayout(named="Domicilio.Calle") String calle,
-            final @ParameterLayout(named="Domicilio.Numero") int numero,
-            final @ParameterLayout(named="Domicilio.Piso") String piso,
-            final @ParameterLayout(named="Domicilio.Departamento") String departamento,
-            final @ParameterLayout(named="Domicilio.Teléfono") String telefono
+            final @ParameterLayout(named="Domicilio Localidad") E_localidades localidad,
+            final @ParameterLayout(named="Domicilio Calle") String calle,
+            final @ParameterLayout(named="Domicilio Numero") int numero,
+            final @ParameterLayout(named="Domicilio Piso") String piso,
+            final @ParameterLayout(named="Domicilio Departamento") String departamento,
+            final @ParameterLayout(named="Domicilio Teléfono") String telefono,
+            final @ParameterLayout(named="Local")String local,
+            final @ParameterLayout(named="Email")String email
             
     		) {
         final Tecnico obj = container.newTransientInstance(Tecnico.class);
@@ -91,6 +93,8 @@ public class RepositorioTecnico {
         obj.setDireccion(dire);
         obj.setTelefono(telefono);
         obj.setApellido(apellido);
+        obj.setLocal(local);
+        obj.setEmail(email);
         container.persistIfNotAlready(obj);
         return obj;
     }
