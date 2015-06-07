@@ -1,11 +1,13 @@
 package domainapp.dom.modules.atencion;
 import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
+import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.util.ObjectContracts;
 
 import domainapp.dom.modules.servicios.Persona;
@@ -59,6 +61,29 @@ public class Tecnico extends Persona implements Comparable<Tecnico> {
 		return getApellido() + ", " + getNombre();
 	}
 
+	private String Email;
+    @Persistent
+	@MemberOrder(sequence = "6")
+    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
+    public String getEmail(){
+        return Email;
+    }
+    public void setEmail(final String Email) {
+        this.Email = Email;
+    }
+	
+	private String Local;
+    @Persistent
+	@MemberOrder(sequence = "7")
+    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
+    public String getLocal(){
+        return Local;
+    }
+    public void setLocal(final String Local) {
+        this.Local = Local;
+    }
+    
+	
 	@javax.inject.Inject
 
 	private DomainObjectContainer container;
