@@ -1,5 +1,6 @@
 package domainapp.dom.modules.atencion;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.VersionStrategy;
@@ -14,6 +15,10 @@ import org.apache.isis.applib.annotation.Property;
 import org.apache.isis.applib.annotation.Title;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.apache.isis.applib.util.ObjectContracts;
+
+import domainapp.dom.modules.servicios.Estado;
+import domainapp.dom.modules.servicios.Localidad;
+import domainapp.dom.modules.servicios.Estado.E_estados;
 
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
@@ -56,17 +61,11 @@ public class Equipo {
 		this.container = container;
 	}
 
-//	//region > identificatiom
-//    public TranslatableString title() {
-//        return TranslatableString.tr("Object: {marca}", "marca", getMarca());
-//    }
-//    //endregion
 	
 	
 	public String title() {
 		return getMarca() + ", " + getModelo();
 	}
-
     
     private String marca;
     
@@ -91,19 +90,29 @@ public class Equipo {
     public void setModelo(final String modelo) {
         this.modelo = modelo;
     }
-           
     
-    private String estado;  
-    @Persistent
-	@MemberOrder(sequence = "3")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
-    public String getEstado() {
-        return estado;
-    }
-    public void setEstado(final String estado) {
-        this.estado = estado;
-    }
-  
+    
+	public enum E_estado{
+		
+		MASCULINO, FEMENINO
+	}
+          
+    
+	// {{ Estado (property)
+//		private Estado estado;
+//
+//		@Column(allowsNull = "true")
+//		@Persistent
+//		@MemberOrder(sequence = "1.2")
+//		public Estado getEstado() {
+//			return estado;
+//		}
+//
+//		public void setEstado(final Estado estado) {
+//			this.estado = estado;
+//		}
+		// }}
+    	
         
     //
     private String accesorio;

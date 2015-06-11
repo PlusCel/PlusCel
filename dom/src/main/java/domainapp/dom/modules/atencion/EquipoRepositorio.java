@@ -18,6 +18,12 @@ import org.apache.isis.applib.query.QueryDefault;
 
 
 
+import domainapp.dom.modules.servicios.Estado;
+import domainapp.dom.modules.servicios.Estado.E_estados;
+
+
+
+
 @DomainService(repositoryFor = Equipo.class)
 @DomainServiceLayout(menuOrder = "10" , named="Equipo")
 
@@ -61,15 +67,18 @@ public class EquipoRepositorio {
     public Equipo Alta(
             final @ParameterLayout(named="Marca") String marca,    		           
             final @ParameterLayout(named="Modelo") String modelo, 
-            final @ParameterLayout(named="Estado") String estado,  
+            //final @ParameterLayout(named="Estado") String estado,
+            final @ParameterLayout(named="Estado") E_estados estado,
             final @ParameterLayout(named="Accesorio") String accesorio,   
             final @ParameterLayout(named="IMEI") String imei   
             
     		) {
         final Equipo obj = container.newTransientInstance(Equipo.class);
+        final Estado esta = new Estado();
         obj.setMarca(marca);
         obj.setModelo(modelo);
-        obj.setEstado(estado);
+       // obj.setEstado(estado);
+        esta.setDescripcion(estado);
         obj.setAccesorio(accesorio);
         obj.setImei(imei);
    
