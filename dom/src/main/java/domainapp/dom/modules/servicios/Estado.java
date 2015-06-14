@@ -13,32 +13,31 @@ public class Estado {
 	
 	
 	// {{ Nombre (property)
-		private E_estados descripcion;
+		private E_estados estado;
 
 		@Column(allowsNull = "true")
 		@MemberOrder(sequence = "1")
 		@Persistent
-		public E_estados getDescripcion() {
-			return descripcion;
+		public E_estados getEstado() {
+			return estado;
 		}
 
-		public void setDescripcion(final E_estados descripcion) {
-			this.descripcion = descripcion;
+		public void setEstado(final E_estados estado) {
+			this.estado = estado;
 		}
-		// }}
-
+		
 
 		public enum E_estados{	
 			REPARADO,ENTREGADO,ENESPERA;
 		}
 		
 		public String title(){
-			return descripcion.toString();
+			return estado.toString();
 		}
 
 		@Override
 		public String toString() {
-			return descripcion.toString();
+			return estado.toString();
 		}
 		
 

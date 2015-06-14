@@ -12,11 +12,6 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
-//import domainapp.dom.modules.atencion.Marca;
-//import domainapp.dom.modules.servicios.Localidad;
-//import domainapp.dom.modules.servicios.Persona.E_nacionalidad;
-
-
 
 import domainapp.dom.modules.servicios.Estado;
 import domainapp.dom.modules.servicios.Estado.E_estados;
@@ -67,7 +62,6 @@ public class EquipoRepositorio {
     public Equipo Alta(
             final @ParameterLayout(named="Marca") String marca,    		           
             final @ParameterLayout(named="Modelo") String modelo, 
-            //final @ParameterLayout(named="Estado") String estado,
             final @ParameterLayout(named="Estado") E_estados estado,
             final @ParameterLayout(named="Accesorio") String accesorio,   
             final @ParameterLayout(named="IMEI") String imei   
@@ -77,8 +71,7 @@ public class EquipoRepositorio {
         final Estado esta = new Estado();
         obj.setMarca(marca);
         obj.setModelo(modelo);
-       // obj.setEstado(estado);
-        esta.setDescripcion(estado);
+        esta.setEstado(estado);
         obj.setAccesorio(accesorio);
         obj.setImei(imei);
    

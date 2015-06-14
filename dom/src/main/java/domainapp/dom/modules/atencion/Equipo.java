@@ -1,6 +1,6 @@
 package domainapp.dom.modules.atencion;
 
-import javax.jdo.annotations.Column;
+
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.VersionStrategy;
@@ -9,15 +9,10 @@ import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
-import org.apache.isis.applib.annotation.Editing;
+
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Property;
-import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.services.i18n.TranslatableString;
-import org.apache.isis.applib.util.ObjectContracts;
 
 import domainapp.dom.modules.servicios.Estado;
-import domainapp.dom.modules.servicios.Localidad;
 import domainapp.dom.modules.servicios.Estado.E_estados;
 
 
@@ -62,7 +57,6 @@ public class Equipo {
 	}
 
 	
-	
 	public String title() {
 		return getMarca() + ", " + getModelo();
 	}
@@ -92,30 +86,19 @@ public class Equipo {
     }
     
     
-	public enum E_estado{
-		
-		MASCULINO, FEMENINO
-	}
-          
-    
-	// {{ Estado (property)
-//		private Estado estado;
-//
-//		@Column(allowsNull = "true")
-//		@Persistent
-//		@MemberOrder(sequence = "1.2")
-//		public Estado getEstado() {
-//			return estado;
-//		}
-//
-//		public void setEstado(final Estado estado) {
-//			this.estado = estado;
-//		}
-		// }}
-    	
+    private E_estados estado;
+    @Persistent
+	@MemberOrder(sequence = "3")
+    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    public E_estados getEstado() {
+        return estado;
+    }
+    public void setEstado(final E_estados estado) {
+        this.estado = estado;
+    }
         
-    //
-    private String accesorio;
+               
+     private String accesorio;
     @Persistent
 	@MemberOrder(sequence = "4")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)   
@@ -128,17 +111,15 @@ public class Equipo {
     
     private String Imei;
     @Persistent
-	@MemberOrder(sequence = "6")
+	@MemberOrder(sequence = "5")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
     public String getImei(){
         return Imei;
     }
     public void setImei(final String Imei) {
         this.Imei = Imei;
-    }      
-    
-            
-   
+    }          
+               
 	@javax.inject.Inject
 
 	private DomainObjectContainer container;
