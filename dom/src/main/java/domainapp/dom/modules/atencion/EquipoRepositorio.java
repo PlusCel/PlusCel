@@ -12,12 +12,7 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
-
-import domainapp.dom.modules.servicios.Estado;
-import domainapp.dom.modules.servicios.Estado.E_estados;
-
-
-
+import domainapp.dom.modules.servicios.E_estado;
 
 @DomainService(repositoryFor = Equipo.class)
 @DomainServiceLayout(menuOrder = "10" , named="Equipo")
@@ -60,18 +55,17 @@ public class EquipoRepositorio {
     //region > create (action)
     @MemberOrder(sequence = "3")
     public Equipo Alta(
-            final @ParameterLayout(named="Marca") String marca,    		           
-            final @ParameterLayout(named="Modelo") String modelo, 
-            final @ParameterLayout(named="Estado") E_estados estado,
+            final @ParameterLayout(named="Marca") Marca marca,    		           
+            final @ParameterLayout(named="Modelo") Modelo modelo, 
+            final @ParameterLayout(named="Estado") E_estado estado,  
             final @ParameterLayout(named="Accesorio") String accesorio,   
             final @ParameterLayout(named="IMEI") String imei   
             
     		) {
         final Equipo obj = container.newTransientInstance(Equipo.class);
-        final Estado esta = new Estado();
         obj.setMarca(marca);
         obj.setModelo(modelo);
-        esta.setEstado(estado);
+        obj.setEstado(estado);
         obj.setAccesorio(accesorio);
         obj.setImei(imei);
    
