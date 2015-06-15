@@ -22,7 +22,7 @@ import domainapp.dom.modules.servicios.Localidad;
 @DomainService(repositoryFor = Tecnico.class)
 @DomainServiceLayout(menuOrder = "10" , named="Tecnico")
 
-public class RepositorioTecnico {
+public class TecnicoRepositorio {
 
 	 //region > listAll (action)
     @Action(
