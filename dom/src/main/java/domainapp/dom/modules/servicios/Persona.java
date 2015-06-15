@@ -175,18 +175,5 @@ public class Persona {
 		this.habilitado = habilitado;
 	}
 	
-	
-
-	public enum E_sexo{
-		
-		MASCULINO, FEMENINO
-	}
-	
-	public enum E_nacionalidad{
-		
-		ARGENTINA, BRASIL, CHILE, 
-		COLOMBIA, ECUADOR, PARAGUAY, PERU,
-		URUGUAY, VENEZUELA, OTRO
-	}
 
 }

@@ -15,8 +15,8 @@ import org.joda.time.LocalDate;
 
 import domainapp.dom.modules.servicios.Direccion;
 import domainapp.dom.modules.servicios.Localidad.E_localidades;
-import domainapp.dom.modules.servicios.Persona.E_nacionalidad;
-import domainapp.dom.modules.servicios.Persona.E_sexo;
+import domainapp.dom.modules.servicios.E_nacionalidad;
+import domainapp.dom.modules.servicios.E_sexo;
 import domainapp.dom.modules.servicios.Localidad;
 
 @DomainService(repositoryFor = Tecnico.class)
