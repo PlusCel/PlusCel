@@ -18,8 +18,8 @@
  */
 package domainapp.dom.app.homepage;
 
-import domainapp.dom.modules.simple.SimpleObject;
-import domainapp.dom.modules.simple.SimpleObjects;
+import domainapp.dom.modules.atencion.Cliente;
+import domainapp.dom.modules.atencion.ClienteRepositorio;
 
 import java.util.List;
 import org.apache.isis.applib.annotation.ViewModel;
@@ -35,15 +35,15 @@ public class HomePageViewModel {
 
     //region > object (collection)
     @org.apache.isis.applib.annotation.HomePage
-    public List<SimpleObject> getObjects() {
-        return simpleObjects.listAll();
+    public List<Cliente> getObjects() {
+        return ClienteRepositorio.listAll();
     }
     //endregion
 
     //region > injected services
 
     @javax.inject.Inject
-    SimpleObjects simpleObjects;
+    ClienteRepositorio ClienteRepositorio;
 
     //endregion
 }

@@ -8,12 +8,7 @@ import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
-import org.apache.isis.applib.annotation.Editing;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Property;
-import org.apache.isis.applib.annotation.Title;
-import org.apache.isis.applib.services.i18n.TranslatableString;
-import org.apache.isis.applib.util.ObjectContracts;
 import domainapp.dom.modules.servicios.E_estado;
 
 /**
