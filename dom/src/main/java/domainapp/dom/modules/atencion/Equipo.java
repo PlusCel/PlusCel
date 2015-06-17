@@ -57,10 +57,9 @@ public class Equipo {
 		this.container = container;
 	}
 	
-	public String title() {
-		return getMarca() + ", " + getModelo();
+	public String title() {		
+		return marca.getDescripcion() + ", " + modelo.getDescripcion();
 	}
-
     
     private Marca marca;
     
