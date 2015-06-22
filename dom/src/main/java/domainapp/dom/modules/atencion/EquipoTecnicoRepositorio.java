@@ -15,7 +15,7 @@ import org.apache.isis.applib.query.QueryDefault;
 @DomainService
 public class EquipoTecnicoRepositorio {
 	
-	
+	/*
 	 //region > listAll (action)
     @Action(
             semantics = SemanticsOf.SAFE
@@ -23,6 +23,7 @@ public class EquipoTecnicoRepositorio {
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
     )
+    
     @MemberOrder(sequence = "3")
     public List<EquipoTecnico> listarTodos() {
         return container.allInstances(EquipoTecnico.class);
@@ -48,7 +49,7 @@ public class EquipoTecnicoRepositorio {
                         "apellido", imei));
     }
     //endregion
-
+*/
     //region > create (action)
     @MemberOrder(sequence = "1")
     public EquipoTecnico Alta(
