@@ -58,7 +58,7 @@ public class Equipo {
 	}
 	
 	public String title() {		
-		return marca.getDescripcion() + ", " + modelo.getDescripcion();
+		return getImei();
 	}
     
     private Marca marca;

@@ -4,6 +4,8 @@ package domainapp.dom.modules.atencion;
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.VersionStrategy;
+
+import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Where;
 @SuppressWarnings("unused")
@@ -15,8 +17,10 @@ import org.apache.isis.applib.annotation.Where;
 			+ "WHERE this.curso.anio.plan.descripcion == :plan "
 			+ "&& this.curso.anio.anioNumero == :anio"
 			+ "&& this.curso.division == :division")})
-		
-
+@DomainObject(
+		bounded=true,
+        objectType = "EQUIPOTECNICO"
+)		
 public class EquipoTecnico {
 	
 	// {{ Tecnico (property)
