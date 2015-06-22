@@ -66,12 +66,12 @@ public class TecnicoRepositorio {
             final @ParameterLayout(named="Sexo") E_sexo sexo,
             final @ParameterLayout(named="Fecha Nacimiento") LocalDate nacimiento,
             final @ParameterLayout(named="Nacionalidad") E_nacionalidad nacionalidad,
-            final @ParameterLayout(named="Domicilio Localidad") E_localidades localidad,
-            final @ParameterLayout(named="Domicilio Calle") String calle,
-            final @ParameterLayout(named="Domicilio Numero") int numero,
-            final @ParameterLayout(named="Domicilio Piso") String piso,
-            final @ParameterLayout(named="Domicilio Departamento") String departamento,
-            final @ParameterLayout(named="Domicilio Teléfono") String telefono,
+            final @ParameterLayout(named="Localidad") E_localidades localidad,
+            final @ParameterLayout(named="Calle") String calle,
+            final @ParameterLayout(named="Numero") int numero,
+            final @ParameterLayout(named="Piso") String piso,
+            final @ParameterLayout(named="Departamento") String departamento,
+            final @ParameterLayout(named="Teléfono") String telefono,
             final @ParameterLayout(named="Local")String local,
             final @ParameterLayout(named="Email")String email
             

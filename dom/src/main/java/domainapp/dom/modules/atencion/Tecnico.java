@@ -35,8 +35,10 @@ import domainapp.dom.modules.servicios.Persona;
 
 @javax.jdo.annotations.Unique(name="Tecnico_name_UNQ", members = {"apellido"})
 @DomainObject(
+		bounded=true,
         objectType = "TECNICO"
 )
+
 @DomainObjectLayout(
         bookmarking = BookmarkPolicy.AS_ROOT
 )
