@@ -12,11 +12,11 @@ import org.apache.isis.applib.annotation.Where;
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
-@javax.jdo.annotations.Queries({
-	@javax.jdo.annotations.Query(name = "MateriaDelCursoDeUnCurso", language = "JDOQL", value = "SELECT FROM dom.simple.MateriaDelCurso "
-			+ "WHERE this.curso.anio.plan.descripcion == :plan "
-			+ "&& this.curso.anio.anioNumero == :anio"
-			+ "&& this.curso.division == :division")})
+
+@javax.jdo.annotations.Query(name = "listaTecnicoDeEquipo", language = "JDOQL", value = "SELECT "
+		+ "FROM dom.modules.atencion.Equipotecnico " + "WHERE equipo == :equipo")
+
+
 @DomainObject(
 		bounded=true,
         objectType = "EQUIPOTECNICO"
@@ -51,18 +51,6 @@ public class EquipoTecnico {
 	public void setEquipo(final Equipo equipo) {
 		this.equipo =equipo;
 	}
-	// }}
-	// Title (GUI)
-	// //////////////////////////////////////////
-/*
-	public String title() {
-		return getMateria().getNombre() + " de " 
-				+ getMateria().getAnio().getAnioNumero() + "° " 
-				+ "'" + getCurso().getDivision() + "' "
-				+ "(" + getMateria().getAnio().getPlan().getDescripcion() + ")";
-	}
-*/
-	// end region Title (GUI)
-	// //////////////////////////////////////////
+
 
 }

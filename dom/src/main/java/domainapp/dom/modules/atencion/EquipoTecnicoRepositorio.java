@@ -15,41 +15,7 @@ import org.apache.isis.applib.query.QueryDefault;
 @DomainService
 public class EquipoTecnicoRepositorio {
 	
-	/*
-	 //region > listAll (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    
-    @MemberOrder(sequence = "3")
-    public List<EquipoTecnico> listarTodos() {
-        return container.allInstances(EquipoTecnico.class);
-    }
-    //endregion
-
-    //region > findBy (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "2")
-    public List<Tecnico> buscarPorImei(
-            @ParameterLayout(named="Imei")
-            final String imei
-    ) {
-        return container.allMatches(
-                new QueryDefault<>(
-                        Tecnico.class,
-                        "findByImei",
-                        "apellido", imei));
-    }
-    //endregion
-*/
+	
     //region > create (action)
     @MemberOrder(sequence = "1")
     public EquipoTecnico Alta(
@@ -62,22 +28,43 @@ public class EquipoTecnicoRepositorio {
         container.persistIfNotAlready(obj);
         return obj;
     }
-
-	public List<EquipoTecnico> listaTecnicoDeEquipo(Equipo equipo){
-		
-		return container.allMatches(new QueryDefault<EquipoTecnico>(EquipoTecnico.class,
-				"TecnicosDeEquipo", 
-				"Imei", equipo.getImei()));
-	}	
-
+    
+    
+    @MemberOrder(sequence = "3")
+    public List<EquipoTecnico> listarTodos() {
+        return container.allInstances(EquipoTecnico.class);
+    }
     //endregion
+    
+  
+
+
+    @MemberOrder(sequence = "4")
+    public List<EquipoTecnico> listaTecnicoDeEquipo(Equipo equipo)
+  {
+        return container.allMatches(
+                new QueryDefault<>(
+                		EquipoTecnico.class,
+                        "listaTecnicoDeEquipo",
+                        "equipo", equipo));
+    }
+    
+    
+    
+    
+    
+    
+
+
+
+
+//endregion
+
 
     //region > injected services
-
     @javax.inject.Inject 
     DomainObjectContainer container;
 
     //endregion
-	
  
 }
