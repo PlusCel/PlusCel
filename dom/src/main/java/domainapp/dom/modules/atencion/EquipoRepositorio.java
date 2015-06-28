@@ -73,7 +73,28 @@ public class EquipoRepositorio {
         return obj;
     }
 
+ // region > buscarPorImei (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "4")
+    public List<Equipo> buscarPorImei(
+            @ParameterLayout(named="IMEI")
+            final String imei
+    ) {
+        return container.allMatches(
+                new QueryDefault<>(
+                        Equipo.class,
+                        "buscarPorImei",
+                        "imei", imei));
+    }
     //endregion
+    
+    
+    
 
     //region > injected services
 
