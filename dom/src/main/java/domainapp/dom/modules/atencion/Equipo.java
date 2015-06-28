@@ -24,21 +24,19 @@ import domainapp.dom.modules.servicios.E_estado;
         column="version")
 @javax.jdo.annotations.Queries({
 
-        @javax.jdo.annotations.Query(
-                name = "find", language = "JDOQL",
-                value = "SELECT "
-                        + "FROM domainapp.dom.modules.atencion.Equipo "),
-        @javax.jdo.annotations.Query(name = "findByMarca", language = "JDOQL", value = "SELECT "
-                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca.abreviatura == :marca"),
-        @javax.jdo.annotations.Query(
-                name = "findByModelo", language = "JDOQL",
-                value = "SELECT "
-                        + "FROM domainapp.dom.modules.atencion.Equipo "
-                        + "WHERE modelo.Abreviatura.startsWith(:modelo)")
+        @javax.jdo.annotations.Query(name = "buscarPorImei", language = "JDOQL", value = "SELECT "
+                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE imei == :imei"),
+
+	  @javax.jdo.annotations.Query(name = "buscarPorMarca", language = "JDOQL", value = "SELECT "
+	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca.abreviatura == :marca"),	                  			
+                    			
 })
 
 
-@javax.jdo.annotations.Unique(name="Equipo_name_UNQ", members = {"marca","modelo"})
+@javax.jdo.annotations.Unique(name="Equipo_name_UNQ", members = {"imei","marca"})
+
+
+
 
 @DomainObject(
 		bounded=true,
@@ -58,7 +56,7 @@ public class Equipo {
 	}
 	
 	public String title() {		
-		return getImei();
+		return getImei()  + ", " + getMarca().getDescripcion();
 	}
     
     private Marca marca;
@@ -111,15 +109,15 @@ public class Equipo {
     }
   //}}  
   //{{ Imei (property)
-    private String Imei;
+    private String imei;
     @Persistent
 	@MemberOrder(sequence = "6")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
     public String getImei(){
-        return Imei;
+        return imei;
     }
-    public void setImei(final String Imei) {
-        this.Imei = Imei;
+    public void setImei(final String imei) {
+        this.imei = imei;
     }      
    //}}
 	@javax.inject.Inject
