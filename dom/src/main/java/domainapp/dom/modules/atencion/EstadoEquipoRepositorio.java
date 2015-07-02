@@ -12,13 +12,14 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
+
 import domainapp.dom.modules.servicios.E_estadoParte;
 ;
 @DomainService(repositoryFor = EstadoEquipo.class)
 @DomainServiceLayout(menuOrder = "10" , named="EstadoEquipo")
 
 public class EstadoEquipoRepositorio {
-	/*
+	
 	//region > listarTodos (action)
     @Action(
             semantics = SemanticsOf.SAFE
@@ -32,26 +33,26 @@ public class EstadoEquipoRepositorio {
     }
     //endregion
 
-   // region > buscarPorMarca (action)
+ // region > buscarPorImei (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
     )
-    @MemberOrder(sequence = "2")
-    public List<EstadoEquipo> buscarPorImei(
-            @ParameterLayout(named="Imei")
+    @MemberOrder(sequence = "4")
+    public List<Equipo> buscarPorImei(
+            @ParameterLayout(named="IMEI")
             final String imei
     ) {
         return container.allMatches(
                 new QueryDefault<>(
-                        EstadoEquipo.class,
+                        Equipo.class,
                         "buscarPorImei",
-                        "Imei", imei));
+                        "imei", imei));
     }
     //endregion
-*/
+
     //region > create (action)
     @MemberOrder(sequence = "3")
     public EstadoEquipo Alta(
