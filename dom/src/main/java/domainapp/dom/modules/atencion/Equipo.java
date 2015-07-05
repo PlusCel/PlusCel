@@ -94,21 +94,9 @@ public class Equipo {
     public void setEstado(final E_estado estado) {
         this.estado = estado;
     }
-  
-        
- //{{ Accesorio (property)
-    private String accesorio;
-    @Persistent
-	@MemberOrder(sequence = "4")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)   
-    public String getAccesorio() {
-        return accesorio;
-    }
-    public void setAccesorio(final String accesorio) {
-        this.accesorio = accesorio;
-    }
-  //}}  
-  //{{ Imei (property)
+
+ 
+    //{{ Imei (property)
     private String imei;
     @Persistent
 	@MemberOrder(sequence = "6")
