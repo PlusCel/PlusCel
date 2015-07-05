@@ -58,7 +58,7 @@ public class EquipoRepositorio {
             final @ParameterLayout(named="Marca") Marca marca,    		           
             final @ParameterLayout(named="Modelo") Modelo modelo, 
             final @ParameterLayout(named="Estado") E_estado estado,  
-            final @ParameterLayout(named="Accesorio") String accesorio,   
+           // final @ParameterLayout(named="Accesorio") String accesorio,   
             final @ParameterLayout(named="IMEI") String imei   
             
     		) {
@@ -66,7 +66,7 @@ public class EquipoRepositorio {
         obj.setMarca(marca);
         obj.setModelo(modelo);
         obj.setEstado(estado);
-        obj.setAccesorio(accesorio);
+       // obj.setAccesorio(accesorio);
         obj.setImei(imei);
    
         container.persistIfNotAlready(obj);

@@ -1,6 +1,6 @@
 package domainapp.dom.modules.servicios;
 
-public enum E_estadoParte {
+public enum E_accesorioParte {
   SI,NO, NA
 
 }
