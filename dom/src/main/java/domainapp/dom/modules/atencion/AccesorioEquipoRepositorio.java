@@ -13,12 +13,12 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 
-import domainapp.dom.modules.servicios.E_estadoParte;
+import domainapp.dom.modules.servicios.E_accesorioParte;
 ;
-@DomainService(repositoryFor = EstadoEquipo.class)
-@DomainServiceLayout(menuOrder = "10" , named="EstadoEquipo")
+@DomainService(repositoryFor = AccesorioEquipo.class)
+@DomainServiceLayout(menuOrder = "10" , named="AccesorioEquipo")
 
-public class EstadoEquipoRepositorio {
+public class AccesorioEquipoRepositorio {
 	
 	//region > listarTodos (action)
     @Action(
@@ -27,42 +27,23 @@ public class EstadoEquipoRepositorio {
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
     )
-    @MemberOrder(sequence = "1")
-   public List<EstadoEquipo> listarTodos() {
-        return container.allInstances(EstadoEquipo.class);
+    @MemberOrder(sequence = "2")
+   public List<AccesorioEquipo> listarTodos() {
+        return container.allInstances(AccesorioEquipo.class);
     }
     //endregion
 
- // region > buscarPorImei (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "4")
-    public List<Equipo> buscarPorImei(
-            @ParameterLayout(named="IMEI")
-            final String imei
-    ) {
-        return container.allMatches(
-                new QueryDefault<>(
-                        Equipo.class,
-                        "buscarPorImei",
-                        "imei", imei));
-    }
-    //endregion
-
+ 
     //region > create (action)
-    @MemberOrder(sequence = "3")
-    public EstadoEquipo Alta(
+    @MemberOrder(sequence = "1")
+    public AccesorioEquipo Alta(
             final @ParameterLayout(named="Equipo") Equipo equipo,    		           
-            final @ParameterLayout(named="Memoria") E_estadoParte memoria, 
-            final @ParameterLayout(named="Chip") E_estadoParte chip,  
+            final @ParameterLayout(named="Memoria") E_accesorioParte memoria, 
+            final @ParameterLayout(named="Chip") E_accesorioParte chip,  
             final @ParameterLayout(named="Observación") String observacion   
             
     		) {
-        final EstadoEquipo obj = container.newTransientInstance(EstadoEquipo.class);
+        final AccesorioEquipo obj = container.newTransientInstance(AccesorioEquipo.class);
         obj.setEquipo(equipo);
         obj.setMemoria(memoria);
         obj.setChip(chip);
@@ -72,6 +53,17 @@ public class EstadoEquipoRepositorio {
     }
 
     //endregion
+    
+    @MemberOrder(sequence = "3")
+    public List<AccesorioEquipo> listaAccesorioDeEquipo(Equipo equipo)
+  {
+        return container.allMatches(
+                new QueryDefault<>(
+                		AccesorioEquipo.class,
+                        "listaAccesorioDeEquipo",
+                        "equipo", equipo));
+    }
+    
 
     //region > injected services
 

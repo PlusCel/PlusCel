@@ -10,8 +10,8 @@ import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 
-import domainapp.dom.modules.servicios.E_estado;
-import domainapp.dom.modules.servicios.E_estadoParte;
+
+import domainapp.dom.modules.servicios.E_accesorioParte;
 
 /**
  * @author PlusCel
@@ -29,23 +29,24 @@ import domainapp.dom.modules.servicios.E_estadoParte;
         @javax.jdo.annotations.Query(
                 name = "find", language = "JDOQL",
                 value = "SELECT "
-                        + "FROM domainapp.dom.modules.atencion.EstadoEquipo "),
+                        + "FROM domainapp.dom.modules.atencion.AccesorioEquipo "),
         
-        
+                        @javax.jdo.annotations.Query(name = "listaAccesorioDeEquipo", language = "JDOQL", value = "SELECT "
+                        		+ "FROM dom.modules.atencion.AccesorioEquipo " + "WHERE equipo == :equipo")
 })
 
 
-@javax.jdo.annotations.Unique(name="EstadoEquipo_name_UNQ", members = {})
+@javax.jdo.annotations.Unique(name="AccesorioEquipo_name_UNQ", members = {})
 
 @DomainObject(
 		bounded=true,
-        objectType = "ESTADOEQUIPO"
+        objectType = "ACCESORIOEQUIPO"
 )
 @DomainObjectLayout(
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 
-public class EstadoEquipo {
+public class AccesorioEquipo {
 	public DomainObjectContainer getContainer() {
 		return container;
 	}
@@ -75,31 +76,31 @@ public class EstadoEquipo {
 //}}
 	
 //{{ Memoria (property)
-    private E_estadoParte memoria;
+    private E_accesorioParte memoria;
     
     @Persistent
 	@MemberOrder(sequence = "2")
     @javax.jdo.annotations.Column(allowsNull="false")
 	
-    public E_estadoParte getMemoria() {
+    public E_accesorioParte getMemoria() {
         return memoria;
     }
-    public void setMemoria(final E_estadoParte memoria) {
+    public void setMemoria(final E_accesorioParte memoria) {
         this.memoria = memoria;
     }
   //}}         
     
   //{{ Chip (property)
-    private E_estadoParte chip;
+    private E_accesorioParte chip;
     @Persistent
 	@MemberOrder(sequence = "3")
     @javax.jdo.annotations.Column(allowsNull="false")
     
-    public E_estadoParte getChip() {
+    public E_accesorioParte getChip() {
         return chip;
     }
     
-    public void setChip(final E_estadoParte chip) {
+    public void setChip(final E_accesorioParte chip) {
         this.chip = chip;
     }
  
