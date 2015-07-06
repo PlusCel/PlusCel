@@ -50,6 +50,7 @@ import domainapp.dom.modules.servicios.Persona;
 
 @javax.jdo.annotations.Unique(name="Cliente_name_UNQ", members = {"apellido"})
 @DomainObject(
+		bounded=true,
         objectType = "CLIENTE"
 )
 @DomainObjectLayout(
