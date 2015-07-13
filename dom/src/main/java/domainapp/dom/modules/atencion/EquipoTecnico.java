@@ -13,6 +13,7 @@ import org.apache.isis.applib.annotation.Where;
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 
+
 @javax.jdo.annotations.Query(name = "listaTecnicoDeEquipo", language = "JDOQL", value = "SELECT "
 		+ "FROM dom.modules.atencion.Equipotecnico " + "WHERE equipo == :equipo")
 
@@ -22,6 +23,17 @@ import org.apache.isis.applib.annotation.Where;
         objectType = "EQUIPOTECNICO"
 )		
 public class EquipoTecnico {
+	
+	/**
+	 * Titulo de la clase.
+	 * 
+	 * @return the string
+	 */
+	public String title() {		
+		return getEquipo().title() + " - " + getTecnico().title() ;
+	}
+	
+	
 	
 	// {{ Tecnico (property)
 	private Tecnico tecnico;
