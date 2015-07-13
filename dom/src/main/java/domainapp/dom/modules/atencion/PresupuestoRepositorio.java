@@ -12,15 +12,18 @@ import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 
 import java.util.Date;
 
+
+
 @DomainService(repositoryFor = Presupuesto.class)
 @DomainServiceLayout(menuOrder = "10" , named="Presupuesto")
 
 public class PresupuestoRepositorio {
+		
 	
 	 //region > create (action)
     @MemberOrder(sequence = "1")
-    public Presupuesto Alta(
-             final @ParameterLayout(named="Equipo") Equipo equipo,            
+    public Presupuesto Alta(   
+    		 final @ParameterLayout(named="Equipo") Equipo equipo,            
              final @ParameterLayout(named="Cliente") Cliente cliente,
              final @ParameterLayout(named="Fecha") Date  fechaHora ,
              final @ParameterLayout(named="Diagnostico") String diagnostico,
@@ -30,7 +33,7 @@ public class PresupuestoRepositorio {
              final @ParameterLayout(named="Estado") E_estadoPresupuesto estado ) {
     	
         final Presupuesto obj = container.newTransientInstance(Presupuesto.class);
-        obj.setEquipo(equipo);       
+         obj.setEquipo(equipo);       
         obj.setCliente(cliente);
         obj.setFechaHora(fechaHora);
         obj.setDiagnostico(diagnostico);
@@ -41,6 +44,7 @@ public class PresupuestoRepositorio {
         container.persistIfNotAlready(obj);
         return obj;
     }
+       	
     
     @MemberOrder(sequence = "2")
     public List<Presupuesto> listarTodos() {

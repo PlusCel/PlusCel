@@ -1,35 +1,49 @@
 package domainapp.dom.modules.atencion;
 
 import javax.jdo.annotations.Column;
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
+import org.apache.isis.applib.annotation.DescribedAs;
+import org.apache.isis.applib.annotation.Disabled;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
+import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.TypicalLength;
 import org.apache.isis.applib.annotation.Where;
+
+
+
+
 
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 
 import java.util.Date;
 
+import org.apache.isis.applib.annotation.Title;
 
 /**
  * @author PlusCel
  *
  */
-@SuppressWarnings("unused")
-@javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
+
+
+/**
+ * Clase Presupuesto.
+ */
+@javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.APPLICATION)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
-
-@javax.jdo.annotations.Query(name = "listaTecnicoDeEquipo", language = "JDOQL", value = "SELECT "
-		+ "FROM dom.modules.atencion.Equipotecnico " + "WHERE presupuesto == :presupuesto")
-
-
+@javax.jdo.annotations.Uniques({ @javax.jdo.annotations.Unique(name = "Presupuesto_numero_must_be_unique", members = { "numero" }) })
+@javax.jdo.annotations.Queries({	
+		@javax.jdo.annotations.Query(name = "buscarPorNumero", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.modules.atencion.Presupuesto WHERE numero.indexOf(:numero) >= 0") })
 @DomainObject(
 		bounded=true,
         objectType = "PRESUPUESTO"
@@ -40,6 +54,8 @@ import java.util.Date;
 
 
 public class Presupuesto {
+	
+  
 	public DomainObjectContainer getContainer() {
 		return container;
 	}
@@ -47,11 +63,40 @@ public class Presupuesto {
 	public void setContainer(DomainObjectContainer container) {
 		this.container = container;
 	}
-			
 	
-	private Cliente cliente;
+	/**
+	 * Titulo de la clase.
+	 * 
+	 * @return the string
+	 */
+	public String title() {		
+		return "Presupuesto:" + " " + getNumero()   ;
+	}
 	
-	@MemberOrder(sequence = "1")
+		// //////////////////////////////////////
+		// NumeroPresupuesto (propiedad)
+		// //////////////////////////////////////
+
+		@PrimaryKey
+		private long numero;
+
+		@javax.jdo.annotations.Column(allowsNull = "false")
+		@javax.jdo.annotations.PrimaryKey(column = "numero")
+		@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT, sequence = "numero")
+		@MemberOrder(sequence = "10")
+		public long getNumero() {
+			return numero;
+		}
+
+		public void setNumero(final long numero) {
+			this.numero = numero;
+		}
+		
+
+	
+	private Cliente cliente;	
+	
+	@MemberOrder(sequence = "2")
 	@Column(allowsNull = "true")
 	public Cliente getCliente() {
 		return cliente;
@@ -65,7 +110,7 @@ public class Presupuesto {
 	// {{ Equipo (property)
 	private Equipo equipo;
 	//@Hidden(where = Where.ALL_TABLES)
-	@MemberOrder(sequence = "2")
+	@MemberOrder(sequence = "3")
 	@Column(allowsNull = "true")
 	public Equipo getEquipo() {
 		return equipo;
@@ -75,13 +120,15 @@ public class Presupuesto {
 		this.equipo =equipo;
 	}
 	
-		
  
 	
  // {{ FechaHora (property)
  	private Date fechaHora;
+ 	
+ 	
 
- 	@MemberOrder(sequence = "3")
+ 	 	
+ 	@MemberOrder(sequence = "4")
  	@Column(allowsNull = "false")
  	public Date getFechaHora() {
  		return fechaHora;
@@ -97,7 +144,7 @@ public class Presupuesto {
  	//{{ Diagnostico (property)
     private String diagnostico;
     @Persistent
-	@MemberOrder(sequence = "4")
+	@MemberOrder(sequence = "5")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
     public String getDiagnostico(){
         return diagnostico;
@@ -110,7 +157,7 @@ public class Presupuesto {
   //{{ Reparacion Requerida(property)
     private String reparacionRequerida;
     @Persistent
-	@MemberOrder(sequence = "5")
+	@MemberOrder(sequence = "6")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
     public String getReparacionRequerida(){
         return reparacionRequerida;
@@ -125,7 +172,7 @@ public class Presupuesto {
  	
   	
   	@Column(allowsNull = "false")
-  	@MemberOrder(sequence = "6")
+  	@MemberOrder(sequence = "7")
   	public double getImporte() {
   		return importe;
   	}
@@ -138,7 +185,7 @@ public class Presupuesto {
  	//{{ Observacion (property)
     private String observacion;
     @Persistent
-	@MemberOrder(sequence = "7")
+	@MemberOrder(sequence = "8")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
     public String getObservacion(){
         return observacion;
@@ -150,7 +197,7 @@ public class Presupuesto {
     
     private E_estadoPresupuesto estado;  
     @Persistent
-	@MemberOrder(sequence = "8")
+	@MemberOrder(sequence = "9")
     @javax.jdo.annotations.Column(allowsNull="true", length = 40)
     public E_estadoPresupuesto getEstadoPresupuesto() {
         return estado;
@@ -159,10 +206,9 @@ public class Presupuesto {
         this.estado = estado;
     }
 
-		
+ 
 	 //region > injected services
-		@javax.inject.Inject
-
+    @javax.inject.Inject
 		private DomainObjectContainer container;
 		
 	//endregion
