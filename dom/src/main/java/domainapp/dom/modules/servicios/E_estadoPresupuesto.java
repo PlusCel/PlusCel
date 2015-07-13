@@ -1,5 +1,5 @@
 package domainapp.dom.modules.servicios;
 
 public enum E_estadoPresupuesto {
-		ACEPTADO,RECHAZADO
+		A_PRESUPUESTAR,ACEPTADO,RECHAZADO
 }
