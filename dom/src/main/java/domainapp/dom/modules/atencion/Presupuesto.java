@@ -6,27 +6,18 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
-
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
-import org.apache.isis.applib.annotation.DescribedAs;
-import org.apache.isis.applib.annotation.Disabled;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
-import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.TypicalLength;
-import org.apache.isis.applib.annotation.Where;
-
-
-
-
-
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 
 import java.util.Date;
 
-import org.apache.isis.applib.annotation.Title;
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.*;
 
 /**
  * @author PlusCel
@@ -72,6 +63,7 @@ public class Presupuesto {
 	public String title() {		
 		return "Presupuesto:" + " " + getNumero()   ;
 	}
+	
 	
 		// //////////////////////////////////////
 		// NumeroPresupuesto (propiedad)
@@ -123,11 +115,8 @@ public class Presupuesto {
  
 	
  // {{ FechaHora (property)
- 	private Date fechaHora;
- 	
- 	
-
- 	 	
+ 	private Date fechaHora; 	
+ 	 	 	
  	@MemberOrder(sequence = "4")
  	@Column(allowsNull = "false")
  	public Date getFechaHora() {
@@ -206,14 +195,42 @@ public class Presupuesto {
         this.estado = estado;
     }
 
- 
+    public static Long getDateDiff(Date date) {
+    	
+    Date date1 = new Date();    	
+    
+    //los milisegundos
+    long diferenciaMils = date1.getTime() - date.getTime();
+  
+    //obtenemos los segundos
+    long segundos = diferenciaMils / 1000;
+  
+    //obtenemos las horas
+    long horas = segundos / 3600;
+  
+    //restamos las horas para continuar con minutos
+    segundos -= horas*3600;
+  
+    //igual que el paso anterior
+    long minutos = segundos /60;
+    segundos -= minutos*60;
+      
+        return (horas)  ;
+    } 
+   
+
+    public String getAlerta(){
+    	if ((getDateDiff(getFechaHora()) > 40) && (getEstadoPresupuesto() == E_estadoPresupuesto.A_PRESUPUESTAR) ){
+   		    	    	return "Pasaron :" + getDateDiff(getFechaHora()) + " hs.  Sin Presupuestar" ;
+    	}
+		return null;
+    }
+      	
+    
 	 //region > injected services
     @javax.inject.Inject
 		private DomainObjectContainer container;
 		
 	//endregion
 		
-		
-		
-
 }

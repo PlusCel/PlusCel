@@ -7,6 +7,7 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.joda.time.DateTime;
 
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 
@@ -30,7 +31,7 @@ public class PresupuestoRepositorio {
              final @ParameterLayout(named="ReparacionRequerida")  String reparacionRequerida,
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Observacion") String observacion,
-             final @ParameterLayout(named="Estado") E_estadoPresupuesto estado ) {
+             final @ParameterLayout(named="Estado") E_estadoPresupuesto estado    ) {
     	
         final Presupuesto obj = container.newTransientInstance(Presupuesto.class);
          obj.setEquipo(equipo);       
@@ -40,7 +41,8 @@ public class PresupuestoRepositorio {
         obj.setReparacionRequerida(reparacionRequerida);
         obj.setImporte(importe);
         obj.setObservacion(observacion);
-        obj.setEstadoPresupuesto(estado);
+        obj.setEstadoPresupuesto(estado);      
+        
         container.persistIfNotAlready(obj);
         return obj;
     }
