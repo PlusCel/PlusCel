@@ -19,6 +19,11 @@ import java.util.Date;
 @DomainServiceLayout(menuOrder = "10" , named="Presupuesto")
 
 public class PresupuestoRepositorio {
+	
+	public String iconName() {
+		return "Presupuesto";
+	}
+
 		
 	
 	 //region > create (action)
@@ -31,7 +36,8 @@ public class PresupuestoRepositorio {
              final @ParameterLayout(named="ReparacionRequerida")  String reparacionRequerida,
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Observacion") String observacion,
-             final @ParameterLayout(named="Estado") E_estadoPresupuesto estado    ) {
+             final @ParameterLayout(named="Estado") E_estadoPresupuesto estado,
+             final @ParameterLayout(named="Garantia(Meses)") String  garantia   ) {
     	
         final Presupuesto obj = container.newTransientInstance(Presupuesto.class);
          obj.setEquipo(equipo);       
@@ -41,7 +47,8 @@ public class PresupuestoRepositorio {
         obj.setReparacionRequerida(reparacionRequerida);
         obj.setImporte(importe);
         obj.setObservacion(observacion);
-        obj.setEstadoPresupuesto(estado);      
+        obj.setEstadoPresupuesto(estado);
+        obj.setGarantia(garantia);      
         
         container.persistIfNotAlready(obj);
         return obj;

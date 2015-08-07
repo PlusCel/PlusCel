@@ -6,15 +6,24 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+
+
+
+import org.apache.isis.applib.annotation.ParameterLayout;
+
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 
-import java.util.Date;
 
+
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
@@ -225,7 +234,26 @@ public class Presupuesto {
     	}
 		return null;
     }
-      	
+    
+
+       
+  //{{ Diagnostico (property)
+    private String garantia ;     
+    @Persistent
+	@MemberOrder(sequence = "10")
+    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+   
+    public String getGarantia(){
+    	return garantia  ;
+    	}  	
+        
+    
+   public void setGarantia(final String  garantia) {
+        this.garantia = garantia  ;
+    }      
+   //}}
+   
+        	
     
 	 //region > injected services
     @javax.inject.Inject
