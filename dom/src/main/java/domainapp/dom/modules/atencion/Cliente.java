@@ -48,7 +48,7 @@ import domainapp.dom.modules.servicios.Persona;
                         + "WHERE apellido.startsWith(:apellido)")
 })
 
-@javax.jdo.annotations.Unique(name="Cliente_name_UNQ", members = {"apellido"})
+@javax.jdo.annotations.Unique(name="Cliente_dni_UNQ", members = {"dni"})
 @DomainObject(
 		bounded=true,
         objectType = "CLIENTE"
