@@ -22,6 +22,8 @@ import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 
 
 
+import domainapp.dom.modules.servicios.EnvioCorreo;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.*;
@@ -226,16 +228,16 @@ public class Presupuesto {
       
         return (horas)  ;
     } 
-   
-
-    public String getAlerta(){
+    
+     
+    public Long getAlerta(){
     	if ((getDateDiff(getFechaHora()) > 40) && (getEstadoPresupuesto() == E_estadoPresupuesto.A_PRESUPUESTAR) ){
-   		    	    	return "Pasaron :" + getDateDiff(getFechaHora()) + " hs.  Sin Presupuestar" ;
+   		    	    	return  getDateDiff(getFechaHora()) ;
     	}
 		return null;
     }
     
-
+    
        
   //{{ Diagnostico (property)
     private String garantia ;     
