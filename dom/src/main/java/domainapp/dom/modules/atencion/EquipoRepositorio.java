@@ -12,7 +12,9 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
+
 import domainapp.dom.modules.servicios.E_estado;
+import domainapp.dom.modules.servicios.EnvioCorreo;
 
 @DomainService(repositoryFor = Equipo.class)
 @DomainServiceLayout(menuOrder = "10" , named="Equipo")
@@ -50,23 +52,22 @@ public class EquipoRepositorio {
                         "buscarPorMarca",
                         "marca", marca));
     }
-    //endregion
+  // endregion   
+    
 
     //region > create (action)
     @MemberOrder(sequence = "3")
     public Equipo Alta(
             final @ParameterLayout(named="Marca") Marca marca,    		           
             final @ParameterLayout(named="Modelo") Modelo modelo, 
-            final @ParameterLayout(named="Estado") E_estado estado,  
-           // final @ParameterLayout(named="Accesorio") String accesorio,   
+            final @ParameterLayout(named="Estado") E_estado estado,             
             final @ParameterLayout(named="IMEI") String imei   
             
     		) {
         final Equipo obj = container.newTransientInstance(Equipo.class);
         obj.setMarca(marca);
         obj.setModelo(modelo);
-        obj.setEstado(estado);
-       // obj.setAccesorio(accesorio);
+        obj.setEstado(estado);     
         obj.setImei(imei);
    
         container.persistIfNotAlready(obj);
@@ -94,12 +95,41 @@ public class EquipoRepositorio {
     //endregion
     
     
-    
+    // region > buscarPorEstado (action)
+  @Action(
+          semantics = SemanticsOf.SAFE
+ )
+  @ActionLayout(
+          bookmarking = BookmarkPolicy.AS_ROOT
+  )
+  @MemberOrder(sequence = "5")
+  public List<Equipo> buscarPorEstado(
+          @ParameterLayout(named="Estado")
+        final E_estado estado
+  ) {
+      return container.allMatches(
+              new QueryDefault<>(
+                      Equipo.class,
+                      "buscarPorEstado",
+                      "estado", estado));
+  }
+ //endregion
+  
+      
 
     //region > injected services
 
     @javax.inject.Inject 
-    DomainObjectContainer container;
+    DomainObjectContainer container;    
+
+
+	public static List<Equipo> listAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+    
 
     //endregion
 

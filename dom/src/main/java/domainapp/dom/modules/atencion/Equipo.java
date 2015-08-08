@@ -9,7 +9,9 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+
 import domainapp.dom.modules.servicios.E_estado;
+import domainapp.dom.modules.servicios.EnvioCorreo;
 
 /**
  * @author PlusCel
@@ -27,8 +29,11 @@ import domainapp.dom.modules.servicios.E_estado;
         @javax.jdo.annotations.Query(name = "buscarPorImei", language = "JDOQL", value = "SELECT "
                     			+ "FROM dom.modules.atencion.Equipo " + "WHERE imei == :imei"),
 
-	  @javax.jdo.annotations.Query(name = "buscarPorMarca", language = "JDOQL", value = "SELECT "
-	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca.abreviatura == :marca"),	                  			
+	    @javax.jdo.annotations.Query(name = "buscarPorMarca", language = "JDOQL", value = "SELECT "
+	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca.abreviatura == :marca"),	 
+
+	    @javax.jdo.annotations.Query(name = "buscarPorEstado", language = "JDOQL", value = "SELECT "
+	     	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE estado == :estado"),	                    			
                     			
 })
 
@@ -107,6 +112,18 @@ public class Equipo {
     public void setImei(final String imei) {
         this.imei = imei;
     }      
+    
+    
+    public Equipo EnviarAlerta() {	
+    	if (Equipo.this.estado == E_estado.TERMINADO) {
+    		EnvioCorreo.send(Equipo.this.getImei()  + ", " + getMarca().getDescripcion()+ ", " + getModelo().getDescripcion() );
+    		
+    	}
+    					
+		return this;
+	}
+    
+    
    //}}
 	@javax.inject.Inject
 
