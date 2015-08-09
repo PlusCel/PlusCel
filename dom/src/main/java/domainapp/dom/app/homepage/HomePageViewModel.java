@@ -22,7 +22,6 @@ import domainapp.dom.modules.atencion.Cliente;
 import domainapp.dom.modules.atencion.ClienteRepositorio;
 import domainapp.dom.modules.atencion.Equipo;
 import domainapp.dom.modules.atencion.EquipoRepositorio;
-import domainapp.dom.modules.servicios.Alerta;
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 import domainapp.dom.modules.servicios.EnvioCorreo;
