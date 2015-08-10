@@ -20,30 +20,49 @@ package domainapp.dom.app.homepage;
 
 import domainapp.dom.modules.atencion.Cliente;
 import domainapp.dom.modules.atencion.ClienteRepositorio;
+import domainapp.dom.modules.atencion.Equipo;
+import domainapp.dom.modules.atencion.EquipoRepositorio;
+import domainapp.dom.modules.servicios.E_estado;
+import domainapp.dom.modules.servicios.E_estadoPresupuesto;
+import domainapp.dom.modules.servicios.EnvioCorreo;
 
 import java.util.List;
+
 import org.apache.isis.applib.annotation.ViewModel;
+
 
 @ViewModel
 public class HomePageViewModel {
-
+	
+	
     //region > title
     public String title() {
-        return getObjects().size() + " objects";
+    	if (getObjects().size() > 1 ){
+    		 return getObjects().size() + " EQUIPOS LISTOS PARA SER  ENTREGADOS";
+    	}else if (getObjects().size() == 1) {
+    		return getObjects().size() + " EQUIPO LISTO PARA SER  ENTREGADO";
+    	}else{
+    		return "PLUSCEL";
+    	}
+       
     }
     //endregion
+    
+  
 
     //region > object (collection)
-    @org.apache.isis.applib.annotation.HomePage
-    public List<Cliente> getObjects() {
-        return ClienteRepositorio.listAll();
-    }
-    //endregion
+    //@org.apache.isis.applib.annotation.HomePage   
+   
+   public List<Equipo> getObjects() {
+        return EquipoRepositorio.buscarPorEstado(E_estado.TERMINADO);
+        
+   }
 
-    //region > injected services
-
+    
     @javax.inject.Inject
-    ClienteRepositorio ClienteRepositorio;
+    EquipoRepositorio EquipoRepositorio;
+   //ClienteRepositorio ClienteRepositorio;
+    
 
     //endregion
 }

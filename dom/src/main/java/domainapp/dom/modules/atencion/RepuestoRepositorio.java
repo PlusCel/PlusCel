@@ -18,7 +18,7 @@ import domainapp.dom.modules.servicios.E_tipoRepuesto;
 
 
 @DomainService(repositoryFor = Repuesto.class)
-@DomainServiceLayout(menuOrder = "10" , named="Respuesto")
+@DomainServiceLayout(menuOrder = "10" , named="Repuestos")
 public class RepuestoRepositorio {
 
     //region > listAll (action)
@@ -29,7 +29,7 @@ public class RepuestoRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public List<Repuesto> listAll() {
+    public List<Repuesto> listarTodos() {
         return container.allInstances(Repuesto.class);
     }
     //endregion
@@ -37,7 +37,7 @@ public class RepuestoRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public Repuesto create(
+    public Repuesto alta(
             final @ParameterLayout(named="Modelo") String modelo,
             //final @ParameterLayout(named="Tipo de Repuesto") E_tipoRepuesto tipoRepuesto,
             final @ParameterLayout(named="Descripcion") String descripcion,
