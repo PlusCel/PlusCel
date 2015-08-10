@@ -43,7 +43,15 @@ import java.applet.*;
 @javax.jdo.annotations.Uniques({ @javax.jdo.annotations.Unique(name = "Presupuesto_numero_must_be_unique", members = { "numero" }) })
 @javax.jdo.annotations.Queries({	
 		@javax.jdo.annotations.Query(name = "buscarPorNumero", language = "JDOQL", value = "SELECT "
-				+ "FROM dom.modules.atencion.Presupuesto WHERE numero.indexOf(:numero) >= 0") })
+				+ "FROM dom.modules.atencion.Presupuesto WHERE numero.indexOf(:numero) >= 0"),
+				
+				@javax.jdo.annotations.Query(name = "listadoReparaciones", language = "JDOQL", value = "SELECT "		
+						+ "FROM dom.modules.atencion.Presupuesto " +
+							"WHERE equipo == :equipo && cliente== :cliente" +
+						 " && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"
+						)
+
+})
 @DomainObject(
 		bounded=true,
         objectType = "PRESUPUESTO"
