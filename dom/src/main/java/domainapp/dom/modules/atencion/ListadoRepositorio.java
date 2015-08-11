@@ -17,7 +17,7 @@ import java.util.Date;
 
 
 
-@DomainService(repositoryFor = Listado.class)
+
 @DomainServiceLayout(menuOrder = "15" , named="Listados")
 public class ListadoRepositorio {
 	
