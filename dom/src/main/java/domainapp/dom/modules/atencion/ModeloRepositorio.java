@@ -26,8 +26,8 @@ public class ModeloRepositorio {
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
     )
-    @MemberOrder(sequence = "1")
-    public List<Modelo> listAll() {
+    @MemberOrder(sequence = "2")
+    public List<Modelo> listarTodos() {
         return container.allInstances(Modelo.class);
     }
     //endregion
@@ -39,8 +39,8 @@ public class ModeloRepositorio {
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
     )
-    @MemberOrder(sequence = "2")
-    public List<Modelo> findByDescripcion(
+    @MemberOrder(sequence = "3")
+    public List<Modelo> buscarPorDescripcion(
             @ParameterLayout(named="Descripcion")
             final String descripcion
     ) {
@@ -53,8 +53,8 @@ public class ModeloRepositorio {
     //endregion
 
     //region > create (action)
-    @MemberOrder(sequence = "3")
-    public Modelo create(
+    @MemberOrder(sequence = "1")
+    public Modelo alta(
             final @ParameterLayout(named="Abreviatura") String abreviatura,
             final @ParameterLayout(named="Descripcion") String descripcion
     		) {

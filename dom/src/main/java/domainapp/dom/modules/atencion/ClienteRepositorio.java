@@ -48,8 +48,8 @@ public class ClienteRepositorio {
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
     )
-    @MemberOrder(sequence = "1")
-    public List<Cliente> listAll() {
+    @MemberOrder(sequence = "2")
+    public List<Cliente> listarTodos() {
         return container.allInstances(Cliente.class);
     }
     //endregion
@@ -61,8 +61,8 @@ public class ClienteRepositorio {
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
     )
-    @MemberOrder(sequence = "2")
-    public List<Cliente> findByApellido(
+    @MemberOrder(sequence = "3")
+    public List<Cliente> buscarPorApellido(
             @ParameterLayout(named="Apellido")
             final String apellido
     ) {
@@ -75,8 +75,8 @@ public class ClienteRepositorio {
     //endregion
 
     //region > create (action)
-    @MemberOrder(sequence = "3")
-    public Cliente create(
+    @MemberOrder(sequence = "1")
+    public Cliente Alta(
             final @ParameterLayout(named="Apellido") String apellido,
             final @ParameterLayout(named="Nombre") String nombre,
             final @ParameterLayout(named="Dni") int dni,

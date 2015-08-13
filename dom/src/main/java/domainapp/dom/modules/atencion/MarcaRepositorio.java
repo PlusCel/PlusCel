@@ -25,8 +25,8 @@ public class MarcaRepositorio {
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
     )
-    @MemberOrder(sequence = "1")
-    public List<Marca> listAll() {
+    @MemberOrder(sequence = "2")
+    public List<Marca> listarTodo() {
         return container.allInstances(Marca.class);
     }
     //endregion
@@ -38,8 +38,8 @@ public class MarcaRepositorio {
     @ActionLayout(
             bookmarking = BookmarkPolicy.AS_ROOT
     )
-    @MemberOrder(sequence = "2")
-    public List<Marca> findByDescripcion(
+    @MemberOrder(sequence = "3")
+    public List<Marca> buscarPorDescripcion(
             @ParameterLayout(named="Descripcion")
             final String descripcion
     ) {
@@ -52,8 +52,8 @@ public class MarcaRepositorio {
     //endregion
 
     //region > create (action)
-    //@MemberOrder(sequence = "3")
-    public Marca create(
+    @MemberOrder(sequence = "1")
+    public Marca alta(
     		final @ParameterLayout(named="Abreviatura") String abreviatura,
             final @ParameterLayout(named="Descripcion") String descripcion
     		) {
