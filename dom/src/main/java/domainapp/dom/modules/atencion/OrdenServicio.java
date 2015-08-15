@@ -12,10 +12,11 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-
 import org.apache.isis.applib.annotation.ParameterLayout;
 
+import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
+import domainapp.dom.modules.servicios.EnvioCorreo;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +38,9 @@ import java.applet.*;
 @javax.jdo.annotations.Uniques({ @javax.jdo.annotations.Unique(name = "OrdenServicio_numero_must_be_unique", members = { "numero" }) })
 @javax.jdo.annotations.Queries({	
 		@javax.jdo.annotations.Query(name = "buscarPorNumero", language = "JDOQL", value = "SELECT "
-				+ "FROM dom.modules.atencion.OrdenServicio WHERE numero.indexOf(:numero) >= 0") })
+				+ "FROM dom.modules.atencion.OrdenServicio WHERE numero.indexOf(:numero) >= 0"),
+			    @javax.jdo.annotations.Query(name = "buscarPorEstado", language = "JDOQL", value = "SELECT "
+             			+ "FROM dom.modules.atencion.OrdenServicio " + "WHERE estado == :estado")})
 @DomainObject(
 		bounded=true,
         objectType = "ORDEN DE SERVICIO"
@@ -143,6 +146,26 @@ public class OrdenServicio {
   		this.importe = importe;
   	}
   	
+    private E_estado estado;  
+    @Persistent
+	@MemberOrder(sequence = "3")
+    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    public E_estado getEstado() {
+        return estado;
+    }
+    public void setEstado(final E_estado estado) {
+        this.estado = estado;
+    }
+    
+    
+    public OrdenServicio EnviarAlerta() {	
+    	if (OrdenServicio.this.estado == E_estado.TERMINADO) {
+    		EnvioCorreo.send("Orden de Servicio :" + OrdenServicio.this.numero + " Estado : "+ OrdenServicio.this.estado );
+    		
+    	}
+    					
+		return this;
+	}
 	 //region > injected services
     @javax.inject.Inject
 		private DomainObjectContainer container;

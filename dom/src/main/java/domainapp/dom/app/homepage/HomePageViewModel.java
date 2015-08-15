@@ -20,11 +20,11 @@ package domainapp.dom.app.homepage;
 
 import domainapp.dom.modules.atencion.Cliente;
 import domainapp.dom.modules.atencion.ClienteRepositorio;
-import domainapp.dom.modules.atencion.Equipo;
-import domainapp.dom.modules.atencion.EquipoRepositorio;
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 import domainapp.dom.modules.servicios.EnvioCorreo;
+import domainapp.dom.modules.atencion.OrdenServicio;
+import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
 
 import java.util.List;
 
@@ -38,9 +38,9 @@ public class HomePageViewModel {
     //region > title
     public String title() {
     	if (getObjects().size() > 1 ){
-    		 return getObjects().size() + " EQUIPOS LISTOS PARA SER  ENTREGADOS";
+    		 return getObjects().size() + " Orden de Servicio Listas";
     	}else if (getObjects().size() == 1) {
-    		return getObjects().size() + " EQUIPO LISTO PARA SER  ENTREGADO";
+    		return getObjects().size() + " Orden de servicio lista";
     	}else{
     		return "PLUSCEL";
     	}
@@ -53,14 +53,14 @@ public class HomePageViewModel {
     //region > object (collection)
     //@org.apache.isis.applib.annotation.HomePage   
    
-   public List<Equipo> getObjects() {
-        return EquipoRepositorio.buscarPorEstado(E_estado.TERMINADO);
+   public List<OrdenServicio> getObjects() {
+        return OrdenServicioRepositorio.buscarPorEstado(E_estado.TERMINADO);
         
    }
 
     
     @javax.inject.Inject
-    EquipoRepositorio EquipoRepositorio;
+    OrdenServicioRepositorio OrdenServicioRepositorio;
    //ClienteRepositorio ClienteRepositorio;
     
 
