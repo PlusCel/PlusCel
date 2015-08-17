@@ -20,6 +20,11 @@ package domainapp.dom.modules.atencion;
 
 import java.util.List;
 
+
+
+
+
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
@@ -27,15 +32,18 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 import org.joda.time.LocalDate;
+
 import domainapp.dom.modules.servicios.Direccion;
-import domainapp.dom.modules.servicios.Localidad.E_localidades;
 import domainapp.dom.modules.servicios.E_nacionalidad;
 import domainapp.dom.modules.servicios.E_sexo;
 import domainapp.dom.modules.servicios.Localidad;
+import domainapp.dom.modules.servicios.Localidad.E_localidades;
 
 @DomainService(repositoryFor = Cliente.class)
 @DomainServiceLayout(menuOrder = "10" , named="Cliente")
@@ -77,17 +85,17 @@ public class ClienteRepositorio {
     //region > create (action)
     @MemberOrder(sequence = "1")
     public Cliente Alta(
-            final @ParameterLayout(named="Apellido") String apellido,
+            final  @ParameterLayout(named="Apellido") String apellido,
             final @ParameterLayout(named="Nombre") String nombre,
             final @ParameterLayout(named="Dni") int dni,
             final @ParameterLayout(named="Sexo") E_sexo sexo,
-            final @ParameterLayout(named="Fecha Nacimiento") LocalDate nacimiento,
-            final @ParameterLayout(named="Nacionalidad") E_nacionalidad nacionalidad,
-            final @ParameterLayout(named="Localidad") E_localidades localidad,
-            final @ParameterLayout(named="Calle") String calle,
-            final @ParameterLayout(named="Numero") int numero,
-            final @ParameterLayout(named="Piso") String piso,
-            final @ParameterLayout(named="Departamento") String departamento,
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Fecha Nacimiento")  LocalDate nacimiento,
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Nacionalidad") E_nacionalidad nacionalidad,
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Localidad") E_localidades localidad,
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Calle") String calle,
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Numero") java.lang.Integer numero,
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Piso") String piso,
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Departamento") String departamento,
             final @ParameterLayout(named="Teléfono") String telefono
             
     		) {
@@ -95,11 +103,11 @@ public class ClienteRepositorio {
         final Direccion dire = new Direccion();
         final Localidad loca = new Localidad();
         loca.setNombre(localidad);
-        dire.setCalle(calle.toUpperCase());
+        if (calle != null && !calle.isEmpty()) { dire.setCalle(calle.toUpperCase());}
         dire.setNumero(numero);
-        dire.setPiso(piso);
-        dire.setDepartamento(departamento);
-        dire.setLocalidad(loca);
+        if (piso != null && !piso.isEmpty()) { dire.setPiso(piso);}
+        if (departamento != null && !departamento.isEmpty()) { dire.setDepartamento(departamento);}
+        if (loca != null) { dire.setLocalidad(loca);}
         obj.setSexo(sexo);
         obj.setNombre(nombre.toUpperCase());
         obj.setApellido(apellido.toUpperCase());
