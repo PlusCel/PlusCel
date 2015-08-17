@@ -30,12 +30,18 @@ import org.apache.isis.applib.annotation.MemberOrder;
 @PersistenceCapable
 public class Direccion {
 
+	
+	@Column(allowsNull = "true")
+	public String title(){
+		return calle + " " + numero;
+	}
 	// {{ Calle (property)
 	private String calle;
 
-	@Column(allowsNull = "true", name = "LOCALIDAD_ID")
+	//@Column(allowsNull = "true", name = "LOCALIDAD_ID")	
+	@Column(allowsNull = "true")
 	@Persistent
-	@MemberOrder(sequence = "1")
+	@MemberOrder(sequence = "1")	
 	public String getCalle() {
 		return calle;
 	}
@@ -45,18 +51,17 @@ public class Direccion {
 	}
 	// }}
 
-
 	// {{ Numero (property)
-	private int numero;
+	private java.lang.Integer numero;
 
 	@Column(allowsNull = "true")
 	@Persistent
 	@MemberOrder(sequence = "1.1")
-	public int getNumero() {
+	public java.lang.Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(final int numero) {
+	public void setNumero(final java.lang.Integer numero) {
 		this.numero = numero;
 	}
 	// }}
@@ -91,8 +96,6 @@ public class Direccion {
 		this.departamento = departamento;
 	}
 	// }}
-
-
 	
 	
 	// {{ Localidad (property)
@@ -110,7 +113,4 @@ public class Direccion {
 	}
 	// }}
 
-	public String title(){
-		return calle + " " + numero;
-	}
 }

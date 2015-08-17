@@ -20,6 +20,7 @@ package domainapp.dom.modules.servicios;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
+
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.joda.time.LocalDate;
 
@@ -83,9 +84,11 @@ public class Persona {
 	private Direccion direccion;
 
 	//@Hidden(where = Where.ALL_TABLES)
+
 	@Persistent
 	@MemberOrder(sequence = "7")
-	@javax.jdo.annotations.Column(allowsNull="false", name = "DIRECCION_ID")
+	//@javax.jdo.annotations.Column(allowsNull="true", name = "DIRECCION_ID")
+	@javax.jdo.annotations.Column(allowsNull="true")
 	public Direccion getDireccion() {
 		return direccion;
 	}
@@ -101,7 +104,7 @@ public class Persona {
 
 	@Persistent
 	@MemberOrder(sequence = "6")
-	@javax.jdo.annotations.Column(allowsNull="false")
+	@javax.jdo.annotations.Column(allowsNull="true")
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
@@ -117,7 +120,7 @@ public class Persona {
 
 	@Persistent
 	@MemberOrder(sequence = "5")
-	@javax.jdo.annotations.Column(allowsNull="false")
+	@javax.jdo.annotations.Column(allowsNull="true")
 	public E_nacionalidad getNacionalidad() {
 		return nacionalidad;
 	}
@@ -134,7 +137,7 @@ public class Persona {
 	
 	@Persistent
 	@MemberOrder(sequence = "4")
-	@javax.jdo.annotations.Column(allowsNull="false")
+	@javax.jdo.annotations.Column(allowsNull="true")
 	//@Hidden(where = Where.ALL_TABLES)
 	public E_sexo getSexo() {
 		return sexo;

@@ -66,8 +66,9 @@ public class Tecnico extends Persona implements Comparable<Tecnico> {
 	private String Email;
     @Persistent
 	@MemberOrder(sequence = "6")
-    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="true", length = 40)    
     public String getEmail(){
+    	
         return Email;
     }
     public void setEmail(final String Email) {

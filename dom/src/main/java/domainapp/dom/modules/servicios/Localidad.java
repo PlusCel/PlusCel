@@ -42,16 +42,18 @@ public class Localidad {
 	}
 	// }}
 
-
+	
 	public enum E_localidades{	
 		NEUQUEN, CIPOLLETTI, PLOTTIER, CENTENARIO, ROCA, ALLEN;
 	}
 	
+	@Column(allowsNull = "true")
 	public String title(){
 		return nombre.toString();
 	}
 
 	@Override
+	@Column(allowsNull = "true")
 	public String toString() {
 		return nombre.toString();
 	}
