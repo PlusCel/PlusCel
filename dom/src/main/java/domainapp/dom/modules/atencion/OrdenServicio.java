@@ -113,7 +113,7 @@ public class OrdenServicio {
  	private Date fechaHora; 	
  	 	 	
  	@MemberOrder(sequence = "4")
- 	@Column(allowsNull = "false")
+ 	@Column(allowsNull = "true")
  	public Date getFechaHora() {
  		return fechaHora;
  	}
@@ -125,7 +125,7 @@ public class OrdenServicio {
     private String falla;
     @Persistent
 	@MemberOrder(sequence = "5")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 300)
+    @javax.jdo.annotations.Column(allowsNull="true", length = 300)
     public String getFalla(){
         return falla;
     }
@@ -136,7 +136,7 @@ public class OrdenServicio {
  // {{  (property)
   	private double importe;
  	
-  	@Column(allowsNull = "false")
+  	@Column(allowsNull = "true")
   	@MemberOrder(sequence = "7")
   	public double getImporte() {
   		return importe;
@@ -149,7 +149,7 @@ public class OrdenServicio {
     private E_estado estado;  
     @Persistent
 	@MemberOrder(sequence = "3")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
     public E_estado getEstado() {
         return estado;
     }
@@ -159,8 +159,8 @@ public class OrdenServicio {
     
     
     public OrdenServicio EnviarAlerta() {	
-    	if (OrdenServicio.this.estado == E_estado.TERMINADO) {
-    		EnvioCorreo.send("Orden de Servicio :" + OrdenServicio.this.numero + " Estado : "+ OrdenServicio.this.estado );
+    	if (OrdenServicio.this.estado == E_estado.NO_SE_REPARA) {
+    		EnvioCorreo.send("Orden de Servicio :" + OrdenServicio.this.numero + " Estado : "+ OrdenServicio.this.estado , "ESTADO ORDEN DE SERVICIO" );
     		
     	}
     					

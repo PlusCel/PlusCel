@@ -38,11 +38,11 @@ public class HomePageViewModel {
     //region > title
     public String title() {
     	if (getObjects().size() > 1 ){
-    		 return getObjects().size() + " Orden de Servicio Listas";
+    		 return getObjects().size() + " Ordenes de servicio sin reparación ";
     	}else if (getObjects().size() == 1) {
-    		return getObjects().size() + " Orden de servicio lista";
+    		return getObjects().size() + " Orden de servicio sin reparación";
     	}else{
-    		return "PLUSCEL";
+    		return "No hay ordenes de servicio sin reparación ";
     	}
        
     }
@@ -54,7 +54,7 @@ public class HomePageViewModel {
     //@org.apache.isis.applib.annotation.HomePage   
    
    public List<OrdenServicio> getObjects() {
-        return OrdenServicioRepositorio.buscarPorEstado(E_estado.TERMINADO);
+        return OrdenServicioRepositorio.buscarPorEstado(E_estado.NO_SE_REPARA);
         
    }
 

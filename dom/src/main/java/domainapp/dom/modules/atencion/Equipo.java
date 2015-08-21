@@ -92,7 +92,7 @@ public class Equipo {
     private E_estado estado;  
     @Persistent
 	@MemberOrder(sequence = "3")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
     public E_estado getEstado() {
         return estado;
     }
@@ -116,7 +116,7 @@ public class Equipo {
     
     public Equipo EnviarAlerta() {	
     	if (Equipo.this.estado == E_estado.TERMINADO) {
-    		EnvioCorreo.send(Equipo.this.getImei()  + ", " + getMarca().getDescripcion()+ ", " + getModelo().getDescripcion() );
+    		EnvioCorreo.send(Equipo.this.getImei()  + ", " + getMarca().getDescripcion()+ ", " + getModelo().getDescripcion(), "ESTADO EQUIPO" );
     		
     	}
     					
