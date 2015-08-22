@@ -54,7 +54,7 @@ public class HomePageViewModel {
     //@org.apache.isis.applib.annotation.HomePage   
    
    public List<OrdenServicio> getObjects() {
-        return OrdenServicioRepositorio.buscarPorEstado(E_estado.NO_SE_REPARA);
+        return OrdenServicioRepositorio.buscarPorEstado(E_estado.SIN_ARREGLO);
         
    }
 

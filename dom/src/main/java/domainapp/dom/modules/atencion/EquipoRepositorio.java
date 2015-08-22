@@ -53,7 +53,6 @@ public class EquipoRepositorio {
                         "marca", marca));
     }
   // endregion   
-    
 
     //region > create (action)
     @MemberOrder(sequence = "3")
