@@ -109,6 +109,21 @@ public class OrdenServicio {
 		this.equipo =equipo;
 	}
 
+	// {{ Tecnico (property)
+		private Tecnico tecnico;
+
+		@MemberOrder(sequence = "1")
+		@Column(allowsNull = "true")
+		public Tecnico getTecnico() {
+			return tecnico;
+		}
+
+		public void setTecnico(final Tecnico tecnico) {
+			this.tecnico = tecnico;
+		}
+		// }}
+	
+	
 	// {{ FechaHora (property)
  	private Date fechaHora; 	
  	 	 	

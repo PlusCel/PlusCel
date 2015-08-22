@@ -10,6 +10,8 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.MultiLine;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
@@ -31,10 +33,11 @@ public class OrdenServicioRepositorio {
 	
 	@MemberOrder(sequence = "1")
     public OrdenServicio Alta(   
-    		 final @ParameterLayout(named="Equipo") Equipo equipo,            
+    		 final @ParameterLayout(named="Equipo" ) Equipo equipo,            
              final @ParameterLayout(named="Cliente") Cliente cliente,
+             final@Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Tecnico") Tecnico tecnico,
              final @ParameterLayout(named="Fecha") Date  fechaHora,
-             final @ParameterLayout(named="Falla", multiLine=10) String falla,
+             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Falla", multiLine=10) String falla,
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Estado") E_estado estado
     			) {
@@ -42,6 +45,7 @@ public class OrdenServicioRepositorio {
         final OrdenServicio obj = container.newTransientInstance(OrdenServicio.class);
         obj.setEquipo(equipo);       
         obj.setCliente(cliente);
+        obj.setTecnico(tecnico);
         obj.setFechaHora(fechaHora);
         obj.setFalla(falla);
         obj.setImporte(importe);
