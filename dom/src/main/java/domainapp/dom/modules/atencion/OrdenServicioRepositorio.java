@@ -33,8 +33,8 @@ public class OrdenServicioRepositorio {
 	
 	@MemberOrder(sequence = "1")
     public OrdenServicio Alta(   
-    		 final @ParameterLayout(named="Equipo" ) Equipo equipo,            
-             final @ParameterLayout(named="Cliente") Cliente cliente,
+    		 final @ParameterLayout(named="Cliente") Cliente cliente,
+    		 final @ParameterLayout(named="Equipo" ) Equipo equipo,             
              final@Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Tecnico") Tecnico tecnico,
              final @ParameterLayout(named="Fecha") Date  fechaHora,
              final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Falla", multiLine=10) String falla,
@@ -43,8 +43,8 @@ public class OrdenServicioRepositorio {
     			) {
     	
         final OrdenServicio obj = container.newTransientInstance(OrdenServicio.class);
-        obj.setEquipo(equipo);       
         obj.setCliente(cliente);
+        obj.setEquipo(equipo);
         obj.setTecnico(tecnico);
         obj.setFechaHora(fechaHora);
         obj.setFalla(falla);
