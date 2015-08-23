@@ -17,9 +17,8 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 import domainapp.dom.modules.servicios.EnvioCorreo;
-
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
@@ -40,7 +39,11 @@ import java.applet.*;
 		@javax.jdo.annotations.Query(name = "buscarPorNumero", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio WHERE numero.indexOf(:numero) >= 0"),
 			    @javax.jdo.annotations.Query(name = "buscarPorEstado", language = "JDOQL", value = "SELECT "
-             			+ "FROM dom.modules.atencion.OrdenServicio " + "WHERE estado == :estado")})
+             			+ "FROM dom.modules.atencion.OrdenServicio " + "WHERE estado == :estado"),
+             			@javax.jdo.annotations.Query(name = "BuscarReparacionesFiltro", language = "JDOQL", value = "SELECT "
+                     			+ "FROM dom.modules.atencion.OrdenServicio")
+             			             			
+})
 @DomainObject(
 		bounded=true,
         objectType = "ORDEN DE SERVICIO"
@@ -125,15 +128,15 @@ public class OrdenServicio {
 	
 	
 	// {{ FechaHora (property)
- 	private Date fechaHora; 	
+ 	private LocalDate fechaHora; 	
  	 	 	
  	@MemberOrder(sequence = "4")
  	@Column(allowsNull = "true")
- 	public Date getFechaHora() {
+ 	public LocalDate getFechaHora() {
  		return fechaHora;
  	}
 
- 	public void setFechaHora(final Date fechaHora) {
+ 	public void setFechaHora(final LocalDate fechaHora) {
  		this.fechaHora = fechaHora;
  	}
  //{{ Falla (property)

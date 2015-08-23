@@ -15,11 +15,10 @@ import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import domainapp.dom.modules.servicios.E_estado;
 
-import java.util.Date;
 
 @SuppressWarnings("deprecation")
 @DomainService(repositoryFor = OrdenServicio.class)
@@ -36,7 +35,7 @@ public class OrdenServicioRepositorio {
     		 final @ParameterLayout(named="Cliente") Cliente cliente,
     		 final @ParameterLayout(named="Equipo" ) Equipo equipo,             
              final@Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Tecnico") Tecnico tecnico,
-             final @ParameterLayout(named="Fecha") Date  fechaHora,
+             final @ParameterLayout(named="Fecha") LocalDate  fechaHora,
              final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Falla", multiLine=10) String falla,
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Estado") E_estado estado
@@ -59,6 +58,8 @@ public class OrdenServicioRepositorio {
     public List<OrdenServicio> listarTodos() {
         return container.allInstances(OrdenServicio.class);
     }
+	
+	
     
 	  // region > buscarPorEstado (action)
 	  @Action(
@@ -78,6 +79,18 @@ public class OrdenServicioRepositorio {
 	                      "buscarPorEstado",
 	                      "estado", estado));
 	  }
+	  @MemberOrder(sequence = "4")
+	    public List<OrdenServicio> listadoReparaciones(Equipo equipo,
+	    		LocalDate fechaDesde,LocalDate fechaHasta, Cliente cliente)
+	      {
+	       
+	            return container.allMatches(
+	                    new QueryDefault<>(
+	                    		OrdenServicio.class,
+	                            "BuscarReparacionesFiltro",
+	                            "equipo", equipo,
+	                             "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta,"cliente", cliente));
+	        }
 	 //endregion
 	
 	

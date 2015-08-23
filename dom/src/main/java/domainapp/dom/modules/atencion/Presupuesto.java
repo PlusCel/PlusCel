@@ -1,31 +1,20 @@
 package domainapp.dom.modules.atencion;
-
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
-
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-
-
-
 import org.apache.isis.applib.annotation.ParameterLayout;
-
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
-
-
-
-
 import domainapp.dom.modules.servicios.EnvioCorreo;
-
 import java.util.ArrayList;
-import java.util.Date;
+import org.joda.time.LocalDate;
 import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
@@ -44,10 +33,9 @@ import java.applet.*;
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 @javax.jdo.annotations.Uniques({ @javax.jdo.annotations.Unique(name = "Presupuesto_numero_must_be_unique", members = { "numero" }) })
 @javax.jdo.annotations.Queries({	
-		@javax.jdo.annotations.Query(name = "buscarPorNumero", language = "JDOQL", value = "SELECT "
+@javax.jdo.annotations.Query(name = "buscarPorNumero", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.Presupuesto WHERE numero.indexOf(:numero) >= 0"),
-				
-				@javax.jdo.annotations.Query(name = "listadoReparaciones", language = "JDOQL", value = "SELECT "		
+@javax.jdo.annotations.Query(name = "listadoReparaciones", language = "JDOQL", value = "SELECT "		
 						+ "FROM dom.modules.atencion.Presupuesto " +
 							"WHERE equipo == :equipo && cliente== :cliente" +
 						 " && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"
@@ -134,15 +122,14 @@ public class Presupuesto {
  
 	
  // {{ FechaHora (property)
- 	private Date fechaHora; 	
- 	 	 	
+ 	private LocalDate fechaHora;
  	@MemberOrder(sequence = "4")
  	@Column(allowsNull = "false")
- 	public Date getFechaHora() {
+ 	public LocalDate getFechaHora() {
  		return fechaHora;
  	}
 
- 	public void setFechaHora(final Date fechaHora) {
+ 	public void setFechaHora(final LocalDate fechaHora) {
  		this.fechaHora = fechaHora;
  	}
 
@@ -177,8 +164,6 @@ public class Presupuesto {
     
  // {{  (property)
   	private double importe;
- 	
-  	
   	@Column(allowsNull = "false")
   	@MemberOrder(sequence = "7")
   	public double getImporte() {
@@ -214,12 +199,10 @@ public class Presupuesto {
         this.estado = estado;
     }
 
-    public static Long getDateDiff(Date date) {
-    	
-    Date date1 = new Date();    	
-    
+    public static Long getDateDiff(LocalDate date) {		
+    LocalDate date1 = new LocalDate();    	
     //los milisegundos
-    long diferenciaMils = date1.getTime() - date.getTime();
+    long diferenciaMils = date1.toDate().getTime() - date.toDate().getTime();
   
     //obtenemos los segundos
     long segundos = diferenciaMils / 1000;

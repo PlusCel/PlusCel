@@ -7,14 +7,8 @@ import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
-import org.joda.time.DateTime;
-
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
-
-import java.util.Date;
-
-
-
+import org.joda.time.LocalDate;
 @DomainService(repositoryFor = Presupuesto.class)
 @DomainServiceLayout(menuOrder = "10" , named="Presupuesto")
 
@@ -23,15 +17,13 @@ public class PresupuestoRepositorio {
 	public String iconName() {
 		return "Presupuesto";
 	}
-
-		
 	
 	 //region > create (action)
     @MemberOrder(sequence = "1")
     public Presupuesto Alta(   
     		 final @ParameterLayout(named="Equipo") Equipo equipo,            
              final @ParameterLayout(named="Cliente") Cliente cliente,
-             final @ParameterLayout(named="Fecha") Date  fechaHora ,
+             final @ParameterLayout(named="Fecha") LocalDate  fechaHora ,
              final @ParameterLayout(named="Diagnostico") String diagnostico,
              final @ParameterLayout(named="ReparacionRequerida")  String reparacionRequerida,
              final @ParameterLayout(named="Importe") double importe,
@@ -48,8 +40,7 @@ public class PresupuestoRepositorio {
         obj.setImporte(importe);
         obj.setObservacion(observacion);
         obj.setEstadoPresupuesto(estado);
-        obj.setGarantia(garantia);      
-        
+        obj.setGarantia(garantia);
         container.persistIfNotAlready(obj);
         return obj;
     }
