@@ -41,7 +41,10 @@ import java.applet.*;
 			    @javax.jdo.annotations.Query(name = "buscarPorEstado", language = "JDOQL", value = "SELECT "
              			+ "FROM dom.modules.atencion.OrdenServicio " + "WHERE estado == :estado"),
              			@javax.jdo.annotations.Query(name = "BuscarReparacionesFiltro", language = "JDOQL", value = "SELECT "
-                     			+ "FROM dom.modules.atencion.OrdenServicio")
+                     			+ "FROM dom.modules.atencion.OrdenServicio"+
+                     			" WHERE equipo == :equipo && cliente== :cliente" +
+       						 " && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"
+             					)
              			             			
 })
 @DomainObject(
