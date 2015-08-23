@@ -49,7 +49,7 @@ import java.applet.*;
                      			
 		@javax.jdo.annotations.Query(name = "LiquidarReparacionesPorTecnico", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio"+
-				" WHERE tecnico == :tecnico " +
+				" WHERE tecnico == :tecnico && estado == :estado" +
 				" && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta")
 })
 

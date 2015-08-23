@@ -1,23 +1,36 @@
 package domainapp.dom.modules.atencion;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Named;
+import javax.jdo.annotations.Element;
+import javax.jdo.annotations.Join;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
+import org.apache.isis.applib.annotation.DescribedAs;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
+import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.MultiLine;
 import org.apache.isis.applib.annotation.Optionality;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 import org.joda.time.LocalDate;
 
+import com.fasterxml.jackson.databind.AnnotationIntrospector.ReferenceProperty.Type;
+
 import domainapp.dom.modules.servicios.E_estado;
+import domainapp.dom.modules.servicios.E_formato;
+import domainapp.dom.modules.servicios.GenerarReporte;
+import net.sf.jasperreports.engine.JRException;
 
 
 @SuppressWarnings("deprecation")
@@ -52,6 +65,7 @@ public class OrdenServicioRepositorio {
         obj.setComisionTecnico(comisionTecnico);
         obj.setEstado(estado);
         
+
         container.persistIfNotAlready(obj);
         return obj;
     }
@@ -93,7 +107,8 @@ public class OrdenServicioRepositorio {
 	        }
 //Busco para liquidar por tecnico	  
 	  @MemberOrder(sequence = "5")
-	    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico,
+	    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico, 
+	    		@ParameterLayout(named="Estado") final E_estado estado,
 	    		LocalDate fechaDesde, LocalDate fechaHasta)
 	      {
 	       
@@ -102,15 +117,57 @@ public class OrdenServicioRepositorio {
 	                    		OrdenServicio.class,
 	                            "LiquidarReparacionesPorTecnico",
 	                            "tecnico", tecnico,
-	                           // "Estado", estado,
-	                             "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
+	                            "estado", estado,
+	                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
 	        }
+/* //Imprimir reporte Liquidacion por tecnico
+	   
+	  	@Join
+		@Element(dependent = "true")
+		private List<OrdenServicio> OrdenServicioList = new ArrayList<OrdenServicio>();
+
+		//@Render(Type.EAGERLY)
+		@MemberOrder(sequence = "1")
+		@Named("Analisis de Asistencia por Alumno")
+		public List<OrdenServicio> getOrdenServicioList() {
+			return OrdenServicioList;
+		}
+
+		public void setOrdenServicioList(
+				final List<OrdenServicio> OrdenServicioList) {
+			this.OrdenServicioList = OrdenServicioList;
+		}
 	  
-	 //endregion
+	  	@Named("Imprimir Liquidacion por Tecnico")
+		//@DescribedAs(value = "El archivo se almacenará en el directorio 'reportes' del proyecto")
+		public String elegirFormato(final @Named("Formato") E_formato formato) throws JRException{
+			return imprimirReporte(formato);		
+		}
 		
-	
-	
-    //region > injected services
+		public E_formato default0ElegirFormato(final @Named("Formato") E_formato formato){
+			return E_formato.PDF;		
+		}
+		
+		public String imprimirReporte(E_formato format) throws JRException{
+			List<Object> objectsReport = new ArrayList<Object>();
+			
+			for(OrdenServicio a: getOrdenServicioList()){
+				OrdenServicio ordenservicio = new OrdenServicio();
+
+				ordenservicio.setTecnico(a.getTecnico());
+				ordenservicio.setFechaHora(a.getFechaHora());
+				ordenservicio.setFalla(a.getFalla());
+				ordenservicio.setEstado(a.getEstado());
+				ordenservicio.setComisionTecnico(a.getComisionTecnico());
+				
+				objectsReport.add(ordenservicio);
+			}
+			
+			String nombreArchivo = "reportes/"; 
+			GenerarReporte.generarReporte("liquidaciontecnico.jrxml", objectsReport, format, nombreArchivo);
+			return "Liquidacion por Tecnico Generado.";
+		}*/
+	  
     @javax.inject.Inject 
     DomainObjectContainer container;
 }
