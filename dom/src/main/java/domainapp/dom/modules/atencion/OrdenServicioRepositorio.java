@@ -38,6 +38,7 @@ public class OrdenServicioRepositorio {
              final @ParameterLayout(named="Fecha") LocalDate  fechaHora,
              final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Falla", multiLine=10) String falla,
              final @ParameterLayout(named="Importe") double importe,
+             final @ParameterLayout(named="Comision Tecnico") double comisionTecnico,
              final @ParameterLayout(named="Estado") E_estado estado
     			) {
     	
@@ -48,19 +49,18 @@ public class OrdenServicioRepositorio {
         obj.setFechaHora(fechaHora);
         obj.setFalla(falla);
         obj.setImporte(importe);
-        obj.setEstado(estado);  
+        obj.setComisionTecnico(comisionTecnico);
+        obj.setEstado(estado);
         
         container.persistIfNotAlready(obj);
         return obj;
     }
 	
 	@MemberOrder(sequence = "2")
-    public List<OrdenServicio> listarTodos() {
+    public List<OrdenServicio> buscarTodos() {
         return container.allInstances(OrdenServicio.class);
     }
 	
-	
-    
 	  // region > buscarPorEstado (action)
 	  @Action(
 	          semantics = SemanticsOf.SAFE
@@ -80,7 +80,7 @@ public class OrdenServicioRepositorio {
 	                      "estado", estado));
 	  }
 	  @MemberOrder(sequence = "4")
-	    public List<OrdenServicio> listadoReparaciones(Equipo equipo,
+	    public List<OrdenServicio> buscarPorReparaciones(Equipo equipo,
 	    		LocalDate fechaDesde,LocalDate fechaHasta, Cliente cliente)
 	      {
 	       
@@ -91,6 +91,21 @@ public class OrdenServicioRepositorio {
 	                            "equipo", equipo,
 	                             "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta,"cliente", cliente));
 	        }
+//Busco para liquidar por tecnico	  
+	  @MemberOrder(sequence = "5")
+	    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico,
+	    		LocalDate fechaDesde, LocalDate fechaHasta)
+	      {
+	       
+	            return container.allMatches(
+	                    new QueryDefault<>(
+	                    		OrdenServicio.class,
+	                            "LiquidarReparacionesPorTecnico",
+	                            "tecnico", tecnico,
+	                           // "Estado", estado,
+	                             "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
+	        }
+	  
 	 //endregion
 		
 	
