@@ -177,7 +177,7 @@ public class OrdenServicio {
     
     
     public OrdenServicio EnviarAlerta() {	
-    	if (OrdenServicio.this.estado == E_estado.NO_SE_REPARA) {
+    	if (OrdenServicio.this.estado == E_estado.SIN_ARREGLO) {
     		EnvioCorreo.send("Orden de Servicio :" + OrdenServicio.this.numero + " Estado : "+ OrdenServicio.this.estado , "ESTADO ORDEN DE SERVICIO" );
     		
     	}
