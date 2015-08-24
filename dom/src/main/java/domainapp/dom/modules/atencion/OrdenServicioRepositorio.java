@@ -18,6 +18,7 @@ import org.apache.isis.applib.query.QueryDefault;
 import org.joda.time.LocalDate;
 
 import domainapp.dom.modules.servicios.E_estado;
+import domainapp.dom.modules.servicios.G_estado;
 
 
 @SuppressWarnings("deprecation")
@@ -34,12 +35,13 @@ public class OrdenServicioRepositorio {
     public OrdenServicio Alta(   
     		 final @ParameterLayout(named="Cliente") Cliente cliente,
     		 final @ParameterLayout(named="Equipo" ) Equipo equipo,             
-             final@Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Tecnico") Tecnico tecnico,
+             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Tecnico") Tecnico tecnico,
              final @ParameterLayout(named="Fecha") LocalDate  fechaHora,
              final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Falla", multiLine=10) String falla,
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Comision Tecnico") double comisionTecnico,
-             final @ParameterLayout(named="Estado") E_estado estado
+             final @ParameterLayout(named="Estado") E_estado estado,
+             final @ParameterLayout(named="Garantia") G_estado garantia
     			) {
     	
         final OrdenServicio obj = container.newTransientInstance(OrdenServicio.class);
@@ -51,6 +53,7 @@ public class OrdenServicioRepositorio {
         obj.setImporte(importe);
         obj.setComisionTecnico(comisionTecnico);
         obj.setEstado(estado);
+        obj.setGarantia(garantia);
         
         container.persistIfNotAlready(obj);
         return obj;

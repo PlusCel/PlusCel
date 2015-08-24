@@ -17,7 +17,10 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 import domainapp.dom.modules.servicios.EnvioCorreo;
+import domainapp.dom.modules.servicios.G_estado;
+
 import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.*;
@@ -206,6 +209,21 @@ public class OrdenServicio {
     					
 		return this;
 	}
+    
+    	 	
+    private G_estado garantia;  
+  	@Persistent
+	@MemberOrder(sequence = "10")
+    @javax.jdo.annotations.Column(allowsNull="true", length = 20)
+    public G_estado getGarantia() {
+  		return garantia;
+        
+    }
+    public void setGarantia(final G_estado garantia) {
+    	this.garantia = garantia;
+    }
+    
+    
 	 //region > injected services
     @javax.inject.Inject
 		private DomainObjectContainer container;
