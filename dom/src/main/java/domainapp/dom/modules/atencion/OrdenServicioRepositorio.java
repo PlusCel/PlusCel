@@ -28,13 +28,10 @@ import org.joda.time.LocalDate;
 import com.fasterxml.jackson.databind.AnnotationIntrospector.ReferenceProperty.Type;
 
 import domainapp.dom.modules.servicios.E_estado;
-<<<<<<< HEAD
-import domainapp.dom.modules.servicios.G_estado;
-=======
 import domainapp.dom.modules.servicios.E_formato;
 import domainapp.dom.modules.servicios.GenerarReporte;
 import net.sf.jasperreports.engine.JRException;
->>>>>>> bfe8d9a4bd474f3ede4d09d52ac80ec748e8f0c1
+
 
 
 @SuppressWarnings("deprecation")
@@ -56,8 +53,7 @@ public class OrdenServicioRepositorio {
              final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Falla", multiLine=10) String falla,
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Comision Tecnico") double comisionTecnico,
-             final @ParameterLayout(named="Estado") E_estado estado,
-             final @ParameterLayout(named="Garantia") G_estado garantia
+             final @ParameterLayout(named="Estado") E_estado estado
     			) {
     	
         final OrdenServicio obj = container.newTransientInstance(OrdenServicio.class);
@@ -68,9 +64,7 @@ public class OrdenServicioRepositorio {
         obj.setFalla(falla);
         obj.setImporte(importe);
         obj.setComisionTecnico(comisionTecnico);
-        obj.setEstado(estado);
-        obj.setGarantia(garantia);
-        
+        obj.setEstado(estado);   
 
         container.persistIfNotAlready(obj);
         return obj;
