@@ -38,15 +38,21 @@ import java.applet.*;
 @javax.jdo.annotations.Queries({	
 		@javax.jdo.annotations.Query(name = "buscarPorNumero", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio WHERE numero.indexOf(:numero) >= 0"),
-			    @javax.jdo.annotations.Query(name = "buscarPorEstado", language = "JDOQL", value = "SELECT "
-             			+ "FROM dom.modules.atencion.OrdenServicio " + "WHERE estado == :estado"),
-             			@javax.jdo.annotations.Query(name = "BuscarReparacionesFiltro", language = "JDOQL", value = "SELECT "
-                     			+ "FROM dom.modules.atencion.OrdenServicio"+
-                     			" WHERE equipo == :equipo && cliente== :cliente" +
-       						 " && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"
-             					)
-             			             			
+		
+		@javax.jdo.annotations.Query(name = "buscarPorEstado", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.modules.atencion.OrdenServicio " + "WHERE estado == :estado"),
+             			
+		@javax.jdo.annotations.Query(name = "BuscarReparacionesFiltro", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.modules.atencion.OrdenServicio"+
+				" WHERE equipo == :equipo && cliente== :cliente" +
+				" && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"),
+                     			
+		@javax.jdo.annotations.Query(name = "LiquidarReparacionesPorTecnico", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.modules.atencion.OrdenServicio"+
+				" WHERE tecnico == :tecnico && estado == :estado" +
+				" && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta")
 })
+
 @DomainObject(
 		bounded=true,
         objectType = "ORDEN DE SERVICIO"
@@ -90,6 +96,20 @@ public class OrdenServicio {
 			this.numero = numero;
 		}
 		
+		// Tecnico
+		private Tecnico tecnico;
+
+		@MemberOrder(sequence = "1")
+		@Column(allowsNull = "true")
+		public Tecnico getTecnico() {
+			return tecnico;
+		}
+
+		public void setTecnico(final Tecnico tecnico) {
+			this.tecnico = tecnico;
+		}
+		//Cliente
+		
 	private Cliente cliente;	
 	
 	@MemberOrder(sequence = "2")
@@ -102,9 +122,8 @@ public class OrdenServicio {
 		this.cliente = cliente;
 	}
 		
-	// {{ Equipo (property)
+	//Equipo
 	private Equipo equipo;
-	//@Hidden(where = Where.ALL_TABLES)
 	@MemberOrder(sequence = "3")
 	@Column(allowsNull = "true")
 	public Equipo getEquipo() {
@@ -114,23 +133,8 @@ public class OrdenServicio {
 	public void setEquipo(final Equipo equipo) {
 		this.equipo =equipo;
 	}
-
-	// {{ Tecnico (property)
-		private Tecnico tecnico;
-
-		@MemberOrder(sequence = "1")
-		@Column(allowsNull = "true")
-		public Tecnico getTecnico() {
-			return tecnico;
-		}
-
-		public void setTecnico(final Tecnico tecnico) {
-			this.tecnico = tecnico;
-		}
-		// }}
 	
-	
-	// {{ FechaHora (property)
+	// FechaHora
  	private LocalDate fechaHora; 	
  	 	 	
  	@MemberOrder(sequence = "4")
@@ -142,7 +146,7 @@ public class OrdenServicio {
  	public void setFechaHora(final LocalDate fechaHora) {
  		this.fechaHora = fechaHora;
  	}
- //{{ Falla (property)
+ //Descripcion de la Falla
     private String falla;
     @Persistent
 	@MemberOrder(sequence = "5")
@@ -154,7 +158,7 @@ public class OrdenServicio {
         this.falla = falla;
     }      
     
- // {{  (property)
+ // Importe
   	private double importe;
  	
   	@Column(allowsNull = "true")
@@ -167,10 +171,25 @@ public class OrdenServicio {
   		this.importe = importe;
   	}
   	
-    private E_estado estado;  
+  	 // Comision Tecnico
+  	private double comisionTecnico;
+ 	
+  	@Column(allowsNull = "true")
+  	@MemberOrder(sequence = "8")
+  	public double getComisionTecnico() {
+  		return comisionTecnico;
+  	}
+  
+  	public void setComisionTecnico(final double comisionTecnico) {
+  		this.comisionTecnico = comisionTecnico;
+  	}
+  	
+  //Estado de la orden de servicio	
+    
+  	private E_estado estado;  
     @Persistent
-	@MemberOrder(sequence = "3")
-    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
+	@MemberOrder(sequence = "9")
+    @javax.jdo.annotations.Column(allowsNull="true", length = 20)
     public E_estado getEstado() {
         return estado;
     }
