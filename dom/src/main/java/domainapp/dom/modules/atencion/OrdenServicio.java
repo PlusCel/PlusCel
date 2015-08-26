@@ -15,6 +15,7 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 
 import domainapp.dom.modules.servicios.E_estado;
+import domainapp.dom.modules.servicios.E_estadoGarantia;
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 import domainapp.dom.modules.servicios.EnvioCorreo;
 
@@ -209,6 +210,19 @@ public class OrdenServicio {
 		return this;
 	}
     
+    
+//Estado de la orden de servicio	
+    
+  	private E_estadoGarantia garantia;  
+    @Persistent
+	@MemberOrder(sequence = "9")
+    @javax.jdo.annotations.Column(allowsNull="true", length = 20)
+    public E_estadoGarantia getGarantia() {
+        return garantia;
+    }
+    public void setGarantia(final E_estadoGarantia garantia) {
+        this.garantia = garantia;
+    }
     
 	 //region > injected services
     @javax.inject.Inject
