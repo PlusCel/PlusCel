@@ -21,8 +21,10 @@ import org.apache.isis.applib.annotation.Optionality;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Render;
+import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
+import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.joda.time.LocalDate;
 
 import com.fasterxml.jackson.databind.AnnotationIntrospector.ReferenceProperty.Type;
@@ -123,54 +125,31 @@ public class OrdenServicioRepositorio {
 	                            "estado", estado,
 	                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
 	        }
-/* //Imprimir reporte Liquidacion por tecnico
-	   
-	  	@Join
-		@Element(dependent = "true")
-		private List<OrdenServicio> OrdenServicioList = new ArrayList<OrdenServicio>();
-
-		//@Render(Type.EAGERLY)
-		@MemberOrder(sequence = "1")
-		@Named("Analisis de Asistencia por Alumno")
-		public List<OrdenServicio> getOrdenServicioList() {
-			return OrdenServicioList;
-		}
-
-		public void setOrdenServicioList(
-				final List<OrdenServicio> OrdenServicioList) {
-			this.OrdenServicioList = OrdenServicioList;
-		}
 	  
-	  	@Named("Imprimir Liquidacion por Tecnico")
-		//@DescribedAs(value = "El archivo se almacenará en el directorio 'reportes' del proyecto")
-		public String elegirFormato(final @Named("Formato") E_formato formato) throws JRException{
-			return imprimirReporte(formato);		
+		@Programmatic
+		public static List<OrdenServicio> sinArreglo() {
+			
+			final List<OrdenServicio> lista = container
+					.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
+							"sinArreglo"));
+			if (lista.isEmpty())
+				container.informUser("No hay equipos en espera de ser retirados.");
+			return lista;
 		}
 		
-		public E_formato default0ElegirFormato(final @Named("Formato") E_formato formato){
-			return E_formato.PDF;		
+		//@Programmatic
+		public static List<OrdenServicio> reparados() {
+			final List<OrdenServicio> lista = container
+					.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
+							"reparados"));
+			if (lista.isEmpty())
+				container.informUser("No hay equipos en espera de ser retirados.");
+			return lista;
 		}
-		
-		public String imprimirReporte(E_formato format) throws JRException{
-			List<Object> objectsReport = new ArrayList<Object>();
-			
-			for(OrdenServicio a: getOrdenServicioList()){
-				OrdenServicio ordenservicio = new OrdenServicio();
-
-				ordenservicio.setTecnico(a.getTecnico());
-				ordenservicio.setFechaHora(a.getFechaHora());
-				ordenservicio.setFalla(a.getFalla());
-				ordenservicio.setEstado(a.getEstado());
-				ordenservicio.setComisionTecnico(a.getComisionTecnico());
-				
-				objectsReport.add(ordenservicio);
-			}
-			
-			String nombreArchivo = "reportes/"; 
-			GenerarReporte.generarReporte("liquidaciontecnico.jrxml", objectsReport, format, nombreArchivo);
-			return "Liquidacion por Tecnico Generado.";
-		}*/
 	  
-    @javax.inject.Inject 
-    DomainObjectContainer container;
+		/**
+		 * Inyección del Contenedor.
+		 */
+		@javax.inject.Inject
+		private static DomainObjectContainer container;
 }
