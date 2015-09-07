@@ -25,38 +25,43 @@ import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 import domainapp.dom.modules.servicios.EnvioCorreo;
 import domainapp.dom.modules.atencion.OrdenServicio;
 import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
+import org.apache.isis.applib.annotation.MemberOrder;
 
 import java.util.List;
 
+import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.ViewModel;
 
 
 @ViewModel
 public class HomePageViewModel {
-	
-	
+
     //region > title
     public String title() {
-    	if (getObjects().size() > 1 ){
-    		 return getObjects().size() + " Ordenes de servicio sin reparación ";
-    	}else if (getObjects().size() == 1) {
-    		return getObjects().size() + " Orden de servicio sin reparación";
+    	if (getEquiposSinReparar().size() > 1 ){
+    		 return getEquiposSinReparar().size() + " Ordenes de servicio sin reparación ";
+    	}else if (getEquiposSinReparar().size() == 1) {
+    		return getEquiposSinReparar().size() + " Orden de servicio sin reparación";
     	}else{
     		return "No hay ordenes de servicio sin reparación ";
     	}
        
     }
     //endregion
+        @MemberOrder(sequence = "1")
+	public List<OrdenServicio> getEquiposSinReparar() {
+		return OrdenServicioRepositorio.sinArreglo();
+	}
     
-  
-
-    //region > object (collection)
-    //@org.apache.isis.applib.annotation.HomePage   
-   
-   public List<OrdenServicio> getObjects() {
-        return OrdenServicioRepositorio.buscarPorEstado(E_estado.SIN_ARREGLO);
-        
-   }
+    @MemberOrder(sequence = "2")
+    public List<OrdenServicio> getEquiposReparados() {
+		return OrdenServicioRepositorio.reparados();
+	}
+    	
+    @MemberOrder(sequence = "3")
+	public List<OrdenServicio> getEquiposSinRevisar() {
+		return OrdenServicioRepositorio.sinRevisar();
+	}
 
     
     @javax.inject.Inject
