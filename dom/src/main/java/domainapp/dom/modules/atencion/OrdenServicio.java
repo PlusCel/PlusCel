@@ -51,6 +51,9 @@ import java.applet.*;
 		@javax.jdo.annotations.Query(name = "reparados", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio WHERE estado == 'REPARADO'"),
 		
+		@javax.jdo.annotations.Query(name = "sinRevisar", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.modules.atencion.OrdenServicio WHERE estado == 'SIN_REVISAR'"),
+		
 		@javax.jdo.annotations.Query(name = "BuscarReparacionesFiltro", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio"+
 				" WHERE equipo == :equipo && cliente== :cliente" +

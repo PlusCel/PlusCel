@@ -137,13 +137,23 @@ public class OrdenServicioRepositorio {
 			return lista;
 		}
 		
-		//@Programmatic
+		@Programmatic
 		public static List<OrdenServicio> reparados() {
 			final List<OrdenServicio> lista = container
 					.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
 							"reparados"));
 			if (lista.isEmpty())
 				container.informUser("No hay equipos en espera de ser retirados.");
+			return lista;
+		}
+		
+		@Programmatic
+		public static List<OrdenServicio> sinRevisar() {
+			final List<OrdenServicio> lista = container
+					.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
+							"sinRevisar"));
+			if (lista.isEmpty())
+				container.informUser("No hay equipos en espera de ser revisados.");
 			return lista;
 		}
 	  
