@@ -95,7 +95,7 @@ public class OrdenServicioRepositorio {
 	  }
 	  @MemberOrder(sequence = "4")
 	    public List<OrdenServicio> buscarPorReparaciones(Equipo equipo,
-	    		LocalDate fechaDesde,LocalDate fechaHasta, Cliente cliente)
+	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde,@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta, Cliente cliente)
 	      {
 	       
 	            return container.allMatches(

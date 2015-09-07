@@ -1,5 +1,6 @@
 package domainapp.dom.modules.atencion;
 
+import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.VersionStrategy;
@@ -54,6 +55,21 @@ public class Modelo {
 	}
 	
 
+private Marca marca;	
+   
+  //{{ Abreviatura (property)
+	
+	@MemberOrder(sequence = "1")
+	@Column(allowsNull = "true")
+	public Marca getMarca() {
+		return marca;
+	}
+	
+	public void setMarca(final Marca marca) {
+		this.marca = marca;
+	}
+	
+	// }}
 	// {{ Abreviatura (property)
 	private String abreviatura;
 
