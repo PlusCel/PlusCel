@@ -79,7 +79,7 @@ public class ClienteRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public Cliente Alta(
+    public Cliente AltaCliente(
             final  @ParameterLayout(named="Apellido") String apellido,
             final @ParameterLayout(named="Nombre") String nombre,
             final @ParameterLayout(named="Dni") int dni,

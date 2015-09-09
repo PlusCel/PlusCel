@@ -53,7 +53,7 @@ public class MarcaRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public Marca alta(
+    public Marca altaMarca(
     		final @ParameterLayout(named="Abreviatura") String abreviatura,
             final @ParameterLayout(named="Descripcion") String descripcion
     		) {

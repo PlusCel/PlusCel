@@ -62,7 +62,7 @@ public class TecnicoRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public Tecnico Alta(
+    public Tecnico AltaTecnico(
             final @ParameterLayout(named="Apellido") String apellido,
             final @ParameterLayout(named="Nombre") String nombre,
             final @ParameterLayout(named="Dni") int dni,

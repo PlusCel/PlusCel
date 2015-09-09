@@ -54,7 +54,7 @@ public class ModeloRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public Modelo alta(
+    public Modelo altaModelo(
             final @ParameterLayout(named="Abreviatura") String abreviatura,
             final @ParameterLayout(named="Descripcion") String descripcion
     		) {

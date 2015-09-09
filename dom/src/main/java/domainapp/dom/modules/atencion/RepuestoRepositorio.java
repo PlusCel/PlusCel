@@ -37,7 +37,7 @@ public class RepuestoRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public Repuesto alta(
+    public Repuesto altaRepuestos(
             final @ParameterLayout(named="Modelo") String modelo,
             //final @ParameterLayout(named="Tipo de Repuesto") E_tipoRepuesto tipoRepuesto,
             final @ParameterLayout(named="Descripcion") String descripcion,
