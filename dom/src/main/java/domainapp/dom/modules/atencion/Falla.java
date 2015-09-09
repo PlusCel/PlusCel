@@ -45,10 +45,7 @@ public class Falla {
 	public void setContainer(DomainObjectContainer container) {
 		this.container = container;
 	}
-	//
-		
-	
-
+/*
 	// {{ TipoFalla (property)
 	private TipoFalla tipoFalla;
 
@@ -62,7 +59,7 @@ public class Falla {
 	public void setTipoFalla(final TipoFalla tipoFalla) {
 		this.tipoFalla = tipoFalla;
 	}
-	// }}
+	// }}*/
 	// {{ Descripcion (property)
     private String descripcion;
     
