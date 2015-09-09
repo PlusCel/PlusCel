@@ -163,6 +163,21 @@ public class Persona {
 		this.telefono = telefono;
 	}
 	// }}
+	
+	// {{ EMAIL (property)
+	private String email;
+
+	@Persistent
+	@MemberOrder(sequence = "9")
+	@javax.jdo.annotations.Column(allowsNull="true")
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(final String email) {
+		this.email = email;
+	}
+	// }}
 
 
 	private char habilitado;
