@@ -56,7 +56,7 @@ public class EquipoRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "3")
-    public Equipo Alta(
+    public Equipo AltaEquipo(
             final @ParameterLayout(named="Marca") Marca marca,    		           
             final @ParameterLayout(named="Modelo") Modelo modelo, 
             final @ParameterLayout(named="Estado") E_estado estado,             

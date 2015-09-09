@@ -74,9 +74,10 @@ public class TecnicoRepositorio {
             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Numero") java.lang.Integer  numero ,
             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Piso") String piso,
             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Departamento") String departamento,
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Email") String email,
             final @ParameterLayout(named="Teléfono") String telefono,
-            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Local")String local,
-            final @ParameterLayout(named="Email")String email
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Local")String local
+            
             
     		) {
         final Tecnico obj = container.newTransientInstance(Tecnico.class);
@@ -94,10 +95,11 @@ public class TecnicoRepositorio {
         obj.setDni(dni);
         obj.setFechaNacimiento(nacimiento);
         obj.setDireccion(dire);            
+        obj.setEmail(email);
         obj.setTelefono(telefono);
         obj.setApellido(apellido);
         obj.setLocal(local);
-        obj.setEmail(email);
+
         container.persistIfNotAlready(obj);
         return obj;
     }

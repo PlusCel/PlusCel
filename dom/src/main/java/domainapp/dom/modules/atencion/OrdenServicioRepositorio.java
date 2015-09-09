@@ -48,7 +48,7 @@ public class OrdenServicioRepositorio {
 	}
 	
 	@MemberOrder(sequence = "1")
-    public OrdenServicio Alta(   
+    public OrdenServicio AltaOrdenDeServicio(   
     		 final @ParameterLayout(named="Cliente") Cliente cliente,
     		 final @ParameterLayout(named="Equipo" ) Equipo equipo,             
              final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Tecnico") Tecnico tecnico,
