@@ -114,7 +114,7 @@ public class OrdenServicioRepositorio {
 	  @MemberOrder(sequence = "5")
 	    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico, 
 	    		@ParameterLayout(named="Estado") final E_estado estado,
-	    		LocalDate fechaDesde, LocalDate fechaHasta)
+	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, @ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
 	      {
 	       
 	            return container.allMatches(
