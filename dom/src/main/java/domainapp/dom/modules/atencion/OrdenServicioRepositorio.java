@@ -57,7 +57,7 @@ public class OrdenServicioRepositorio {
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Comision Tecnico") double comisionTecnico,
              final @ParameterLayout(named="Estado") E_estado estado,
-             final @ParameterLayout(named="Estado") E_estadoGarantia garantia
+             final @ParameterLayout(named="Garantia") E_estadoGarantia garantia
     			) {
     	
         final OrdenServicio obj = container.newTransientInstance(OrdenServicio.class);
