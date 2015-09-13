@@ -26,8 +26,11 @@ import org.apache.isis.applib.annotation.MemberOrder;
                         + "FROM domainapp.dom.modules.atencion.Modelo "),
         @javax.jdo.annotations.Query(name = "findByDescripcion", language = "JDOQL", value = "SELECT "
                     			+ "FROM dom.modules.atencion.Descripcion " + "WHERE descripcion == :descripcion"),
-    
-})
+
+        @javax.jdo.annotations.Query(name = "findByMarca", language = "JDOQL", value = "SELECT "
+                            			+ "FROM dom.modules.atencion.Modelo " + "WHERE marca == :marca"),
+            			
+	})
 
 
 @DomainObject(
@@ -54,11 +57,11 @@ public class Modelo {
 		return getAbreviatura() +"-"+ getDescripcion();
 	}
 	
-
-private Marca marca;	
-   
-  //{{ Abreviatura (property)
+	  //{{ Marca (property)
 	
+	private Marca marca;	
+   
+
 	@MemberOrder(sequence = "1")
 	@Column(allowsNull = "true")
 	public Marca getMarca() {
@@ -74,8 +77,9 @@ private Marca marca;
 	private String abreviatura;
 
 	@Persistent
-	@MemberOrder(sequence = "1")
+	@MemberOrder(sequence = "2")
 	@javax.jdo.annotations.Column(allowsNull="true")
+
 	public String getAbreviatura() {
 		return abreviatura;
 	}
@@ -88,19 +92,17 @@ private Marca marca;
   private String descripcion;
   
   @Persistent
-	@MemberOrder(sequence = "2")
+	@MemberOrder(sequence = "3")
   @javax.jdo.annotations.Column(allowsNull="false", length = 40)
 	
   public String getDescripcion() {
       return descripcion;
   }
+  
   public void setDescripcion(final String descripcion) {
       this.descripcion = descripcion;
   }
 	// }}    
-  
-
-    
     @javax.inject.Inject
 
 	private DomainObjectContainer container;
