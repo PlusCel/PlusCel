@@ -14,7 +14,7 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 
 
-@DomainService(repositoryFor = Equipo.class)
+@DomainService(repositoryFor = Modelo.class)
 @DomainServiceLayout(menuOrder = "10" , named="Modelo")
 
 public class ModeloRepositorio {
@@ -50,16 +50,30 @@ public class ModeloRepositorio {
                         "findByDescripcion",
                         "descripcion", descripcion));
     }
+    
+    
     //endregion
+    
+    
+    public List<Modelo> crearListaModelosXMarca(final Marca marca) {
 
+		return container.allMatches(new QueryDefault<Modelo>(Modelo.class,
+				"findByMarca","marca", marca));
+    }
+    
+    
+
+    
     //region > create (action)
     @MemberOrder(sequence = "1")
     public Modelo alta(
             final @ParameterLayout(named="Abreviatura") String abreviatura,
-            final @ParameterLayout(named="Descripcion") String descripcion
+            final @ParameterLayout(named="Descripcion") String descripcion,
+            final @ParameterLayout(named="Marca") Marca marca
     		) {
         final Modelo obj = container.newTransientInstance(Modelo.class);
         obj.setAbreviatura(abreviatura);
+        obj.setMarca(marca);
         obj.setDescripcion(descripcion);
    
         container.persistIfNotAlready(obj);
