@@ -12,6 +12,10 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
+import domainapp.dom.modules.atencion.Modelo;
+import domainapp.dom.modules.atencion.Marca;
+import domainapp.dom.modules.atencion.MarcaRepositorio;
+import domainapp.dom.modules.atencion.ModeloRepositorio;
 
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.EnvioCorreo;
@@ -57,7 +61,7 @@ public class EquipoRepositorio {
     //region > create (action)
     @MemberOrder(sequence = "3")
     public Equipo Alta(
-            final @ParameterLayout(named="Marca") Marca marca,    		           
+            final @ParameterLayout(named="Marca") Marca marca,
             final @ParameterLayout(named="Modelo") Modelo modelo, 
             final @ParameterLayout(named="Estado") E_estado estado,             
             final @ParameterLayout(named="IMEI") String imei   
@@ -72,8 +76,15 @@ public class EquipoRepositorio {
         container.persistIfNotAlready(obj);
         return obj;
     }
+    
+	public List<Modelo> choices1Alta( @ParameterLayout(named="Marca") final Marca marca)
+	{
+		return modeloRepositorio.crearListaModelosXMarca(marca);
+	}
 
- // region > buscarPorImei (action)
+
+
+    // region > buscarPorImei (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
@@ -93,7 +104,8 @@ public class EquipoRepositorio {
     }
     //endregion
     
-    
+
+
     // region > buscarPorEstado (action)
   @Action(
           semantics = SemanticsOf.SAFE
@@ -116,10 +128,6 @@ public class EquipoRepositorio {
   
       
 
-    //region > injected services
-
-    @javax.inject.Inject 
-    DomainObjectContainer container;    
 
 
 	public static List<Equipo> listAll() {
@@ -127,9 +135,13 @@ public class EquipoRepositorio {
 		return null;
 	}
 	
-	
-    
+    //region > injected services
 
+    @javax.inject.Inject 
+    DomainObjectContainer container;        
+
+	@javax.inject.Inject
+	ModeloRepositorio modeloRepositorio;
     //endregion
 
 }
