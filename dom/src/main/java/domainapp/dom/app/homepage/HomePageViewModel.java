@@ -48,7 +48,7 @@ public class HomePageViewModel {
        
     }
     //endregion
-        @MemberOrder(sequence = "1")
+    @MemberOrder(sequence = "1")
 	public List<OrdenServicio> getEquiposSinReparar() {
 		return OrdenServicioRepositorio.sinArreglo();
 	}

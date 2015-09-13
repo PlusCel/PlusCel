@@ -33,7 +33,7 @@ import domainapp.dom.modules.servicios.Persona;
                         + "WHERE apellido.startsWith(:apellido)")
 })
 
-@javax.jdo.annotations.Unique(name="Tecnico_dni_UNQ", members = {"dni"})
+@javax.jdo.annotations.Unique(name="Tecnico_dni_email_UNQ", members = {"dni", "email"})
 @DomainObject(
 		bounded=true,
         objectType = "TECNICO"
@@ -62,22 +62,10 @@ public class Tecnico extends Persona implements Comparable<Tecnico> {
 	public String title() {
 		return getApellido() + ", " + getNombre();
 	}
-
-	private String Email;
-    @Persistent
-	@MemberOrder(sequence = "6")
-    @javax.jdo.annotations.Column(allowsNull="true", length = 40)    
-    public String getEmail(){
-    	
-        return Email;
-    }
-    public void setEmail(final String Email) {
-        this.Email = Email;
-    }
 	
 	private String Local;
     @Persistent
-	@MemberOrder(sequence = "7")
+	@MemberOrder(sequence = "6")
     @javax.jdo.annotations.Column(allowsNull="true", length = 40)
     public String getLocal(){
         return Local;

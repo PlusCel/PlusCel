@@ -36,7 +36,7 @@ public class AccesorioEquipoRepositorio {
  
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public AccesorioEquipo Alta(
+    public AccesorioEquipo AltaEquipo(
             final @ParameterLayout(named="Equipo") Equipo equipo,    		           
             final @ParameterLayout(named="Memoria") E_accesorioParte memoria, 
             final @ParameterLayout(named="Chip") E_accesorioParte chip,  

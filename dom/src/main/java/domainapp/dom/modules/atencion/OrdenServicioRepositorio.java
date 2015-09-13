@@ -48,7 +48,7 @@ public class OrdenServicioRepositorio {
 	}
 	
 	@MemberOrder(sequence = "1")
-    public OrdenServicio Alta(   
+    public OrdenServicio AltaOrdenDeServicio(   
     		 final @ParameterLayout(named="Cliente") Cliente cliente,
     		 final @ParameterLayout(named="Equipo" ) Equipo equipo,             
              final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Tecnico") Tecnico tecnico,
@@ -57,7 +57,7 @@ public class OrdenServicioRepositorio {
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Comision Tecnico") double comisionTecnico,
              final @ParameterLayout(named="Estado") E_estado estado,
-             final @ParameterLayout(named="Estado") E_estadoGarantia garantia
+             final @ParameterLayout(named="Garantia") E_estadoGarantia garantia
     			) {
     	
         final OrdenServicio obj = container.newTransientInstance(OrdenServicio.class);
@@ -114,7 +114,7 @@ public class OrdenServicioRepositorio {
 	  @MemberOrder(sequence = "5")
 	    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico, 
 	    		@ParameterLayout(named="Estado") final E_estado estado,
-	    		LocalDate fechaDesde, LocalDate fechaHasta)
+	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, @ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
 	      {
 	       
 	            return container.allMatches(

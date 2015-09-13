@@ -20,7 +20,7 @@ public class EquipoTecnicoRepositorio {
 	
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public EquipoTecnico Alta(
+    public EquipoTecnico AltaEquipoTecnico(
             final @ParameterLayout(named="Equipo") Equipo equipo,
             final @ParameterLayout(named="Tecnico") Tecnico tecnico) {
     	

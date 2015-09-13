@@ -60,8 +60,9 @@ public class EquipoRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "3")
-    public Equipo Alta(
-            final @ParameterLayout(named="Marca") Marca marca,
+
+    public Equipo AltaEquipo(
+            final @ParameterLayout(named="Marca") Marca marca,    		           
             final @ParameterLayout(named="Modelo") Modelo modelo, 
             final @ParameterLayout(named="Estado") E_estado estado,             
             final @ParameterLayout(named="IMEI") String imei   
@@ -77,7 +78,7 @@ public class EquipoRepositorio {
         return obj;
     }
     
-	public List<Modelo> choices1Alta( @ParameterLayout(named="Marca") final Marca marca)
+	public List<Modelo> choices1AltaEquipo( @ParameterLayout(named="Marca") final Marca marca)
 	{
 		return modeloRepositorio.crearListaModelosXMarca(marca);
 	}

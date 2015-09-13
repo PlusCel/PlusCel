@@ -20,11 +20,6 @@ package domainapp.dom.modules.atencion;
 
 import java.util.List;
 
-
-
-
-
-
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
@@ -84,7 +79,7 @@ public class ClienteRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public Cliente Alta(
+    public Cliente AltaCliente(
             final  @ParameterLayout(named="Apellido") String apellido,
             final @ParameterLayout(named="Nombre") String nombre,
             final @ParameterLayout(named="Dni") int dni,
@@ -96,6 +91,7 @@ public class ClienteRepositorio {
             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Numero") java.lang.Integer numero,
             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Piso") String piso,
             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Departamento") String departamento,
+            final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Email") String email,
             final @ParameterLayout(named="Teléfono") String telefono
             
     		) {
@@ -114,8 +110,9 @@ public class ClienteRepositorio {
         obj.setDni(dni);
         obj.setFechaNacimiento(nacimiento);
         obj.setDireccion(dire);
+        obj.setEmail(email);
         obj.setTelefono(telefono);
-        obj.setHabilitado('S');
+        obj.setHabilitado('-');
         obj.setApellido(apellido);
         container.persistIfNotAlready(obj);
         return obj;
