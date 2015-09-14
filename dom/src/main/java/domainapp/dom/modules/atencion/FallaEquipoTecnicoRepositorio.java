@@ -13,7 +13,8 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
-@DomainService(repositoryFor = EquipoTecnico.class)
+
+@DomainService(repositoryFor = FallaEquipoTecnico.class)
 @DomainServiceLayout(menuOrder = "10" , named="FallaEquipoTecnico")
 public class FallaEquipoTecnicoRepositorio {
 	
@@ -21,12 +22,16 @@ public class FallaEquipoTecnicoRepositorio {
     //region > create (action)
     @MemberOrder(sequence = "1")
     public FallaEquipoTecnico Alta(
-    		final @ParameterLayout(named="Falla") String falla,
+    		final @ParameterLayout(named="Tipo de Falla") TipoFalla tipoFalla,
+    		final @ParameterLayout(named="Falla descripcion") String fallaDesc,
             final @ParameterLayout(named="Equipo") Equipo equipo,
             final @ParameterLayout(named="Tecnico") Tecnico tecnico) {
     	
         final FallaEquipoTecnico obj = container.newTransientInstance(FallaEquipoTecnico.class);
-        obj.setFalla(falla);
+        final Falla fallaCel = new Falla();
+        fallaCel.setTipoFalla(tipoFalla);
+        fallaCel.setDescripcion(fallaDesc);
+        obj.setFalla(fallaCel);
         obj.setEquipo(equipo);
         obj.setTecnico(tecnico);
         container.persistIfNotAlready(obj);
