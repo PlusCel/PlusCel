@@ -45,8 +45,12 @@ public class Falla {
 	public void setContainer(DomainObjectContainer container) {
 		this.container = container;
 	}
-/*
-	// {{ TipoFalla (property)
+	
+	public String title() {
+		return getDescripcion();
+	}
+
+	//{{TipoFalla (property)
 	private TipoFalla tipoFalla;
 
 	@Persistent
