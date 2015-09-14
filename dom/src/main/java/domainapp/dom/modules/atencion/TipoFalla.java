@@ -44,6 +44,9 @@ public class TipoFalla {
 		this.container = container;
 	}
 
+	public String title() {
+		return getDescripcion();
+	}
 	// {{ Descripcion (property)
 	private String descripcion;
 
