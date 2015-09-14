@@ -9,6 +9,7 @@ import javax.jdo.annotations.VersionStrategy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Where;
+import domainapp.dom.modules.atencion.Falla;
 @SuppressWarnings("unused")
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
@@ -35,17 +36,16 @@ public class FallaEquipoTecnico {
 	}
 	
 	// {{ Falla (property)
-    private String falla;
-    
-    @Persistent
+
+    private Falla falla;
 	@MemberOrder(sequence = "1")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 700)
-	
-    public String getFalla() {
+	@Column(allowsNull = "true")	
+    public Falla getFalla() {
         return falla;
     }
-    public void setFalla(final String Falla) {
-        this.falla = Falla;
+    public void setFalla(final Falla falla) {
+        this.falla = falla;
+        
     }
 	// }}
 	
