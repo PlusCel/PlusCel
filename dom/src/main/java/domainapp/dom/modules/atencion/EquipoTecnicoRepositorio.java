@@ -50,14 +50,6 @@ public class EquipoTecnicoRepositorio {
                         "listaTecnicoDeEquipo",
                         "equipo", equipo));
     }
-    
-    
-    
-    
-    
-    
-
-
 
 
 //endregion
