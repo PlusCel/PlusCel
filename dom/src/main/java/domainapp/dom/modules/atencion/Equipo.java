@@ -116,7 +116,9 @@ public class Equipo {
     
     public Equipo EnviarAlerta() {	
     	if (Equipo.this.estado == E_estado.TERMINADO) {
-    		EnvioCorreo.send(Equipo.this.getImei()  + ", " + getMarca().getDescripcion()+ ", " + getModelo().getDescripcion(), "ESTADO EQUIPO" );
+    		EnvioCorreo.send("nachocartes@gmail.com",
+    				"ESTADO EQUIPO" ,
+    				Equipo.this.getImei()  + ", " + getMarca().getDescripcion()+ ", " + getModelo().getDescripcion());
     		
     	}
     					

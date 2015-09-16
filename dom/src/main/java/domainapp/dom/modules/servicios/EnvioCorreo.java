@@ -12,8 +12,7 @@ import domainapp.dom.modules.servicios.CorreoException;
 
 public class EnvioCorreo extends AbstractFactoryAndRepository {
 	
-	
-	public static String send(String mensaje, String asunto) {
+	public static String send(String destinatarios, String asunto, String mensaje) {
 
 		try {
 			Email email = new SimpleEmail();
@@ -24,7 +23,8 @@ public class EnvioCorreo extends AbstractFactoryAndRepository {
 			email.setFrom("plusceltesis@gmail.com", "Pluscel");
 			email.setSubject(asunto);
 			email.setMsg(mensaje);			
-			email.addTo("bossoar@gmail.com","plusceltesis@gmail.com");
+			/*email.addTo("bossoar@gmail.com","nachocartes@gmail.com","plusceltesis@gmail.com");*/
+			email.addTo(destinatarios);
 			return email.send();
 		} catch (EmailException e) {
 			throw new CorreoException(e.getMessage(), e);
