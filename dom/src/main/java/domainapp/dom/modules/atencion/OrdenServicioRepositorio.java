@@ -1,43 +1,26 @@
 package domainapp.dom.modules.atencion;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Named;
-import javax.jdo.annotations.Element;
-import javax.jdo.annotations.Join;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Action;
 import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
-import org.apache.isis.applib.annotation.DescribedAs;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
-import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.MultiLine;
 import org.apache.isis.applib.annotation.Optionality;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
-import org.apache.isis.applib.services.i18n.TranslatableString;
 import org.joda.time.LocalDate;
-
-import com.fasterxml.jackson.databind.AnnotationIntrospector.ReferenceProperty.Type;
 
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoGarantia;
-import domainapp.dom.modules.servicios.E_formato;
-import domainapp.dom.modules.servicios.GenerarReporte;
-import net.sf.jasperreports.engine.JRException;
 
 
-
-@SuppressWarnings("deprecation")
 @DomainService(repositoryFor = OrdenServicio.class)
 @DomainServiceLayout(menuOrder = "11" , named="Orden de Servicio")
 
