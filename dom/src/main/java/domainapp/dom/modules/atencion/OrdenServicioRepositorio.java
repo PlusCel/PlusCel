@@ -39,7 +39,7 @@ import net.sf.jasperreports.engine.JRException;
 
 @SuppressWarnings("deprecation")
 @DomainService(repositoryFor = OrdenServicio.class)
-@DomainServiceLayout(menuOrder = "11" , named="Orden de Servicio")
+@DomainServiceLayout(menuOrder = "6" , named="Orden de Servicio")
 
 public class OrdenServicioRepositorio {
 	

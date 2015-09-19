@@ -18,7 +18,7 @@ import domainapp.dom.modules.servicios.E_tipoRepuesto;
 
 
 @DomainService(repositoryFor = Repuesto.class)
-@DomainServiceLayout(menuOrder = "10" , named="Repuestos")
+@DomainServiceLayout(menuOrder = "4" , named="Repuestos")
 public class RepuestoRepositorio {
 
     //region > listAll (action)

@@ -21,7 +21,7 @@ import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.EnvioCorreo;
 
 @DomainService(repositoryFor = Equipo.class)
-@DomainServiceLayout(menuOrder = "10" , named="Equipo")
+@DomainServiceLayout(menuOrder = "3" , named="Equipo")
 
 public class EquipoRepositorio {
 	

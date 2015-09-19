@@ -16,7 +16,7 @@ import org.apache.isis.applib.query.QueryDefault;
 import domainapp.dom.modules.servicios.E_accesorioParte;
 ;
 @DomainService(repositoryFor = AccesorioEquipo.class)
-@DomainServiceLayout(menuOrder = "10" , named="AccesorioEquipo")
+@DomainServiceLayout(menuOrder = "3" , named="Equipo")
 
 public class AccesorioEquipoRepositorio {
 	

@@ -23,7 +23,7 @@ import domainapp.dom.modules.servicios.Localidad;
 
 
 @DomainService(repositoryFor = Tecnico.class)
-@DomainServiceLayout(menuOrder = "10" , named="Tecnico")
+@DomainServiceLayout(menuOrder = "5" , named="Tecnico")
 
 public class TecnicoRepositorio {
 

@@ -41,7 +41,7 @@ import domainapp.dom.modules.servicios.Localidad;
 import domainapp.dom.modules.servicios.Localidad.E_localidades;
 
 @DomainService(repositoryFor = Cliente.class)
-@DomainServiceLayout(menuOrder = "10" , named="Cliente")
+@DomainServiceLayout(menuOrder = "2" , named="Cliente")
 public class ClienteRepositorio {
 
     //region > listAll (action)

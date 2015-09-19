@@ -15,7 +15,7 @@ import org.apache.isis.applib.query.QueryDefault;
 
 
 @DomainService(repositoryFor = Modelo.class)
-@DomainServiceLayout(menuOrder = "10" , named="Modelo")
+@DomainServiceLayout(menuOrder = "1" , named="Gestion")
 
 public class ModeloRepositorio {
 	

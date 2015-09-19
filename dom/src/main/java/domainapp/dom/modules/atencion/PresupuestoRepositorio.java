@@ -10,7 +10,7 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 import org.joda.time.LocalDate;
 @DomainService(repositoryFor = Presupuesto.class)
-@DomainServiceLayout(menuOrder = "10" , named="Presupuesto")
+@DomainServiceLayout(menuOrder = "6" , named="Orden de Servicio")
 
 public class PresupuestoRepositorio {
 	

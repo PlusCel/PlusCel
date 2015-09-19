@@ -14,7 +14,7 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 @DomainService(repositoryFor = EquipoTecnico.class)
-@DomainServiceLayout(menuOrder = "10" , named="Equipotecnico")
+@DomainServiceLayout(menuOrder = "3" , named="Equipo")
 public class EquipoTecnicoRepositorio {
 	
 	

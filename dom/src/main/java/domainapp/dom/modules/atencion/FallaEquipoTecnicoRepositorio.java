@@ -15,13 +15,13 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 
 @DomainService(repositoryFor = FallaEquipoTecnico.class)
-@DomainServiceLayout(menuOrder = "10" , named="FallaEquipoTecnico")
+@DomainServiceLayout(menuOrder = "5" , named="Tecnico")
 public class FallaEquipoTecnicoRepositorio {
 	
 	
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public FallaEquipoTecnico Alta(
+    public FallaEquipoTecnico AltaFallaPorEquipoPorTecnico(
     		final @ParameterLayout(named="Tipo de Falla") TipoFalla tipoFalla,
     		final @ParameterLayout(named="Falla descripcion") String fallaDesc,
             final @ParameterLayout(named="Equipo") Equipo equipo,

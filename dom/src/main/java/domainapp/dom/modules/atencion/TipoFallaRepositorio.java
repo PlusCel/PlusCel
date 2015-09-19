@@ -16,7 +16,7 @@ import org.apache.isis.applib.query.QueryDefault;
 
 
 @DomainService(repositoryFor = TipoFalla.class)
-@DomainServiceLayout(menuOrder = "10" , named="TipoFalla")
+@DomainServiceLayout(menuOrder = "1" , named="Gestion")
 
 public class TipoFallaRepositorio {
 
