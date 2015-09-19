@@ -12,19 +12,13 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.ParameterLayout;
 
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoGarantia;
-import domainapp.dom.modules.servicios.E_estadoPresupuesto;
 import domainapp.dom.modules.servicios.EnvioCorreo;
 
 import org.joda.time.LocalDate;
 
-import java.util.ArrayList;
-import java.awt.*;
-import java.awt.event.*;
-import java.applet.*;
 
 /**
  * @author PlusCel
@@ -208,12 +202,25 @@ public class OrdenServicio {
     public void setEstado(final E_estado estado) {
         this.estado = estado;
     }
-    
-    
-    public OrdenServicio EnviarAlerta() {	
+      
+    public OrdenServicio EnviarAlertaSinArreglo() {	
     	if (OrdenServicio.this.estado == E_estado.SIN_ARREGLO) {
-    		EnvioCorreo.send("Orden de Servicio :" + OrdenServicio.this.numero + " Estado : "+ OrdenServicio.this.estado , "ESTADO ORDEN DE SERVICIO" );
-    		
+    		EnvioCorreo.send("nachocartes@gmail.com",
+    				"ESTADO ORDEN DE SERVICIO", 
+    				"Orden de Servicio :" + OrdenServicio.this.numero + " Estado : "+ OrdenServicio.this.estado);
+    	}
+    					
+		return this;
+	}
+    
+    //Enviamos alerta via mail al tecnico para informar de un nuevo equipo.
+    public OrdenServicio EnviarAlertaTecnico() {	
+    	if (OrdenServicio.this.estado == E_estado.SIN_REVISAR) {
+    		EnvioCorreo.send("nachocartes@gmail.com",
+    				"Nuevo equipo para revisar", 
+    				"La Orden de Servicio :" + OrdenServicio.this.numero +
+    				" con el Estado : "+ OrdenServicio.this.estado + 
+    				"Necesita ser chequeada por el tecnico antes de las 48 horas");
     	}
     					
 		return this;
