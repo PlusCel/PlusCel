@@ -4,24 +4,19 @@ package domainapp.dom.modules.atencion;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
-import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
-import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 
 @DomainService(repositoryFor = FallaEquipoTecnico.class)
 @DomainServiceLayout(menuOrder = "5" , named="Tecnico")
 public class FallaEquipoTecnicoRepositorio {
 	
-	
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public FallaEquipoTecnico AltaFallaPorEquipoPorTecnico(
+    public FallaEquipoTecnico altaFallaPorEquipoPorTecnico(
     		final @ParameterLayout(named="Tipo de Falla") TipoFalla tipoFalla,
     		final @ParameterLayout(named="Falla descripcion") String fallaDesc,
             final @ParameterLayout(named="Equipo") Equipo equipo,
@@ -37,17 +32,13 @@ public class FallaEquipoTecnicoRepositorio {
         container.persistIfNotAlready(obj);
         return obj;
     }
-    
-    
+      
     @MemberOrder(sequence = "3")
     public List<FallaEquipoTecnico> listarTodos() {
         return container.allInstances(FallaEquipoTecnico.class);
     }
     //endregion
     
-  
-
-
     @MemberOrder(sequence = "4")
     public List<FallaEquipoTecnico> listadoFallaPorEquipo(Tecnico tecnico)
   {
@@ -58,17 +49,7 @@ public class FallaEquipoTecnicoRepositorio {
                         "Tecnico", tecnico));
     }
     
-    
-    
-    
-    
-    
-
-
-
-
 //endregion
-
 
     //region > injected services
     @javax.inject.Inject 

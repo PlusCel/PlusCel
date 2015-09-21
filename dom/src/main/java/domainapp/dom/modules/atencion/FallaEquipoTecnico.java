@@ -62,8 +62,6 @@ public class FallaEquipoTecnico {
 		this.tecnico = tecnico;
 	}
 	// }}
-
-
 	
 	// {{ Equipo (property)
 	private Equipo equipo;

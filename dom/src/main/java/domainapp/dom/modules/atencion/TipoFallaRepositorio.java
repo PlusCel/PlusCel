@@ -36,7 +36,7 @@ public class TipoFallaRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "2")
-    public TipoFalla AltaTipoFalla(
+    public TipoFalla altaTipoFalla(
             final @ParameterLayout(named="Descripcion") String descripcion
   
             ) {

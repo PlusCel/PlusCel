@@ -67,7 +67,6 @@ import org.joda.time.LocalDate;
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 
-
 public class OrdenServicio {
 	
   

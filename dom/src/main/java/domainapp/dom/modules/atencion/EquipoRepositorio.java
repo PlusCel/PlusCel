@@ -14,11 +14,9 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 import domainapp.dom.modules.atencion.Modelo;
 import domainapp.dom.modules.atencion.Marca;
-import domainapp.dom.modules.atencion.MarcaRepositorio;
 import domainapp.dom.modules.atencion.ModeloRepositorio;
 
 import domainapp.dom.modules.servicios.E_estado;
-import domainapp.dom.modules.servicios.EnvioCorreo;
 
 @DomainService(repositoryFor = Equipo.class)
 @DomainServiceLayout(menuOrder = "3" , named="Equipo")
@@ -61,7 +59,7 @@ public class EquipoRepositorio {
     //region > create (action)
     @MemberOrder(sequence = "3")
 
-    public Equipo AltaEquipo(
+    public Equipo altaEquipo(
             final @ParameterLayout(named="Marca") Marca marca,    		           
             final @ParameterLayout(named="Modelo") Modelo modelo, 
             final @ParameterLayout(named="Estado") E_estado estado,             
