@@ -24,10 +24,10 @@ public class PresupuestoRepositorio {
     		 final @ParameterLayout(named="Equipo") Equipo equipo,            
              final @ParameterLayout(named="Cliente") Cliente cliente,
              final @ParameterLayout(named="Fecha") LocalDate  fechaHora ,
-             final @ParameterLayout(named="Diagnostico") String diagnostico,
+             final @ParameterLayout(named="Diagnostico", multiLine=10) String diagnostico,
              final @ParameterLayout(named="ReparacionRequerida")  String reparacionRequerida,
              final @ParameterLayout(named="Importe") double importe,
-             final @ParameterLayout(named="Observacion") String observacion,
+             final @ParameterLayout(named="Observacion", multiLine=10) String observacion,
              final @ParameterLayout(named="Estado") E_estadoPresupuesto estado,
              final @ParameterLayout(named="Garantia(Meses)") String  garantia   ) {
     	

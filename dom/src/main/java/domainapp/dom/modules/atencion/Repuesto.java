@@ -11,7 +11,6 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.util.ObjectContracts;
 import org.joda.time.LocalDate;
 
-import domainapp.dom.modules.servicios.E_tipoRepuesto;
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(

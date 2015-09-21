@@ -9,6 +9,8 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
@@ -63,7 +65,7 @@ public class EquipoRepositorio {
             final @ParameterLayout(named="Marca") Marca marca,    		           
             final @ParameterLayout(named="Modelo") Modelo modelo, 
             final @ParameterLayout(named="Estado") E_estado estado,             
-            final @ParameterLayout(named="IMEI") String imei   
+            final @ParameterLayout(named="IMEI") @Parameter(regexPattern = domainapp.dom.modules.servicios.validador.ValidadorCaracteres.ValidacionNumerica.PERMITIDOS, maxLength = 20) String imei   
             
     		) {
         final Equipo obj = container.newTransientInstance(Equipo.class);
@@ -125,10 +127,6 @@ public class EquipoRepositorio {
   }
  //endregion
   
-      
-
-
-
 	public static List<Equipo> listAll() {
 		// TODO Auto-generated method stub
 		return null;

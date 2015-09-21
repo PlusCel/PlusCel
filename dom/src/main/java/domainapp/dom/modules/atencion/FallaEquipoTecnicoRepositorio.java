@@ -18,7 +18,7 @@ public class FallaEquipoTecnicoRepositorio {
     @MemberOrder(sequence = "1")
     public FallaEquipoTecnico altaFallaPorEquipoPorTecnico(
     		final @ParameterLayout(named="Tipo de Falla") TipoFalla tipoFalla,
-    		final @ParameterLayout(named="Falla descripcion") String fallaDesc,
+    		final @ParameterLayout(named="Falla descripcion", multiLine=10) String fallaDesc,
             final @ParameterLayout(named="Equipo") Equipo equipo,
             final @ParameterLayout(named="Tecnico") Tecnico tecnico) {
     	

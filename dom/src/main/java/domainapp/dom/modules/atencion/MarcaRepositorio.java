@@ -55,7 +55,7 @@ public class MarcaRepositorio {
     @MemberOrder(sequence = "1")
     public Marca altaMarca(
     		final @ParameterLayout(named="Abreviatura") String abreviatura,
-            final @ParameterLayout(named="Descripcion") String descripcion
+            final @ParameterLayout(named="Descripcion", multiLine=10) String descripcion
     		) {
         final Marca obj = container.newTransientInstance(Marca.class);
         obj.setAbreviatura(abreviatura);

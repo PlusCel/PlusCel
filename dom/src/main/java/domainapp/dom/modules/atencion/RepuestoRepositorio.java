@@ -9,13 +9,10 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
-import org.apache.isis.applib.query.QueryDefault;
 import org.joda.time.LocalDate;
-import domainapp.dom.modules.servicios.E_tipoRepuesto;
-
-
 
 @DomainService(repositoryFor = Repuesto.class)
 @DomainServiceLayout(menuOrder = "4" , named="Repuestos")
@@ -40,10 +37,10 @@ public class RepuestoRepositorio {
     public Repuesto altaRepuestos(
             final @ParameterLayout(named="Modelo") String modelo,
             //final @ParameterLayout(named="Tipo de Repuesto") E_tipoRepuesto tipoRepuesto,
-            final @ParameterLayout(named="Descripcion") String descripcion,
+            final @ParameterLayout(named="Descripcion" , multiLine=10)  String descripcion,
             final @ParameterLayout(named="Fecha probable arribo") LocalDate fechaArribo,
             final @ParameterLayout(named="Precio Costo") Double costo,
-            final @ParameterLayout(named="Cantidad") int cantidad
+            final @ParameterLayout(named="Cantidad") @Parameter(regexPattern = domainapp.dom.modules.servicios.validador.ValidadorCaracteres.ValidacionNumerica.PERMITIDOS, maxLength = 5) int cantidad
             
     		) {
         final Repuesto obj = container.newTransientInstance(Repuesto.class);

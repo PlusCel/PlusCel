@@ -34,15 +34,15 @@ public class OrdenServicioRepositorio {
     public OrdenServicio altaOrdenDeServicio(   
     		 final @ParameterLayout(named="Cliente") Cliente cliente,
     		 final @ParameterLayout(named="Equipo" ) Equipo equipo,             
-             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Tecnico") Tecnico tecnico,
+             final @ParameterLayout(named="Tecnico") @Parameter(optionality=Optionality.OPTIONAL) Tecnico tecnico,
              final @ParameterLayout(named="Fecha") LocalDate  fechaHora,
-             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Falla", multiLine=10) String falla,
+             final @ParameterLayout(named="Falla", multiLine=10) @Parameter(optionality=Optionality.OPTIONAL) String falla,
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Comision Tecnico") double comisionTecnico,
              final @ParameterLayout(named="Estado") E_estado estado,
              final @ParameterLayout(named="Garantia") E_estadoGarantia garantia
     			) {
-    	
+
         final OrdenServicio obj = container.newTransientInstance(OrdenServicio.class);
         obj.setCliente(cliente);
         obj.setEquipo(equipo);

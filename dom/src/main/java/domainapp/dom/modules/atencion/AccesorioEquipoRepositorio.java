@@ -9,6 +9,7 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
@@ -33,14 +34,13 @@ public class AccesorioEquipoRepositorio {
     }
     //endregion
 
- 
     //region > create (action)
     @MemberOrder(sequence = "1")
     public AccesorioEquipo AltaEquipo(
-            final @ParameterLayout(named="Equipo") Equipo equipo,    		           
+            final @ParameterLayout(named="Equipo") @Parameter(regexPattern = domainapp.dom.modules.servicios.validador.ValidadorCaracteres.ValidacionAlfanumerico.PERMITIDOS, maxLength = 10) Equipo equipo,    		           
             final @ParameterLayout(named="Memoria") E_accesorioParte memoria, 
             final @ParameterLayout(named="Chip") E_accesorioParte chip,  
-            final @ParameterLayout(named="Observación") String observacion   
+            final @ParameterLayout(named="Observación" , multiLine=10) String observacion   
             
     		) {
         final AccesorioEquipo obj = container.newTransientInstance(AccesorioEquipo.class);

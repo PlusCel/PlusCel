@@ -60,15 +60,12 @@ public class ModeloRepositorio {
 		return container.allMatches(new QueryDefault<Modelo>(Modelo.class,
 				"findByMarca","marca", marca));
     }
-    
-    
-
-    
+     
     //region > create (action)
     @MemberOrder(sequence = "1")
     public Modelo altaModelo(
             final @ParameterLayout(named="Abreviatura") String abreviatura,
-            final @ParameterLayout(named="Descripcion") String descripcion,
+            final @ParameterLayout(named="Descripcion", multiLine=10) String descripcion,
             final @ParameterLayout(named="Marca") Marca marca
     		) {
         final Modelo obj = container.newTransientInstance(Modelo.class);
