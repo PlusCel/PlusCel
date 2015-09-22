@@ -57,7 +57,7 @@ public class Marca {
 
 	@Persistent
 	@MemberOrder(sequence = "1")
-	@javax.jdo.annotations.Column(allowsNull="true")
+	@javax.jdo.annotations.Column(allowsNull="false")
 	public String getAbreviatura() {
 		return abreviatura;
 	}
@@ -71,7 +71,7 @@ public class Marca {
     
     @Persistent
 	@MemberOrder(sequence = "2")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
 	
     public String getDescripcion() {
         return descripcion;

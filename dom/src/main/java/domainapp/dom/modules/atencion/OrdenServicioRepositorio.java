@@ -26,8 +26,10 @@ import domainapp.dom.modules.servicios.E_estadoGarantia;
 
 public class OrdenServicioRepositorio {
 	
+	@ActionLayout(cssClassFa="fa fa-plus-circle",bookmarking = BookmarkPolicy.AS_ROOT)
+	
 	public String iconName() {
-		return "OrdenServicio";
+		return "fa fa-road";
 	}
 	
 	@MemberOrder(sequence = "1")

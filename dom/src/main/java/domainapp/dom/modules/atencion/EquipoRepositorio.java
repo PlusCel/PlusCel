@@ -23,15 +23,15 @@ import domainapp.dom.modules.servicios.E_estado;
 @DomainService(repositoryFor = Equipo.class)
 @DomainServiceLayout(menuOrder = "3" , named="Equipo")
 
+
 public class EquipoRepositorio {
+	@ActionLayout(cssClassFa="fa fa-mobile",bookmarking = BookmarkPolicy.AS_ROOT)
 	
 	//region > listarTodos (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
+    
     @MemberOrder(sequence = "1")
     public List<Equipo> listarTodos() {
         return container.allInstances(Equipo.class);
@@ -62,6 +62,7 @@ public class EquipoRepositorio {
     @MemberOrder(sequence = "3")
 
     public Equipo altaEquipo(
+    		
             final @ParameterLayout(named="Marca") Marca marca,    		           
             final @ParameterLayout(named="Modelo") Modelo modelo, 
             final @ParameterLayout(named="Estado") E_estado estado,             

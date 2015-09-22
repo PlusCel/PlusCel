@@ -235,6 +235,10 @@
           </exclusions>
         </dependency>
 
+        <dependency>
+        	<groupId>${project.groupId}</groupId>
+        	<artifactId>pluscel-fixture</artifactId>
+        </dependency>
     </dependencies>
 
     <profiles>
