@@ -59,7 +59,7 @@ public class RecreateMarcaFixture extends FixtureScript {
     protected void execute(final ExecutionContext ec) {
 
         // defaults
-        final int number = defaultParam("number", ec, 3);
+        final int number = defaultParam("number", ec, 5);
 
         // validate
         if(number < 0 || number > ABREVIATURAS.size()) {

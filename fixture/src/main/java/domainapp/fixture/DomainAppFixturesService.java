@@ -64,7 +64,7 @@ public class DomainAppFixturesService extends FixtureScripts {
             restrictTo = RestrictTo.PROTOTYPING
     )
     @ActionLayout(
-            cssClassFa="fa fa-refresh"
+            cssClassFa="fa fa-database"
     )
     @MemberOrder(sequence="20")
     public Object recreateObjectsAndReturnFirst() {
