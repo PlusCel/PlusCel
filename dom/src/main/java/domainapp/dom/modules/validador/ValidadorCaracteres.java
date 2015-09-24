@@ -1,4 +1,4 @@
-package domainapp.dom.modules.servicios.validador;
+package domainapp.dom.modules.validador;
 
 //import java.util.Calendar;
 

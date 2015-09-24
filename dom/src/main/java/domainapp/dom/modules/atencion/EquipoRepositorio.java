@@ -66,7 +66,7 @@ public class EquipoRepositorio {
             final @ParameterLayout(named="Marca") Marca marca,    		           
             final @ParameterLayout(named="Modelo") Modelo modelo, 
             final @ParameterLayout(named="Estado") E_estado estado,             
-            final @ParameterLayout(named="IMEI") @Parameter(regexPattern = domainapp.dom.modules.servicios.validador.ValidadorCaracteres.ValidacionNumerica.PERMITIDOS, maxLength = 20) String imei   
+            final @ParameterLayout(named="IMEI") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionNumerica.PERMITIDOS, maxLength = 20) String imei   
             
     		) {
         final Equipo obj = container.newTransientInstance(Equipo.class);

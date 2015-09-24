@@ -1,3 +1,4 @@
+
 /*
  *  Licensed to the Apache Software Foundation (ASF) under one
  *  or more contributor license agreements.  See the NOTICE file
@@ -19,68 +20,88 @@
 
 package domainapp.fixture.scenarios;
 
-import domainapp.fixture.modules.MarcaCreate;
+import domainapp.dom.modules.atencion.Marca;
+import domainapp.dom.modules.atencion.MarcaRepositorio;
+import domainapp.fixture.modules.GenericData;
 import domainapp.fixture.modules.MarcaTearDown;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
-public class RecreateMarcaFixture extends FixtureScript {
 
-    public final List<String> ABREVIATURAS = Collections.unmodifiableList(Arrays.asList(
-            "Foo", "Bart", "Baz", "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo", "Nacho"));
-    
-    public final List<String> DESCRIPCION = Collections.unmodifiableList(Arrays.asList(
-            "ooF", "traB", "zaB", "1", "2", "3", "4", "5", "6", "7", "8"));
+public class MarcaFixture extends FixtureScript {
 
-    public RecreateMarcaFixture() {
+
+    public MarcaFixture() {
         withDiscoverability(Discoverability.DISCOVERABLE);
     }
 
-    //region > number (optional input)
-    private Integer number;
-
-    /**
-     * The number of objects to create, up to 10; optional, defaults to 3.
-     */
-    public Integer getNumber() {
-        return number;
-    }
-
-    public RecreateMarcaFixture setNumber(final Integer number) {
-        this.number = number;
-        return this;
-    }
-    //endregion
-
     @Override
-    protected void execute(final ExecutionContext ec) {
+    protected void execute(ExecutionContext executionContext) {
 
-        // defaults
-        final int number = defaultParam("number", ec, 5);
-
-        // validate
-        if(number < 0 || number > ABREVIATURAS.size()) {
-            throw new IllegalArgumentException(String.format("number must be in range [0,%d)", ABREVIATURAS.size()));
-        }
+        // prereqs
+    	BorrarDBMarca(executionContext);
         
-        if(number < 0 || number > DESCRIPCION.size()) {
-            throw new IllegalArgumentException(String.format("number must be in range [0,%d)", DESCRIPCION.size()));
+        int Cantidad=GenericData.ObtenerCantidad()*14;
+        
+        List<Marca> listAl=new ArrayList<Marca>();
+        
+        // create
+        for(int x=0; x<=Cantidad;x++)
+        {
+        	Marca al=new Marca();
+        	al.setAbreviatura(GenericData.ObtenerAbreviatura());
+        	al.setDescripcion(GenericData.ObtenerDescripcion());
+        	
+        	listAl.add(al);
+        	
         }
-
-        //
-        // execute
-        //
-        ec.executeChild(this, new MarcaTearDown());
-
-        for (int i = 0; i < number; i++) {
-            final MarcaCreate fs = new MarcaCreate().setAbreviatura(ABREVIATURAS.get(i));
-            ec.executeChild(this, fs.getAbreviatura(), fs);
-            
-            final MarcaCreate fs1 = new MarcaCreate().setDescripcion(DESCRIPCION.get(i));
-            ec.executeChild(this, fs1.getDescripcion(), fs1);
-        }
+        for(Marca al:removerrepetidos(listAl))
+        create(al.getAbreviatura(),al.getDescripcion(), executionContext);
     }
-}
+
+    // //////////////////////////////////////
+
+	private List<Marca> removerrepetidos(List<Marca> listaMarca)
+	{
+		
+		for(int x=0;x<listaMarca.size()-1;x++)
+		{
+				for(int y=x+1;y<listaMarca.size();y++)
+				{
+					
+					if(listaMarca.get(x).getAbreviatura().equals(listaMarca.get(y).getAbreviatura()) && listaMarca.get(x).getDescripcion().equals(listaMarca.get(y).getDescripcion()))
+					{
+						listaMarca.remove(y);
+					}
+					
+				}
+		}
+		
+		return listaMarca;
+	}
+    
+    @SuppressWarnings("deprecation")
+	private Marca create(final String abreviatura, String descripcion, ExecutionContext executionContext) {
+        return executionContext.add(this, Marca.altaMarca(abreviatura, descripcion));
+    }
+
+    // //////////////////////////////////////
+
+    @SuppressWarnings("deprecation")
+	public void BorrarDBMarca(ExecutionContext executionContext)
+    {
+        execute(new MarcaTearDown(), executionContext);
+    	
+       return;
+    }
+    
+    
+    @javax.inject.Inject
+    private MarcaRepositorio Marca;
+//    @javax.inject.Inject
+//    private IsisJdoSupport isisJdoSupport; 
+
+    }
+

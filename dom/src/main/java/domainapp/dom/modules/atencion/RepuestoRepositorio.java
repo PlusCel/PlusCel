@@ -40,7 +40,7 @@ public class RepuestoRepositorio {
             final @ParameterLayout(named="Descripcion" , multiLine=10)  String descripcion,
             final @ParameterLayout(named="Fecha probable arribo") LocalDate fechaArribo,
             final @ParameterLayout(named="Precio Costo") Double costo,
-            final @ParameterLayout(named="Cantidad") @Parameter(regexPattern = domainapp.dom.modules.servicios.validador.ValidadorCaracteres.ValidacionNumerica.PERMITIDOS, maxLength = 5) int cantidad
+            final @ParameterLayout(named="Cantidad") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionNumerica.PERMITIDOS, maxLength = 5) int cantidad
             
     		) {
         final Repuesto obj = container.newTransientInstance(Repuesto.class);
