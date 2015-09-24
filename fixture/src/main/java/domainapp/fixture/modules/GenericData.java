@@ -30,7 +30,8 @@ public class GenericData {
 	private static String Materias="Lengua,Historia,Fisica,Matematica,Civica,Biologia,Geografia,Quimica,Analisis Matematico,Contabilidad,Musica,Plastica,Lengua y literatura,Dibujo,Educacion fisica,Taller";
 	private static String Calle="Jujuy,La Rioja,Salta,Pampa,Misiones,Buenos Ahires,Bahia Blanca,Mendoza,Santafe,Boedo,San Martin,Belgrano,Aconcagua,Domene,Chile,España,Godoy,Perito Moreno";
 	private static String Letras="A,B,C,D,E,F,G,H";
-	private static String Plan="Bachillerato,Tecnico Maestro mayor de obra,Musica,Agricola,Artistica,Polimodal,Tecnico Industrial,Tecnico Auxiliar,Tecnico Mecanico,Tecnico Quimico,Tecnico Electromecanico,Bachillerato Perito Mercantil,Bachillerato Contable";
+	private static String MarcaAbreviatura="APPLE,Nokia,Motorola,Sony,SonyEriccson,Kyocera,Alcatel,HTC,Samsung,BlackBerry,Pantech,ZTE,Huawei";
+	private static String MarcaDescripcion="1,2,3,4,5,6,7,8,9,10,11,12,13";
 //	
 	public static int ObtenerCantidad()
 	{
@@ -62,6 +63,16 @@ public class GenericData {
 	public static String ObtenerCalle()
 	{
 		return ObtenerValor(Calle);
+	}
+	
+	public static String ObtenerAbreviatura()
+	{
+		return ObtenerValor(MarcaAbreviatura);
+	}
+	
+	public static String ObtenerDescripcion()
+	{
+		return ObtenerValor(MarcaDescripcion);
 	}
 	
 	public static String ObtenerLetras(int index)
