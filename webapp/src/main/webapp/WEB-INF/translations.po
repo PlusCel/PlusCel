@@ -119,7 +119,7 @@ msgstr ""
 
 #: domainapp.fixture.DomainAppFixturesService#runFixtureScript()
 #: org.apache.isis.applib.fixturescripts.FixtureScripts#runFixtureScript()
-msgid "Run Fixture Script"
+msgid "Script de Instalacion"
 msgstr ""
 
 

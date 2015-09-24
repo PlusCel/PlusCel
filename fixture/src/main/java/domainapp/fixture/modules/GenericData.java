@@ -32,6 +32,8 @@ public class GenericData {
 	private static String Letras="A,B,C,D,E,F,G,H";
 	private static String MarcaAbreviatura="APPLE,Nokia,Motorola,Sony,SonyEriccson,Kyocera,Alcatel,HTC,Samsung,BlackBerry,Pantech,ZTE,Huawei";
 	private static String MarcaDescripcion="1,2,3,4,5,6,7,8,9,10,11,12,13";
+	private static String Local="Plus Mas Plottier,MDQ ,8300 Comunicaciones,CellSoft";
+	
 //	
 	public static int ObtenerCantidad()
 	{
@@ -73,6 +75,11 @@ public class GenericData {
 	public static String ObtenerDescripcion()
 	{
 		return ObtenerValor(MarcaDescripcion);
+	}
+	
+	public static String ObtenerLocal()
+	{
+		return ObtenerValor(Local);
 	}
 	
 	public static String ObtenerLetras(int index)

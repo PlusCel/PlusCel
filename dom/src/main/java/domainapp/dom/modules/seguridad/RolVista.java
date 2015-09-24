@@ -83,7 +83,7 @@ public class RolVista extends AbstractViewModel{
 	@Override
 	public void viewModelInit(String mementoString) {
 		this.memento = mementoString;
-		setListaRoles(rolerepo.listAll());
+		setListaRoles(rolerepo.listarTodos());
 		
 	}
 
