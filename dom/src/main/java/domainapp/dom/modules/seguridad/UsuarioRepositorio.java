@@ -37,7 +37,7 @@ public class UsuarioRepositorio {
 	// //////////////////////////////////////
 
 	@MemberOrder(sequence = "1", name = "Menu Usuarios")
-	public Usuario altaUsuario(final String userName,
+	public Usuario altaUsuario(final @ParameterLayout(named="Nombre de Usuario") String userName,
 			final @ParameterLayout(named="Password")   String password,
 			final @ParameterLayout(named="Rol")   Rol role) {
 		final Usuario obj = container.newTransientInstance(Usuario.class);

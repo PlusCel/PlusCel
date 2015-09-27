@@ -3,13 +3,24 @@ package domainapp.dom.modules.seguridad;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Named;
+import javax.jdo.annotations.Element;
+import javax.jdo.annotations.Join;
+
 import org.apache.isis.applib.AbstractViewModel;
+import org.apache.isis.applib.annotation.DescribedAs;
+import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberGroupLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.services.memento.MementoService;
 import org.apache.isis.applib.services.memento.MementoService.Memento;
 import org.joda.time.LocalDate;
+
+import domainapp.dom.modules.reportes.UsuariosReportes;
+import domainapp.dom.modules.servicios.E_formato;
+import domainapp.dom.modules.servicios.GenerarReporte;
+import net.sf.jasperreports.engine.JRException;
 
 @MemberGroupLayout(columnSpans = { 5, 0, 0, 7 })
 public class UsuarioVista extends AbstractViewModel{
@@ -102,6 +113,53 @@ public class UsuarioVista extends AbstractViewModel{
 		//setListaPremission(ListaShiroUser);
 		setListaPremission(shirorepo.listAll());
 	}
+	
+	
+	@Join
+	@Element(dependent = "true")
+	private List<UsuarioVista> usuarioVista = new ArrayList<UsuarioVista>();
+
+
+	@MemberOrder(sequence = "1")
+	@Named("Listado de ususario")
+	public List<UsuarioVista> getUsuarioVista() {
+		return usuarioVista;
+	}
+
+	public void setUsuarioVista(
+			final List<UsuarioVista> usuarioVista) {
+		this.usuarioVista = usuarioVista;
+	}
+
+	// }} (end region)
+	// //////////////////////////////////////
+	
+	@Named("Imprimir Reporte")
+	//@DescribedAs(value = "El archivo se almacenará en el directorio 'reportes' del proyecto")
+	public String elegirFormato(final @Named("Formato") E_formato formato) throws JRException{
+		return imprimirReporte(formato);		
+	}
+	
+	public E_formato default0ElegirFormato(final @Named("Formato") E_formato formato){
+		return E_formato.PDF;		
+	}
+	
+	public String imprimirReporte(E_formato format) throws JRException{
+		List<Object> objectsReport = new ArrayList<Object>();
+		
+		for(UsuarioVista u: getUsuarioVista()){
+			UsuariosReportes usuarios = new UsuariosReportes();
+			
+			usuarios.setUserName("Hola Mundo");
+			
+			objectsReport.add(usuarios);
+		}
+		
+		String nombreArchivo = "reportes/asistencia/"; 
+		GenerarReporte.generarReporte("asistenciaCurso.jrxml", objectsReport, format, nombreArchivo);
+		return "Reporte Generado.";
+	}
+	
 
 
 	@javax.inject.Inject 
