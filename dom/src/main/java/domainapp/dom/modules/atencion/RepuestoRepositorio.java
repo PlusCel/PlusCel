@@ -14,6 +14,8 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.joda.time.LocalDate;
 
+import domainapp.dom.modules.servicios.E_tipoRepuesto;
+
 @DomainService(repositoryFor = Repuesto.class)
 @DomainServiceLayout(menuOrder = "4" , named="Repuestos")
 public class RepuestoRepositorio {
@@ -35,8 +37,8 @@ public class RepuestoRepositorio {
     //region > create (action)
     @MemberOrder(sequence = "1")
     public Repuesto altaRepuestos(
+    		final @ParameterLayout(named="Tipo Repuesto") E_tipoRepuesto tiporepuesto,
             final @ParameterLayout(named="Modelo") String modelo,
-            //final @ParameterLayout(named="Tipo de Repuesto") E_tipoRepuesto tipoRepuesto,
             final @ParameterLayout(named="Descripcion" , multiLine=10)  String descripcion,
             final @ParameterLayout(named="Fecha probable arribo") LocalDate fechaArribo,
             final @ParameterLayout(named="Precio Costo") Double costo,
@@ -44,8 +46,8 @@ public class RepuestoRepositorio {
             
     		) {
         final Repuesto obj = container.newTransientInstance(Repuesto.class);
+        obj.setTipoRepuesto(tiporepuesto);
         obj.setModelo(modelo);
-        //obj.gettipoRepuesto();
         obj.setDescripcion(descripcion);
         obj.setFechaArribo(fechaArribo);
         obj.setCosto(costo);

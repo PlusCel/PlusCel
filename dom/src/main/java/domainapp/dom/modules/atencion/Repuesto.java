@@ -11,6 +11,8 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.util.ObjectContracts;
 import org.joda.time.LocalDate;
 
+import domainapp.dom.modules.servicios.E_tipoRepuesto;
+
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(
@@ -60,9 +62,24 @@ public class Repuesto implements Comparable<Repuesto> {
 		return ObjectContracts.compare(this, repuesto, "Repuesto");
 	}
 	
-	//Modelo de telefono ejemplo: "Motorola V80"
+	//E_tipoRepuesto de telefono ejemplo: "FLEX"
+
+	private E_tipoRepuesto tipoRepuesto;
+
 	@Persistent
 	@MemberOrder(sequence = "1")
+	@javax.jdo.annotations.Column(allowsNull="false")
+	public E_tipoRepuesto getTipoRepuesto() {
+		return tipoRepuesto;
+	}
+
+	public void setTipoRepuesto(final E_tipoRepuesto tipoRepuesto) {
+		this.tipoRepuesto = tipoRepuesto;
+	}
+	
+	//Modelo de telefono ejemplo: "Motorola V80"
+	@Persistent
+	@MemberOrder(sequence = "2")
 	@javax.jdo.annotations.Column(allowsNull="false")
 	public String getModelo() {
 		return modelo;
@@ -71,22 +88,6 @@ public class Repuesto implements Comparable<Repuesto> {
 	public void setModelo(final String modelo) {
 		this.modelo = modelo;
 	}
-	
-	//E_tipoRepuesto de telefono ejemplo: "FLEX"
-
-	/*private E_tipoRepuesto tipoRepuesto;
-	private String descripcion;
-
-	@Persistent
-	@MemberOrder(sequence = "2")
-	@javax.jdo.annotations.Column(allowsNull="false")
-	public E_tipoRepuesto gettipoRepuesto() {
-		return tipoRepuesto;
-	}
-
-	public void settipoRepuesto(final E_tipoRepuesto tipoRepuesto) {
-		this.tipoRepuesto = tipoRepuesto;
-	}*/
 	
 	//Descripcion de telefono ejemplo: "FLEX CON LCD EXTERNO"
 	@Persistent
