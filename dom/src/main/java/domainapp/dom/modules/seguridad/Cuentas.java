@@ -5,6 +5,8 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.services.memento.MementoService;
 import org.apache.isis.applib.services.memento.MementoService.Memento;
 
+import domainapp.dom.modules.atencion.RepuestoVista;
+
 public class Cuentas {
 
     @MemberOrder(sequence = "1")
@@ -34,6 +36,16 @@ public class Cuentas {
 		return container.newViewModelInstance(
 				UsuarioVista.class, memento.asString());
 	}
+    
+    @MemberOrder(sequence = "4")
+	public RepuestoVista Repuestos()
+	{
+		Memento memento = mementoService.create();
+		memento.set("Title","Titulo");
+		return container.newViewModelInstance(
+				RepuestoVista.class, memento.asString());
+	}
+    
 	
     @javax.inject.Inject
 	DomainObjectContainer container;
