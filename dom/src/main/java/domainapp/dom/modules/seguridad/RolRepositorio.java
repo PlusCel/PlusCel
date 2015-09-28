@@ -49,27 +49,6 @@ public class RolRepositorio {
     }
 
     //endregion
-
-    @MemberOrder(sequence = "1")
-    public Modelo altaModelo(
-            final @ParameterLayout(named="Abreviatura") String abreviatura,
-            final @ParameterLayout(named="Descripcion", multiLine=10) String descripcion,
-            final @ParameterLayout(named="Marca") Marca marca
-    		) {
-        final Modelo obj = container.newTransientInstance(Modelo.class);
-        obj.setAbreviatura(abreviatura);
-        obj.setMarca(marca);
-        obj.setDescripcion(descripcion);
-   
-        container.persistIfNotAlready(obj);
-        return obj;
-    }
-    
-    
-    
-    
-    
-    
     
     //region > Eliminar Role (action)
     // //////////////////////////////////////

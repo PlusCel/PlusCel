@@ -3,11 +3,14 @@ package domainapp.dom.modules.seguridad;
 import java.util.List;
 
 import org.apache.isis.applib.AbstractViewModel;
+import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberGroupLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Programmatic;
 
 @MemberGroupLayout(columnSpans = { 5, 0, 0, 7 })
+@DomainServiceLayout(menuOrder = "1" , named="Configuracion")
+
 public class RolVista extends AbstractViewModel{
 
 	

@@ -9,6 +9,7 @@ import javax.jdo.annotations.Join;
 
 import org.apache.isis.applib.AbstractViewModel;
 import org.apache.isis.applib.annotation.DescribedAs;
+import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberGroupLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -23,6 +24,8 @@ import domainapp.dom.modules.servicios.GenerarReporte;
 import net.sf.jasperreports.engine.JRException;
 
 @MemberGroupLayout(columnSpans = { 5, 0, 0, 7 })
+@DomainServiceLayout(menuOrder = "1" , named="Configuracion")
+
 public class UsuarioVista extends AbstractViewModel{
 
 	
