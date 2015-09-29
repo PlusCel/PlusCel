@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -13,7 +14,10 @@ import domainapp.dom.modules.atencion.Marca;
 import domainapp.dom.modules.atencion.Modelo;
 
 @DomainService(repositoryFor = Rol.class)
-@DomainServiceLayout(menuOrder = "1" , named="Configuracion")
+@DomainServiceLayout(
+		menuOrder = "21" , 
+		menuBar = DomainServiceLayout.MenuBar.SECONDARY,
+		named="Configuracion")
 
 public class RolRepositorio {
 	
@@ -24,16 +28,14 @@ public class RolRepositorio {
         return "Roles";
     }
 
-    public String iconName() {
-        return "Roles";
-    }
+    @ActionLayout(cssClassFa="fa fa-users")
 
     //endregion
 
     //region > create (action)
     // //////////////////////////////////////
 
-    @MemberOrder(sequence = "1", name = "Menu Roles")
+    @MemberOrder(sequence = "1", name = "Configuracion")
     public Rol altaRol(
             final @ParameterLayout(named="Nombre Rol")  String roleName,
             final @ParameterLayout(named="Permiso") Permiso permission
@@ -53,7 +55,7 @@ public class RolRepositorio {
     //region > Eliminar Role (action)
     // //////////////////////////////////////
     
-    @MemberOrder(sequence = "2", name = "Menu Roles")
+    @MemberOrder(sequence = "2", name = "Configuracion")
     public String eliminarRol(Rol role) {
     	String roleName = role.getRoleName();
     	container.remove(role);
@@ -64,7 +66,7 @@ public class RolRepositorio {
     
     //region > listAll (action)
     // //////////////////////////////////////
-    @MemberOrder(sequence = "3", name = "Menu Roles")
+    @MemberOrder(sequence = "3", name = "Configuracion")
     public List<Rol> listarTodos() {
         return container.allInstances(Rol.class);
     }

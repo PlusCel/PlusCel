@@ -3,6 +3,7 @@ package domainapp.dom.modules.atencion;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -14,9 +15,11 @@ import org.joda.time.LocalDate;
 
 public class PresupuestoRepositorio {
 	
-	public String iconName() {
+	@ActionLayout(cssClassFa="fa fa-mobile")
+	
+	/*public String iconName() {
 		return "Presupuesto";
-	}
+	}*/
 	
 	 //region > create (action)
     @MemberOrder(sequence = "1")

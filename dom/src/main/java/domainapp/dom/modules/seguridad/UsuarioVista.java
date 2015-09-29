@@ -8,15 +8,10 @@ import javax.jdo.annotations.Element;
 import javax.jdo.annotations.Join;
 
 import org.apache.isis.applib.AbstractViewModel;
-import org.apache.isis.applib.annotation.DescribedAs;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
-import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.MemberGroupLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Programmatic;
-import org.apache.isis.applib.services.memento.MementoService;
-import org.apache.isis.applib.services.memento.MementoService.Memento;
-import org.joda.time.LocalDate;
 
 import domainapp.dom.modules.reportes.UsuariosReportes;
 import domainapp.dom.modules.servicios.E_formato;
@@ -24,7 +19,10 @@ import domainapp.dom.modules.servicios.GenerarReporte;
 import net.sf.jasperreports.engine.JRException;
 
 @MemberGroupLayout(columnSpans = { 5, 0, 0, 7 })
-@DomainServiceLayout(menuOrder = "1" , named="Configuracion")
+@DomainServiceLayout(
+		menuOrder = "21" , 
+		menuBar = DomainServiceLayout.MenuBar.SECONDARY,
+		named="Configuracion")
 
 public class UsuarioVista extends AbstractViewModel{
 
@@ -42,7 +40,7 @@ public class UsuarioVista extends AbstractViewModel{
 	}
 	// }}
 
-	@MemberOrder(sequence = "1", name = "Menu")
+	@MemberOrder(sequence = "1", name = "Configuracion")
 
 	public Usuario crearunnuevousuario(final String userName,
 			final  String password,
@@ -52,7 +50,7 @@ public class UsuarioVista extends AbstractViewModel{
 	}
 
 
-	@MemberOrder(sequence = "2", name = "Menu")
+	@MemberOrder(sequence = "2", name = "Configuracion")
 
 	public UsuarioVista eliminarunusuario(Usuario ShiroUser) {
 						
@@ -60,13 +58,13 @@ public class UsuarioVista extends AbstractViewModel{
 		return NuevoViewModel();
 	}
 	
-	@MemberOrder(sequence = "3", name = "Menu")
+	@MemberOrder(sequence = "3", name = "Configuracion")
 	public RolVista roles()
 	{
 		return cuentasrepo.Roles();
 	}
 	
-	@MemberOrder(sequence = "4", name = "Menu")
+	@MemberOrder(sequence = "4", name = "Configuracion")
 	public PermisoVista permisos()
 	{
 		return cuentasrepo.Permisos();

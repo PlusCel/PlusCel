@@ -7,6 +7,7 @@ import java.util.TreeSet;
 import javax.annotation.PostConstruct;
 
 import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -15,7 +16,10 @@ import org.apache.isis.applib.annotation.Programmatic;
 
 
 @DomainService(repositoryFor = Usuario.class)
-@DomainServiceLayout(menuOrder = "1" , named="Configuracion")
+@DomainServiceLayout(
+		menuOrder = "21" , 
+		menuBar = DomainServiceLayout.MenuBar.SECONDARY,
+		named="Configuracion")
 
 public class UsuarioRepositorio {
 
@@ -29,6 +33,8 @@ public class UsuarioRepositorio {
 	public String iconName() {
 		return "Usuarios";
 	}
+	
+	@ActionLayout(cssClassFa="fa fa-user")
 
 	// endregion
 
@@ -36,7 +42,7 @@ public class UsuarioRepositorio {
 	// region > create (action)
 	// //////////////////////////////////////
 
-	@MemberOrder(sequence = "1", name = "Menu Usuarios")
+	@MemberOrder(sequence = "1", name = "Configuracion")
 	public Usuario altaUsuario(final @ParameterLayout(named="Nombre de Usuario") String userName,
 			final @ParameterLayout(named="Password")   String password,
 			final @ParameterLayout(named="Rol")   Rol role) {
@@ -55,7 +61,7 @@ public class UsuarioRepositorio {
 
 	// region > remove User (action)
 	// //////////////////////////////////////
-	@MemberOrder(sequence = "2", name = "Menu Usuarios")
+	@MemberOrder(sequence = "2", name = "Configuracion")
 
 	public String eliminarUsuario(Usuario shiroUser) {
 		String userName = shiroUser.getUserName();
@@ -95,7 +101,7 @@ public class UsuarioRepositorio {
 	// //////////////////////////////////////
 
 
-	@MemberOrder(sequence = "1", name = "Menu Usuarios")
+	@MemberOrder(sequence = "1", name = "Configuracion")
 	public List<Usuario> listAll() {
 		return container.allInstances(Usuario.class);
 	}

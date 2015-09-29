@@ -9,7 +9,10 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Programmatic;
 
 @MemberGroupLayout(columnSpans = { 5, 0, 0, 7 })
-@DomainServiceLayout(menuOrder = "1" , named="Configuracion")
+@DomainServiceLayout(
+		menuOrder = "21" , 
+		menuBar = DomainServiceLayout.MenuBar.SECONDARY,
+		named="Configuracion")
 
 public class RolVista extends AbstractViewModel{
 
@@ -27,7 +30,7 @@ public class RolVista extends AbstractViewModel{
 	}
 	// }}
 
-	@MemberOrder(sequence = "1", name = "Menu Roles")
+	@MemberOrder(sequence = "1", name = "Configuracion")
 
 	public Rol crearunnuevorol(final String roleName,
             final Permiso permission) {
@@ -35,7 +38,7 @@ public class RolVista extends AbstractViewModel{
 		return rolerepo.altaRol(roleName, permission);
 	}
 
-	@MemberOrder(sequence = "2", name = "Menu Roles")
+	@MemberOrder(sequence = "2", name = "Configuracion")
 
 	public RolVista eliminarunrol(Rol Role) {
 						
@@ -49,13 +52,13 @@ public class RolVista extends AbstractViewModel{
 		return cuentasrepo.Roles();
 	}
 	
-	@MemberOrder(sequence = "3", name = "Menu Roles")
+	@MemberOrder(sequence = "3", name = "Configuracion")
 
 	public UsuarioVista Usuario() {
 		return cuentasrepo.Usuarios();
 	}
 	
-	@MemberOrder(sequence = "4", name = "Menu Roles")
+	@MemberOrder(sequence = "4", name = "Configuracion")
 
 	public PermisoVista permisos()
 	{

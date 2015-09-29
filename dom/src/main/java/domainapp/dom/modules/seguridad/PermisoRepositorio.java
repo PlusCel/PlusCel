@@ -3,6 +3,7 @@ package domainapp.dom.modules.seguridad;
 import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -10,7 +11,10 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 
 
 @DomainService(repositoryFor = Permiso.class)
-@DomainServiceLayout(menuOrder = "1" , named="Configuracion")
+@DomainServiceLayout(
+					menuOrder = "21" , 
+					menuBar = DomainServiceLayout.MenuBar.SECONDARY,
+					named="Configuracion")
 
 public class PermisoRepositorio {
 	
@@ -21,16 +25,14 @@ public class PermisoRepositorio {
         return "Permisos";
     }
 
-    public String iconName() {
-        return "Permisos";
-    }
+    @ActionLayout(cssClassFa="fa fa-key")
 
     //endregion
 
     //region > Alta PErmiso (action)
     // //////////////////////////////////////
     
-    @MemberOrder(sequence = "1", name = "Menu Permisos")
+    @MemberOrder(sequence = "1", name = "Configuracion")
    
     public Permiso altaPermisos(
     		final @ParameterLayout(named="Nombre") String permisoNombre,
@@ -49,7 +51,7 @@ public class PermisoRepositorio {
     //region > Eliminar Permiso (action)
     // //////////////////////////////////////
     
-    @MemberOrder(sequence = "2", name = "Menu Permisos")
+    @MemberOrder(sequence = "2", name = "Configuracion")
 
     public String eliminarPermisos(Permiso permission) {
     		String permisoDescripcion = permission.getPermisoDescripcion();
@@ -61,7 +63,7 @@ public class PermisoRepositorio {
     
     //region > listAll (action)
     // //////////////////////////////////////
-    @MemberOrder(sequence = "3", name = "Menu Permisos")
+    @MemberOrder(sequence = "3", name = "Configuracion")
     
     public List<Permiso> listarPermisos() {
         return container.allInstances(Permiso.class);

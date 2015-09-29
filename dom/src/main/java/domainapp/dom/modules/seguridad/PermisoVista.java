@@ -10,7 +10,11 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Programmatic;
 
 @MemberGroupLayout(columnSpans = { 5, 0, 0, 7 })
-@DomainServiceLayout(menuOrder = "1" , named="Configuracion")
+@DomainServiceLayout(
+		menuOrder = "21" , 
+		menuBar = DomainServiceLayout.MenuBar.SECONDARY,
+		named="Configuracion")
+
 public class PermisoVista extends AbstractViewModel{
 
 	// {{ Listado de permisos (property)
