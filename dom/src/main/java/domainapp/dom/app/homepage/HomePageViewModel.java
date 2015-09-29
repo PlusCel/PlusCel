@@ -18,18 +18,14 @@
  */
 package domainapp.dom.app.homepage;
 
-import domainapp.dom.modules.atencion.Cliente;
-import domainapp.dom.modules.atencion.ClienteRepositorio;
-import domainapp.dom.modules.servicios.E_estado;
-import domainapp.dom.modules.servicios.E_estadoPresupuesto;
-import domainapp.dom.modules.servicios.EnvioCorreo;
 import domainapp.dom.modules.atencion.OrdenServicio;
 import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
+import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 
 import java.util.List;
 
-import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.RenderType;
 import org.apache.isis.applib.annotation.ViewModel;
 
 
@@ -49,16 +45,25 @@ public class HomePageViewModel {
     }
     //endregion
     @MemberOrder(sequence = "1")
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
 	public List<OrdenServicio> getEquiposSinReparar() {
 		return OrdenServicioRepositorio.sinArreglo();
 	}
     
     @MemberOrder(sequence = "2")
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
     public List<OrdenServicio> getEquiposReparados() {
 		return OrdenServicioRepositorio.reparados();
 	}
     	
     @MemberOrder(sequence = "3")
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
 	public List<OrdenServicio> getEquiposSinRevisar() {
 		return OrdenServicioRepositorio.sinRevisar();
 	}
