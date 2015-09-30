@@ -8,11 +8,13 @@ import javax.annotation.PostConstruct;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.ActionLayout;
+import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Programmatic;
+import org.apache.isis.applib.annotation.RenderType;
 
 
 @DomainService(repositoryFor = Usuario.class)
@@ -102,6 +104,9 @@ public class UsuarioRepositorio {
 
 
 	@MemberOrder(sequence = "1", name = "Configuracion")
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
 	public List<Usuario> listAll() {
 		return container.allInstances(Usuario.class);
 	}

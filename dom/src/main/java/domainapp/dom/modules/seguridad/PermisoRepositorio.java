@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.ActionLayout;
+import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.RenderType;
 
 
 @DomainService(repositoryFor = Permiso.class)
@@ -63,6 +65,9 @@ public class PermisoRepositorio {
     
     //region > listAll (action)
     // //////////////////////////////////////
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
     @MemberOrder(sequence = "3", name = "Configuracion")
     
     public List<Permiso> listarPermisos() {

@@ -5,13 +5,12 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.ActionLayout;
+import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
-
-import domainapp.dom.modules.atencion.Marca;
-import domainapp.dom.modules.atencion.Modelo;
+import org.apache.isis.applib.annotation.RenderType;
 
 @DomainService(repositoryFor = Rol.class)
 @DomainServiceLayout(
@@ -41,11 +40,13 @@ public class RolRepositorio {
             final @ParameterLayout(named="Permiso") Permiso permission
             ) {
         final Rol obj = container.newTransientInstance(Rol.class);
+        
         final SortedSet<Permiso> permissionsList = new TreeSet<Permiso>();
         permissionsList.add(permission);
+        
         obj.setRoleName(roleName);
         obj.setPermissionsList(permissionsList);
-        //obj.setPermissions(permission);
+        
         container.persistIfNotAlready(obj);
         return obj;
     }
@@ -66,6 +67,9 @@ public class RolRepositorio {
     
     //region > listAll (action)
     // //////////////////////////////////////
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
     @MemberOrder(sequence = "3", name = "Configuracion")
     public List<Rol> listarTodos() {
         return container.allInstances(Rol.class);

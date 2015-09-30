@@ -15,11 +15,7 @@ import org.joda.time.LocalDate;
 
 public class PresupuestoRepositorio {
 	
-	@ActionLayout(cssClassFa="fa fa-mobile")
-	
-	/*public String iconName() {
-		return "Presupuesto";
-	}*/
+	@ActionLayout(cssClassFa="icon-pencil")
 	
 	 //region > create (action)
     @MemberOrder(sequence = "1")

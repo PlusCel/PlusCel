@@ -18,6 +18,7 @@ import org.apache.isis.applib.annotation.Programmatic;
 public class PermisoVista extends AbstractViewModel{
 
 	// {{ Listado de permisos (property)
+	
 	private List<Permiso> ListarPermisos;
 
 	@MemberOrder(sequence = "2")

@@ -8,7 +8,10 @@ import javax.jdo.annotations.Element;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Join;
 import javax.jdo.annotations.VersionStrategy;
+
+import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.RenderType;
 
 
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
@@ -38,6 +41,9 @@ public class Rol implements Comparable<Rol> {
 	private SortedSet<Permiso> permissionsList = new TreeSet<Permiso>();
 
 	@MemberOrder(sequence = "3")
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
 	public SortedSet<Permiso> getPermissionsList() {
 		return permissionsList;
 	}
