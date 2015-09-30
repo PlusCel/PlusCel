@@ -343,6 +343,12 @@
                 <artifactId>pluscel-webapp</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            
+    <dependency>
+        <groupId>org.isisaddons.module.excel</groupId>
+        <artifactId>isis-module-excel-dom</artifactId>
+        <version>1.9.0</version>
+    </dependency>
 
 
         </dependencies>

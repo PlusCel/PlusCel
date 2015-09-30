@@ -78,7 +78,7 @@
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                    <warName>simpleapp</warName>
+                    <warName>pluscel</warName>
                     <archive>
                         <manifest>
                             <addClasspath>false</addClasspath>
