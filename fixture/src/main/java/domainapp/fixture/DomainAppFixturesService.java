@@ -39,7 +39,7 @@ import org.apache.isis.applib.fixturescripts.SimpleFixtureScript;
 @DomainServiceLayout(
         named="Datos Ejemplos",
         menuBar = DomainServiceLayout.MenuBar.SECONDARY,
-        menuOrder = "20"
+        menuOrder = "22"
 )
 public class DomainAppFixturesService extends FixtureScripts {
 

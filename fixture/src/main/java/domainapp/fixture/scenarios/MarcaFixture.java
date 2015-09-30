@@ -43,7 +43,7 @@ public class MarcaFixture extends FixtureScript {
         // prereqs
     	BorrarDBMarca(executionContext);
         
-        int Cantidad=GenericData.ObtenerCantidad()*14;
+        int Cantidad=GenericData.ObtenerCantidad();
         
         List<Marca> listAl=new ArrayList<Marca>();
         
