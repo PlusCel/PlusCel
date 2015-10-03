@@ -36,7 +36,7 @@ public class AccesorioEquipoRepositorio {
 
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public AccesorioEquipo AltaEquipo(
+    public AccesorioEquipo AltaAccesorioEquipo(
             final @ParameterLayout(named="Equipo") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionAlfanumerico.PERMITIDOS, maxLength = 10) Equipo equipo,    		           
             final @ParameterLayout(named="Memoria") E_accesorioParte memoria, 
             final @ParameterLayout(named="Chip") E_accesorioParte chip,  
