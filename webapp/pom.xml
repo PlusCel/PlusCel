@@ -145,6 +145,11 @@
         
         <!-- other isis components -->
         <dependency>
+        	<groupId>org.isisaddons.wicket.excel</groupId>
+	        <artifactId>isis-wicket-excel-cpt</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.isis.viewer</groupId>
             <artifactId>isis-viewer-wicket-impl</artifactId>
         </dependency>
