@@ -1,7 +1,8 @@
 # PlusCel
-Proyecto IFES 2015 para la administración y gestión de equipos de celulares
+Proyecto PlusCel IFES 2015 para la administración y gestión de reparacion de equipos moviles
 
-Para ejecutar la aplicacion:
-1- Descargar
-2- ejecutar "MVN clean install"
-3- "mvn antrun:run -P self-host"
+Para ejecutar la aplicación:
+
+1- Descargar y descomprimir o ejecutar en la consola (git clone https://github.com/PlusCel/PlusCel.git)
+2- Ejecutar el comando en la consola "MVN clean install"
+3- Ejecutar el comando en la consola "mvn antrun:run -P self-host"
