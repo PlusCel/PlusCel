@@ -29,8 +29,7 @@ import domainapp.dom.modules.servicios.E_sexo;
 import domainapp.dom.modules.servicios.Localidad.E_localidades;
 import domainapp.fixture.modules.GenericData;
 
-
-import domainapp.fixture.modules.MarcaTearDown;
+import domainapp.fixture.modules.TecnicoTearDown;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.joda.time.LocalDate;
@@ -47,7 +46,7 @@ public class TecnicoFixture extends FixtureScript {
         // prereqs
     	BorrarDBTecnico(executionContext);
         
-        int Cantidad=GenericData.ObtenerCantidad()*14;
+        int Cantidad=GenericData.ObtenerCantidad();
         
         List<Tecnico> listAl=new ArrayList<Tecnico>();
         
@@ -57,7 +56,7 @@ public class TecnicoFixture extends FixtureScript {
         	Tecnico al=new Tecnico();
         	al.setNombre(GenericData.ObtenerNombre());
         	al.setApellido(GenericData.ObtenerApellido());
-        	
+        	al.setLocal(GenericData.ObtenerLocal());
         	listAl.add(al);
         	
         }
@@ -96,11 +95,10 @@ public class TecnicoFixture extends FixtureScript {
     @SuppressWarnings("deprecation")
 	public void BorrarDBTecnico(ExecutionContext executionContext)
     {
-        execute(new MarcaTearDown(), executionContext);
+        execute(new TecnicoTearDown(), executionContext);
     	
        return;
     }
-    
     
     @javax.inject.Inject
     private TecnicoRepositorio Tecnico;
