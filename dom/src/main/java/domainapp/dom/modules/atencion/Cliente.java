@@ -45,7 +45,12 @@ import domainapp.dom.modules.servicios.Persona;
                 name = "findByApellido", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.dom.modules.atencion.Cliente "
-                        + "WHERE apellido.startsWith(:apellido)")
+                        + "WHERE apellido.startsWith(:apellido)"),
+        @javax.jdo.annotations.Query(
+                name = "ultimosClientes", language = "JDOQL",
+                value = "SELECT "
+                        + "FROM domainapp.dom.modules.atencion.Cliente ")
+                       
 })
 
 @javax.jdo.annotations.Unique(name="Cliente_dni_email_UNQ", members = {"dni", "email"})

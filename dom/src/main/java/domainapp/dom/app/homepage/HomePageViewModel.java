@@ -20,6 +20,10 @@ package domainapp.dom.app.homepage;
 
 import domainapp.dom.modules.atencion.OrdenServicio;
 import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
+
+import domainapp.dom.modules.atencion.Cliente;
+import domainapp.dom.modules.atencion.ClienteRepositorio;
+
 import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 
@@ -66,6 +70,14 @@ public class HomePageViewModel {
     )
 	public List<OrdenServicio> getEquiposSinRevisar() {
 		return OrdenServicioRepositorio.sinRevisar();
+	}
+    
+    @MemberOrder(sequence = "4")
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
+	public List<Cliente> getUltimosClientes() {
+		return ClienteRepositorio.ultimosClientes();
 	}
 
     

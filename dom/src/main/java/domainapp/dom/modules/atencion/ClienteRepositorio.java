@@ -30,6 +30,7 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Optionality;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 import org.joda.time.LocalDate;
@@ -122,8 +123,21 @@ public class ClienteRepositorio {
 
     //region > injected services
 
-    @javax.inject.Inject 
-    DomainObjectContainer container;
+	@Programmatic
+	public static List<Cliente> ultimosClientes() {
+		final List<Cliente> lista = container
+				.allMatches(new QueryDefault<Cliente>(Cliente.class,
+						"ultimosClientes"));
+		if (lista.isEmpty())
+			container.informUser("No hay clientes cargados");
+		return lista;
+	}
+	/**
+	 * Inyección del Contenedor.
+	 */
+	@javax.inject.Inject
+	private static DomainObjectContainer container;
+	
 
     //endregion
 }
