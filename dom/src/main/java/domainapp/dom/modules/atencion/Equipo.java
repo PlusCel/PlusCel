@@ -88,17 +88,6 @@ public class Equipo {
         this.modelo = modelo;
     }
            
-    
-    private E_estado estado;  
-    @Persistent
-	@MemberOrder(sequence = "3")
-    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
-    public E_estado getEstado() {
-        return estado;
-    }
-    public void setEstado(final E_estado estado) {
-        this.estado = estado;
-    }
 
  
     //{{ Imei (property)
@@ -114,16 +103,7 @@ public class Equipo {
     }      
     
     
-    public Equipo EnviarAlerta() {	
-    	if (Equipo.this.estado == E_estado.TERMINADO) {
-    		EnvioCorreo.send("nachocartes@gmail.com",
-    				"ESTADO EQUIPO" ,
-    				Equipo.this.getImei()  + ", " + getMarca().getDescripcion()+ ", " + getModelo().getDescripcion());
-    		
-    	}
-    					
-		return this;
-	}
+
     
     
    //}}
