@@ -84,7 +84,7 @@ public class ClienteRepositorio {
             final  @ParameterLayout(named="Apellido") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionLetras.PERMITIDOS, maxLength = 40) String apellido,
             final @ParameterLayout(named="Nombre") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionLetras.PERMITIDOS, maxLength = 40)  String nombre,
             final @ParameterLayout(named="Dni")@Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionNumerica.PERMITIDOS, maxLength = 12)  int dni,
-            final @ParameterLayout(named="Sexo") E_sexo sexo,
+            final @ParameterLayout(named="Sexo") @Parameter(optionality=Optionality.OPTIONAL) E_sexo sexo,
             final @ParameterLayout(named="Fecha Nacimiento") @Parameter(optionality=Optionality.OPTIONAL) LocalDate nacimiento,
             final @ParameterLayout(named="Nacionalidad") @Parameter(optionality=Optionality.OPTIONAL) E_nacionalidad nacionalidad,
             final @ParameterLayout(named="Localidad") @Parameter(optionality=Optionality.OPTIONAL) E_localidades localidad,
@@ -93,7 +93,7 @@ public class ClienteRepositorio {
             final @ParameterLayout(named="Piso") @Parameter(optionality=Optionality.OPTIONAL) String piso,
             final @ParameterLayout(named="Departamento") @Parameter(optionality=Optionality.OPTIONAL) String departamento,
             final @ParameterLayout(named="Email") @Parameter(optionality=Optionality.OPTIONAL, regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionEmail.PERMITIDOS, maxLength = 50) String email,
-            final @ParameterLayout(named="Teléfono") @Parameter(optionality=Optionality.OPTIONAL, regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionTel.PERMITIDOS, maxLength = 30) String telefono
+            final @ParameterLayout(named="Teléfono") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionTel.PERMITIDOS, maxLength = 30) String telefono
             
     		) {
         final Cliente obj = container.newTransientInstance(Cliente.class);
