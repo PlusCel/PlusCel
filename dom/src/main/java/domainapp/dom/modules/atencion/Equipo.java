@@ -10,9 +10,6 @@ import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 
-import domainapp.dom.modules.servicios.E_estado;
-import domainapp.dom.modules.servicios.EnvioCorreo;
-
 /**
  * @author PlusCel
  *
@@ -39,8 +36,6 @@ import domainapp.dom.modules.servicios.EnvioCorreo;
 
 
 @javax.jdo.annotations.Unique(name="Equipo_name_UNQ", members = {"imei","marca"})
-
-
 
 
 @DomainObject(
@@ -88,7 +83,6 @@ public class Equipo {
         this.modelo = modelo;
     }
            
-
  
     //{{ Imei (property)
     private String imei;
@@ -101,10 +95,7 @@ public class Equipo {
     public void setImei(final String imei) {
         this.imei = imei;
     }      
-    
-    
-
-    
+       
     
    //}}
 	@javax.inject.Inject

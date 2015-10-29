@@ -154,7 +154,7 @@ public class Persona {
 
 	@Persistent
 	@MemberOrder(sequence = "8")
-	@javax.jdo.annotations.Column(allowsNull="true")
+	@javax.jdo.annotations.Column(allowsNull="false")
 	public String getTelefono() {
 		return telefono;
 	}
