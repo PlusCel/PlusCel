@@ -34,7 +34,7 @@ import org.joda.time.LocalDate;
 @javax.jdo.annotations.Uniques({ @javax.jdo.annotations.Unique(name = "OrdenServicio_numero_must_be_unique", members = { "numero" }) })
 @javax.jdo.annotations.Queries({	
 		@javax.jdo.annotations.Query(name = "buscarPorNumero", language = "JDOQL", value = "SELECT "
-				+ "FROM dom.modules.atencion.OrdenServicio WHERE numero.indexOf(:numero) >= 0"),
+				+ "FROM dom.modules.atencion.OrdenServicio WHERE numero == :numero"),
 		
 		@javax.jdo.annotations.Query(name = "buscarPorEstado", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio " + "WHERE estado == :estado"),

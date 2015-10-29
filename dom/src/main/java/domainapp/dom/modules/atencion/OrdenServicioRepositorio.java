@@ -110,6 +110,19 @@ public class OrdenServicioRepositorio {
 	                            "estado", estado,
 	                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
 	        }
+//Busco para liquidar por numero orden de servicio	  
+	  @MemberOrder(sequence = "6")
+	    
+	    public List<OrdenServicio> buscarPorNumero(
+	            @ParameterLayout(named="Numero Orden de Servicio")
+	            final long numero
+	    ) {
+	        return container.allMatches(
+	                new QueryDefault<>(
+	                		OrdenServicio.class,
+	                        "buscarPorNumero",
+	                        "numero", numero));
+	    }
 	  
 		@Programmatic
 		public static List<OrdenServicio> sinArreglo() {
