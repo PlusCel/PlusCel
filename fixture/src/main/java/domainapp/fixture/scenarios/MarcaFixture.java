@@ -40,7 +40,7 @@ public class MarcaFixture extends FixtureScript {
     @Override
     protected void execute(ExecutionContext executionContext) {
 
-        // prereqs
+      
     	BorrarDBMarca(executionContext);
         
         int Cantidad=GenericData.ObtenerCantidad();
