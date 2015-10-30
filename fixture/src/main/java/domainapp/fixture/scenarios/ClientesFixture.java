@@ -27,10 +27,9 @@ import domainapp.dom.modules.atencion.ClienteRepositorio;
 import domainapp.dom.modules.servicios.E_nacionalidad;
 import domainapp.dom.modules.servicios.E_sexo;
 import domainapp.dom.modules.servicios.Localidad.E_localidades;
+import domainapp.fixture.modules.ClienteTearDown;
 import domainapp.fixture.modules.GenericData;
 
-
-import domainapp.fixture.modules.MarcaTearDown;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.joda.time.LocalDate;
@@ -44,7 +43,7 @@ public class ClientesFixture extends FixtureScript {
     @Override
     protected void execute(ExecutionContext executionContext) {
 
-        // prereqs
+
     	BorrarDBClientes(executionContext);
         
         int Cantidad=GenericData.ObtenerCantidad()*14;
@@ -96,7 +95,7 @@ public class ClientesFixture extends FixtureScript {
     @SuppressWarnings("deprecation")
 	public void BorrarDBClientes(ExecutionContext executionContext)
     {
-        execute(new MarcaTearDown(), executionContext);
+        execute(new ClienteTearDown(), executionContext);
     	
        return;
     }
@@ -104,7 +103,6 @@ public class ClientesFixture extends FixtureScript {
     
     @javax.inject.Inject
     private ClienteRepositorio Clientes;
-//    @javax.inject.Inject
-//    private IsisJdoSupport isisJdoSupport; 
+
 
 }
