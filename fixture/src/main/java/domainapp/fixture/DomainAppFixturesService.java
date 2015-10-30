@@ -18,19 +18,18 @@
  */
 package domainapp.fixture;
 
+import domainapp.fixture.modules.GenericTearDownFixture;
+import domainapp.fixture.scenarios.ClientesFixture;
 import domainapp.fixture.scenarios.MarcaFixture;
+import domainapp.fixture.scenarios.TecnicoFixture;
 
 import java.util.List;
-import org.apache.isis.applib.annotation.Action;
-import org.apache.isis.applib.annotation.ActionLayout;
+
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.RestrictTo;
 import org.apache.isis.applib.fixturescripts.FixtureResult;
-import org.apache.isis.applib.fixturescripts.FixtureScript;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
-import org.apache.isis.applib.fixturescripts.SimpleFixtureScript;
 
 /**
  * Enables fixtures to be installed from the application.
@@ -44,33 +43,49 @@ import org.apache.isis.applib.fixturescripts.SimpleFixtureScript;
 public class DomainAppFixturesService extends FixtureScripts {
 
     public DomainAppFixturesService() {
-        super("domainapp", MultipleExecutionStrategy.EXECUTE);
+        super("domainapp.fixture");
     }
+        
 
-    @Override
-    public FixtureScript default0RunFixtureScript() {
-        return findFixtureScriptFor(SimpleFixtureScript.class);
-    }
-
-    @Override
-    public List<FixtureScript> choices0RunFixtureScript() {
-        return super.choices0RunFixtureScript();
-    }
-
-
-    // //////////////////////////////////////
-
-    @Action(
-            restrictTo = RestrictTo.PROTOTYPING
-    )
-    @ActionLayout(
-            cssClassFa="fa fa-database"
-    )
     @MemberOrder(sequence="20")
-    public Object recreateObjectsAndReturnFirst() {
-        final List<FixtureResult> run = findFixtureScriptFor(MarcaFixture.class).run(null);
-        return run.get(0).getObject();
+    public Object instalarFixturesTecnico() {
+        final List<FixtureResult> Tecnico = findFixtureScriptFor(TecnicoFixture.class).run(null);
+        return Tecnico.get(0).getObject();
+    }
+    
+    @MemberOrder(sequence="30")
+    public Object instalarFixturesCliente() {
+        final List<FixtureResult> Cliente = findFixtureScriptFor(ClientesFixture.class).run(null);
+        return Cliente.get(0).getObject();
     }
 
+    @MemberOrder(sequence="40")
+    public Object instalarFixturesMarca() {
+        final List<FixtureResult> Marca = findFixtureScriptFor(MarcaFixture.class).run(null);
+        return Marca.get(0).getObject();
+    }
+    
+	@MemberOrder(sequence="50")
+    public String BorrarBD()
+    {
+		final List<FixtureResult> Borrar = findFixtureScriptFor(GenericTearDownFixture.class).run(null);
+		
+		return "Se ha completado la operacion. Toda la DB ah sido borrada.";
+    }
+	
+	
+	  @MemberOrder(sequence="99")
+	    public String IntstalarTodosLosFixtures()
+	    {
+	    	this.instalarFixturesTecnico();
+	    	
+	    	this.instalarFixturesCliente();
+
+	    	this.instalarFixturesMarca();    	
+	    	
+	    	
+	    	return "Todos los fixtures instalados";
+	    }
+ 
 
 }
