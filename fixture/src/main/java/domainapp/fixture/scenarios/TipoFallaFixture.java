@@ -31,7 +31,7 @@ public class TipoFallaFixture extends FixtureScript {
 	        
 	        List<TipoFalla> listAl=new ArrayList<TipoFalla>();
 	        
-	        // create
+	      
 	        for(int x=0; x<=Cantidad;x++)
 	        {
 	        	TipoFalla al=new TipoFalla();	        	
