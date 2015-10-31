@@ -22,6 +22,7 @@ import domainapp.fixture.modules.GenericTearDownFixture;
 import domainapp.fixture.scenarios.ClientesFixture;
 import domainapp.fixture.scenarios.MarcaFixture;
 import domainapp.fixture.scenarios.TecnicoFixture;
+import domainapp.fixture.scenarios.TipoFallaFixture;
 
 import java.util.List;
 
@@ -65,6 +66,14 @@ public class DomainAppFixturesService extends FixtureScripts {
         return Marca.get(0).getObject();
     }
     
+    
+    @MemberOrder(sequence="40")
+    public Object instalarFixturesTipoFalla() {
+        final List<FixtureResult> TipoFalla = findFixtureScriptFor(TipoFallaFixture.class).run(null);
+        return TipoFalla.get(0).getObject();
+    }
+    
+    
 	@MemberOrder(sequence="50")
     public String BorrarBD()
     {
@@ -81,7 +90,9 @@ public class DomainAppFixturesService extends FixtureScripts {
 	    	
 	    	this.instalarFixturesCliente();
 
-	    	this.instalarFixturesMarca();    	
+	    	this.instalarFixturesMarca(); 
+	    	
+	    	this.instalarFixturesTipoFalla(); 
 	    	
 	    	
 	    	return "Todos los fixtures instalados";
