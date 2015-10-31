@@ -32,6 +32,7 @@ public class GenericData {
 	private static String MarcaAbreviatura="APPLE,Nokia,Motorola,Sony,SonyEriccson,Kyocera,Alcatel,HTC,Samsung,BlackBerry,Pantech,ZTE,Huawei";
 	private static String MarcaDescripcion="1,2,3,4,5,6,7,8,9,10,11,12,13";
 	private static String Local="Plus Mas Plottier,MDQ ,8300 Comunicaciones,CellSoft";
+	private static String FallaDescripcion="Pin Carga,Display,Tactil,Microfonos,Equipo Mojado";
 	
 //	
 	public static int ObtenerCantidad()
@@ -100,6 +101,11 @@ public class GenericData {
 	{
 		String[] partes = palabras.split(",");
 		return partes;
+	}
+	
+	public static String ObtenerDescripcionFalla()
+	{
+		return ObtenerValor(FallaDescripcion);
 	}
 	
 	
