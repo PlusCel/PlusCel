@@ -108,7 +108,7 @@ public class GenericTearDownFixture extends FixtureScript {
     {
     	List<String> Tablas=new ArrayList<String>();
     	
-    	String tablas="Tecnico,Cliente,Marca";
+    	String tablas="Tecnico,Cliente,Marca,TipoFalla";
     	String[] partes = tablas.split(",");
     	
     	for(int x=0;x<partes.length;x++)
