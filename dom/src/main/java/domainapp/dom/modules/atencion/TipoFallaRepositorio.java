@@ -8,12 +8,8 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Optionality;
-import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
-import org.apache.isis.applib.query.QueryDefault;
-
 
 @DomainService(repositoryFor = TipoFalla.class)
 @DomainServiceLayout(menuOrder = "1" , named="Gestion")
