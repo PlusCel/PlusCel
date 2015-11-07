@@ -89,10 +89,10 @@ public class UsuarioRepositorio {
 			permission.setPermisoDescripcion("Todos");
 			permission.setPermisoNombre("*");
 			permissions.add(permission);
-			role.setRoleName("nacho.cartes");
+			role.setRoleName("Desarrollador");
 			role.setPermissionsList(permissions);
 
-			altaUsuario("nacho.cartes", "pluscel", role);
+			altaUsuario("Desarrollador", "pluscel", role);
 		
 		}
 	}
