@@ -148,6 +148,17 @@
         	<groupId>org.isisaddons.wicket.excel</groupId>
 	        <artifactId>isis-wicket-excel-cpt</artifactId>
         </dependency>
+       
+        <dependency>
+            <groupId>org.isisaddons.module.security</groupId>
+            <artifactId>isis-module-security-dom</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.3m</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.isis.viewer</groupId>

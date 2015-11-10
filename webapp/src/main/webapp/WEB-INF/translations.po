@@ -93,7 +93,7 @@ msgstr ""
 
 #: domainapp.fixture.DomainAppFixturesService
 #: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu
-msgid "Prototyping"
+msgid "P"
 msgstr ""
 
 
