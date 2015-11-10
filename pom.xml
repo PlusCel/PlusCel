@@ -355,6 +355,11 @@
         <artifactId>isis-module-excel-dom</artifactId>
         <version>1.9.0</version>
     </dependency>
+	<dependency>
+        	<groupId>org.isisaddons.module.security</groupId>
+        	<artifactId>isis-module-security-dom</artifactId>
+        	<version>1.9.0</version>
+    	</dependency>
 
 
         </dependencies>
