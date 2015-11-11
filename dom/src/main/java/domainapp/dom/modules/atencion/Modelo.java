@@ -10,6 +10,7 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.value.Blob;
 
 @javax.jdo.annotations.PersistenceCapable(identityType=IdentityType.DATASTORE)
 
@@ -102,7 +103,22 @@ public class Modelo {
   public void setDescripcion(final String descripcion) {
       this.descripcion = descripcion;
   }
-	// }}    
+  
+  //endregion
+  
+  /*Esta porcion de codigo nos permite insertar documentos en nuestra clase.*/
+  private Blob attachment;
+
+  @javax.jdo.annotations.Persistent(defaultFetchGroup="false")
+  @javax.jdo.annotations.Column(allowsNull="true")
+  public Blob getAttachment() {
+      return attachment;
+  }
+
+  public void setAttachment(final Blob attachment) {
+      this.attachment = attachment;
+  }
+  //fin
     @javax.inject.Inject
 
 	private DomainObjectContainer container;

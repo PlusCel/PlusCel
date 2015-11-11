@@ -12,6 +12,7 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
+import org.apache.isis.applib.value.Blob;
 
 
 @DomainService(repositoryFor = Modelo.class)
@@ -66,13 +67,14 @@ public class ModeloRepositorio {
     public Modelo altaModelo(
             final @ParameterLayout(named="Abreviatura") String abreviatura,
             final @ParameterLayout(named="Descripcion", multiLine=10) String descripcion,
-            final @ParameterLayout(named="Marca") Marca marca
+            final @ParameterLayout(named="Marca") Marca marca,
+            final @ParameterLayout(named="Imagen") Blob attachment
     		) {
         final Modelo obj = container.newTransientInstance(Modelo.class);
         obj.setAbreviatura(abreviatura);
         obj.setMarca(marca);
         obj.setDescripcion(descripcion);
-   
+        obj.setAttachment(attachment);
         container.persistIfNotAlready(obj);
         return obj;
     }
