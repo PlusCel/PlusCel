@@ -29,6 +29,7 @@ public class MarcaModeloViewmodel extends AbstractViewModel {
 
 	private String title;
 	private String memento;
+	private String fitrlomarca;
 	
 	// {{ Marca (property)
 	private String marca;
@@ -68,13 +69,9 @@ public class MarcaModeloViewmodel extends AbstractViewModel {
 	    @CollectionLayout(
 	            render = RenderType.EAGERLY
 	    )
-	public List<Marca> getMarcaList() {
-		return marcaList;
-	}
-
-	public void setMarcaList(final List<Marca> marcaList) {
-		this.marcaList = marcaList;
-	}
+	  public boolean getMarca1() {
+			return MarcaRepositorio.listarTodo().contains(marca);
+		}
 //Marca
 	
 	//Equipos sin revisar	
@@ -114,8 +111,7 @@ public class MarcaModeloViewmodel extends AbstractViewModel {
 					}catch(Exception e){
 						System.out.println(e.getMessage());
 					}
-					
-						
+
 				}
 				
 				@Programmatic
