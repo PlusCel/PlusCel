@@ -21,6 +21,8 @@ package domainapp.fixture.modules;
 
 import java.util.Random;
 
+import domainapp.dom.modules.atencion.Marca;
+
 public class GenericData {
 	
 	private static int	Cantidad=20;
@@ -34,6 +36,10 @@ public class GenericData {
 	private static String Local="Plus Mas Plottier,MDQ ,8300 Comunicaciones,CellSoft";
 	private static String FallaDescripcion="Pin Carga,Display,Tactil,Microfonos,Equipo Mojado";
 	
+	private static String ModeloAbreviatura="Z10,Samsung Galaxy S6, Samsung Galaxy S4, Curve8520, IPhone 6";
+	private static String ModeloDescripcion="Telefono Tactil,Telefono Tactil,Telefono Tactil,Telefono QWERTY, El Mejor Telefono Tactil";
+	private static String ModeloId="60,62,62,60,78";
+
 //	
 	public static int ObtenerCantidad()
 	{
@@ -106,6 +112,21 @@ public class GenericData {
 	public static String ObtenerDescripcionFalla()
 	{
 		return ObtenerValor(FallaDescripcion);
+	}
+	
+	public static String ObtenerModeloAbreviatura()
+	{
+		return ObtenerValor(ModeloAbreviatura);
+	}
+	
+	public static String ObtenerModeloDescripcion()
+	{
+		return ObtenerValor(ModeloDescripcion);
+	}
+	
+	public static String ObtenerModeloId()
+	{
+		return ObtenerValor(ModeloId);
 	}
 	
 	

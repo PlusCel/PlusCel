@@ -21,6 +21,7 @@ package domainapp.fixture;
 import domainapp.fixture.modules.GenericTearDownFixture;
 import domainapp.fixture.scenarios.ClientesFixture;
 import domainapp.fixture.scenarios.MarcaFixture;
+import domainapp.fixture.scenarios.ModeloFixture;
 import domainapp.fixture.scenarios.TecnicoFixture;
 import domainapp.fixture.scenarios.TipoFallaFixture;
 
@@ -46,8 +47,7 @@ public class DomainAppFixturesService extends FixtureScripts {
     public DomainAppFixturesService() {
         super("domainapp.fixture");
     }
-        
-
+       
     @MemberOrder(sequence="20")
     public Object instalarFixturesTecnico() {
         final List<FixtureResult> Tecnico = findFixtureScriptFor(TecnicoFixture.class).run(null);
@@ -66,22 +66,26 @@ public class DomainAppFixturesService extends FixtureScripts {
         return Marca.get(0).getObject();
     }
     
-    
-    @MemberOrder(sequence="40")
+    @MemberOrder(sequence="50")
     public Object instalarFixturesTipoFalla() {
         final List<FixtureResult> TipoFalla = findFixtureScriptFor(TipoFallaFixture.class).run(null);
         return TipoFalla.get(0).getObject();
     }
     
+    @MemberOrder(sequence="60")
+    public Object instalarFixturesModelo() {
+        final List<FixtureResult> Modelo = findFixtureScriptFor(ModeloFixture.class).run(null);
+        return Modelo.get(0).getObject();
+    }
     
-	@MemberOrder(sequence="50")
+    
+	@MemberOrder(sequence="70")
     public String BorrarBD()
     {
 		final List<FixtureResult> Borrar = findFixtureScriptFor(GenericTearDownFixture.class).run(null);
 		
 		return "Se ha completado la operacion. Toda la DB ah sido borrada.";
     }
-	
 	
 	  @MemberOrder(sequence="99")
 	    public String IntstalarTodosLosFixtures()
@@ -92,11 +96,11 @@ public class DomainAppFixturesService extends FixtureScripts {
 
 	    	this.instalarFixturesMarca(); 
 	    	
-	    	this.instalarFixturesTipoFalla(); 
+	    	this.instalarFixturesTipoFalla();
 	    	
-	    	
+	    	this.instalarFixturesModelo();
+	    		    	
 	    	return "Todos los fixtures instalados";
 	    }
  
-
 }
