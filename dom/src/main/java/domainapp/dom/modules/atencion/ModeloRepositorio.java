@@ -28,7 +28,7 @@ public class ModeloRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public List<Modelo> listarTodos() {
+    public static List<Modelo> listarTodos() {
         return container.allInstances(Modelo.class);
     }
     //endregion
@@ -83,7 +83,8 @@ public class ModeloRepositorio {
 
     //region > injected services
 
-    @javax.inject.Inject 
+    @javax.inject.Inject
+	static 
     DomainObjectContainer container;
 
     //endregion

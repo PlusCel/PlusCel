@@ -26,7 +26,7 @@ public class MarcaRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public List<Marca> listarTodo() {
+    public static List<Marca> listarTodo() {
         return container.allInstances(Marca.class);
     }
     //endregion
@@ -68,7 +68,8 @@ public class MarcaRepositorio {
 
     //region > injected services
 
-    @javax.inject.Inject 
+    @javax.inject.Inject
+	static 
     DomainObjectContainer container;
 
     //endregion

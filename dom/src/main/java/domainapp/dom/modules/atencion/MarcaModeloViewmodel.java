@@ -3,8 +3,6 @@ package domainapp.dom.modules.atencion;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Named;
-
 import org.apache.isis.applib.AbstractViewModel;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Collection;
@@ -17,8 +15,14 @@ import org.apache.isis.applib.annotation.RenderType;
 import org.apache.isis.applib.services.memento.MementoService;
 import org.apache.isis.applib.services.memento.MementoService.Memento;
 
-
-
+import domainapp.dom.modules.atencion.Cliente;
+import domainapp.dom.modules.atencion.ClienteRepositorio;
+import domainapp.dom.modules.atencion.Marca;
+import domainapp.dom.modules.atencion.MarcaRepositorio;
+import domainapp.dom.modules.atencion.Modelo;
+import domainapp.dom.modules.atencion.ModeloRepositorio;
+import domainapp.dom.modules.atencion.OrdenServicio;
+import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
 
 @MemberGroupLayout(columnSpans = { 4, 0, 0, 8 })
 public class MarcaModeloViewmodel extends AbstractViewModel {
@@ -39,9 +43,6 @@ public class MarcaModeloViewmodel extends AbstractViewModel {
 	}
 	// }}
 
-
-	
-	
 	private List<Modelo> modelosList= new ArrayList<Modelo>();
 	  @Collection(
 	            editing = Editing.DISABLED
@@ -57,54 +58,85 @@ public class MarcaModeloViewmodel extends AbstractViewModel {
 	public void setModelosList(final List<Modelo> modelosList) {
 		this.modelosList = modelosList;
 	}
+//Marca	
 	
+	private List<Marca> marcaList= new ArrayList<Marca>();
+	  @Collection(
+	            editing = Editing.DISABLED
+	    )
+	    @MemberOrder(sequence = "1")
+	    @CollectionLayout(
+	            render = RenderType.EAGERLY
+	    )
+	public List<Marca> getMarcaList() {
+		return marcaList;
+	}
+
+	public void setMarcaList(final List<Marca> marcaList) {
+		this.marcaList = marcaList;
+	}
+//Marca
+	
+	//Equipos sin revisar	
+	
+    @MemberOrder(sequence = "3")
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
+	public List<OrdenServicio> getEquiposSinRevisar() {
+		return OrdenServicioRepositorio.sinRevisar();
+	}
+	//.............	
+    
+	//Cliente	
+	
+    @MemberOrder(sequence = "4")
+    @CollectionLayout(
+            render = RenderType.EAGERLY
+    )
+	public List<Cliente> getCliente() {
+		return ClienteRepositorio.ultimosClientes().subList(0, 10);//Filtro los resultados para que devuelva solo 10 clientes
+	}
+	//............
 
 	@Override
 	public void viewModelInit(String memento) {
 		this.memento = memento;
 		
 		Memento newMemento = mementoService.parse(memento);
-		//titulo, alumno, ciclo, curso, division, dni, periodo, turno
+		//titulo, marca
 		this.title = newMemento.get("titulo", String.class);
 		setMarca(newMemento.get("marca", String.class));
-		
-		
-		
+	
 		try{
-
-			    inicializarListModelos();
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-		}
-		
 			
-	}
-	
-
-	@Programmatic
-	public void inicializarListModelos(){
-		setModelosList(modeloRepositorio.listarTodos());
-	}
-	
+		inicializarListModelos();
+					}catch(Exception e){
+						System.out.println(e.getMessage());
+					}
+					
+						
+				}
+				
+				@Programmatic
+				public void inicializarListModelos(){
+					setModelosList(ModeloRepositorio.listarTodos());
+				}
+				
+	@javax.inject.Inject
+	DomainObjectContainer container;
+		
+	@javax.inject.Inject
+	MementoService mementoService;
+		
+	@javax.inject.Inject
+	ModeloRepositorio modeloRepositorio;
+		
+	@javax.inject.Inject
+	MarcaRepositorio marcaRepositorio;
 	
 	@Override
 	public String viewModelMemento() {
 		return memento;
-	}
-	
-	
-	@javax.inject.Inject
-	DomainObjectContainer container;
-	
-	@javax.inject.Inject
-    MementoService mementoService;
-	
-	@javax.inject.Inject
-	ModeloRepositorio modeloRepositorio;
-	
-	@javax.inject.Inject
-	MarcaRepositorio marcaRepositorio;
-	
-	
-	
+	}	
 }
