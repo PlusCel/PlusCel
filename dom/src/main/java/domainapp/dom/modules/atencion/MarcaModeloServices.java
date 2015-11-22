@@ -17,10 +17,6 @@ public class MarcaModeloServices {
 		return "MarcaModeloService";
 	}
 
-	public String title() {
-		return "MarcaModelo";
-	}
-
 	public String iconName() {
 		return "Repuesto";
 	}
@@ -29,7 +25,7 @@ public class MarcaModeloServices {
 	@Named("Modelos por marca")
 	public MarcaModeloViewmodel modelosPorMarca(
 			final @Named("Marca") Marca marca){
-		//titulo, alumno, ciclo, curso, division, dni, periodo, turno
+		
 		Memento newMemento = mementoService.create();
 		
 		newMemento.set("titulo", "Modelos por Marca");
