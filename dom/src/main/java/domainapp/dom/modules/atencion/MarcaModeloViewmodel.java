@@ -36,6 +36,10 @@ public class MarcaModeloViewmodel extends AbstractViewModel {
 	
 	// {{ Marca (property)
 	private String marca;
+	
+	public String title() {
+		return "Marca:"  + " " + marca ;
+	}
 
 	@MemberOrder(sequence = "1")
 	public String getMarca() {
@@ -82,20 +86,7 @@ public class MarcaModeloViewmodel extends AbstractViewModel {
 	public void setModelosList(final List<Modelo> modelosList) {
 		this.modelosList = modelosList;
 	}
-//Marca	
-	
-	private List<Marca> marcaList= new ArrayList<Marca>();
-	  @Collection(
-	            editing = Editing.DISABLED
-	    )
-	    @MemberOrder(sequence = "1")
-	    @CollectionLayout(
-	            render = RenderType.EAGERLY
-	    )
-	  public List<Marca> getMarca1() {
-			return MarcaRepositorio.listarTodo();
-		}
-//Marca
+
 	
 	//Equipos sin revisar	
 	
