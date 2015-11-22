@@ -3,6 +3,7 @@ package domainapp.dom.modules.atencion;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.VersionStrategy;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
@@ -55,6 +56,11 @@ public class Repuesto implements Comparable<Repuesto> {
 	public void setContainer(DomainObjectContainer container) {
 		this.container = container;
 	}
+	
+	public String title() {
+		return getTipoRepuesto() +"-"+ getModelo();
+	}
+	
 
 	@Override
 	public int compareTo(Repuesto repuesto) {
