@@ -38,7 +38,7 @@ import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
 import domainapp.dom.modules.reportes.E_formato;
 import domainapp.dom.modules.reportes.EquiposSinRevisar;
 import domainapp.dom.modules.reportes.GenerarReporte;
-import domainapp.dom.modules.reportes.ReportExporter;
+
 
 @MemberGroupLayout(columnSpans = { 4, 0, 0, 9 })
 public class CargaRapidaViewmodel extends AbstractViewModel {
