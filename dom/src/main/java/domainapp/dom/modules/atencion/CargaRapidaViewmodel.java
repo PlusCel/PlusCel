@@ -196,11 +196,12 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 				public void inicializarListModelos(){
 					setModelosList(ModeloRepositorio.listarTodos());
 				}
-				
-				
+							
 				
 				// }} (end region)
 				// //////////////////////////////////////
+				
+				
 				
 				@Named("Imprimir Reporte")			
 				public String elegirFormato(final @Named("Formato") E_formato formato) throws JRException{
@@ -214,23 +215,12 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 					
 				public String imprimirReporte(E_formato format) throws JRException{
 					List<Object> objectsReport = new ArrayList<Object>();
-					
-					
+										
 					
 					for(OrdenServicio a: getEquiposSinRevisar()){
 						EquiposSinRevisar orden = new EquiposSinRevisar();
 						
 						orden.setFalla(a.getFalla());
-						//JOptionPane.showMessageDialog(null, "¡Este es el a!" + a.getFalla());
-//						asistencia.setAusente(a.getAusente());
-//						asistencia.setCurso(String.valueOf(getAnio()) + "-" + "'" + getDivision() + "'");
-//						asistencia.setPresente(a.getPresente());
-//						asistencia.setPorcausente(a.getPorcentaje_ausente() + "%");
-//						asistencia.setPorctarde(a.getPorcentajeTarde() + "%");
-//						asistencia.setRegistros(a.getAsistenciasRegistradas());
-//						asistencia.setTarde(a.getTarde());
-//						asistencia.setTitulo(getDesde().toString() + "/" + getHasta().toString());
-//						asistencia.setTotalfaltas(a.getTotalFaltas());
 						
 						objectsReport.add(orden);
 						
@@ -238,23 +228,13 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 					
 					String nombreArchivo = "C:/reportes"  ;
 					GenerarReporte.generarReporte("report1.jrxml", objectsReport, format, nombreArchivo);
-					JOptionPane.showMessageDialog(null, "¡Este es el objectsReport!" + objectsReport.toString());
-					//final ReportExporter reportExporter = new ReportExporter();
 					
-//					JOptionPane.showMessageDialog(null, "¡Este son los parametros:::" + parameters);
-//					reportExporter.toPDF("C:/reportes/fichaEmpresa.jrxml", parameters);
-//					
 					
 					
 					return "Reporte Generado.";
 				}			
-				
-//				private static final List<String> empleados = 
-//						Arrays.asList("Jose Manuel Sánchez", "Alfonso Blanco", "Angel García", "Rubén Aguilera");
-				
-			
-				
-				
+
+						
 				
 	@javax.inject.Inject
 	DomainObjectContainer container;
