@@ -233,7 +233,7 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 					}
 					
 					String nombreArchivo = "C:/reportes"  ;
-					GenerarReporte.generarReporte("asistenciaCurso.jrxml", objectsReport, format, nombreArchivo);
+					GenerarReporte.generarReporte("EquiposSinRevisar.jrxml", objectsReport, format, nombreArchivo);
 					
 					
 					
