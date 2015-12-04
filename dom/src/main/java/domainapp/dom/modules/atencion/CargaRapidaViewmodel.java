@@ -1,7 +1,15 @@
 package domainapp.dom.modules.atencion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.inject.Named;
+import javax.swing.JOptionPane;
+
+import net.sf.jasperreports.engine.JRException;
 
 import org.apache.isis.applib.AbstractViewModel;
 import org.apache.isis.applib.DomainObjectContainer;
@@ -27,6 +35,10 @@ import domainapp.dom.modules.atencion.Modelo;
 import domainapp.dom.modules.atencion.ModeloRepositorio;
 import domainapp.dom.modules.atencion.OrdenServicio;
 import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
+import domainapp.dom.modules.reportes.E_formato;
+import domainapp.dom.modules.reportes.EquiposSinRevisar;
+import domainapp.dom.modules.reportes.GenerarReporte;
+import domainapp.dom.modules.reportes.ReportExporter;
 
 @MemberGroupLayout(columnSpans = { 4, 0, 0, 9 })
 public class CargaRapidaViewmodel extends AbstractViewModel {
@@ -184,6 +196,65 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 				public void inicializarListModelos(){
 					setModelosList(ModeloRepositorio.listarTodos());
 				}
+				
+				
+				
+				// }} (end region)
+				// //////////////////////////////////////
+				
+				@Named("Imprimir Reporte")			
+				public String elegirFormato(final @Named("Formato") E_formato formato) throws JRException{
+					return imprimirReporte(formato);		
+				}
+				
+				public E_formato default0ElegirFormato(final @Named("Formato") E_formato formato){
+					return E_formato.PDF;		
+				}
+				
+					
+				public String imprimirReporte(E_formato format) throws JRException{
+					List<Object> objectsReport = new ArrayList<Object>();
+					
+					
+					
+					for(OrdenServicio a: getEquiposSinRevisar()){
+						EquiposSinRevisar orden = new EquiposSinRevisar();
+						
+						orden.setFalla(a.getFalla());
+						//JOptionPane.showMessageDialog(null, "¡Este es el a!" + a.getFalla());
+//						asistencia.setAusente(a.getAusente());
+//						asistencia.setCurso(String.valueOf(getAnio()) + "-" + "'" + getDivision() + "'");
+//						asistencia.setPresente(a.getPresente());
+//						asistencia.setPorcausente(a.getPorcentaje_ausente() + "%");
+//						asistencia.setPorctarde(a.getPorcentajeTarde() + "%");
+//						asistencia.setRegistros(a.getAsistenciasRegistradas());
+//						asistencia.setTarde(a.getTarde());
+//						asistencia.setTitulo(getDesde().toString() + "/" + getHasta().toString());
+//						asistencia.setTotalfaltas(a.getTotalFaltas());
+						
+						objectsReport.add(orden);
+						
+					}
+					
+					String nombreArchivo = "C:/reportes"  ;
+					GenerarReporte.generarReporte("report1.jrxml", objectsReport, format, nombreArchivo);
+					JOptionPane.showMessageDialog(null, "¡Este es el objectsReport!" + objectsReport.toString());
+					//final ReportExporter reportExporter = new ReportExporter();
+					
+//					JOptionPane.showMessageDialog(null, "¡Este son los parametros:::" + parameters);
+//					reportExporter.toPDF("C:/reportes/fichaEmpresa.jrxml", parameters);
+//					
+					
+					
+					return "Reporte Generado.";
+				}			
+				
+//				private static final List<String> empleados = 
+//						Arrays.asList("Jose Manuel Sánchez", "Alfonso Blanco", "Angel García", "Rubén Aguilera");
+				
+			
+				
+				
 				
 	@javax.inject.Inject
 	DomainObjectContainer container;
