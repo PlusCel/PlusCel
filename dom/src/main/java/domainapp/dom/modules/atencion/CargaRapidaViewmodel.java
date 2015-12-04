@@ -221,13 +221,19 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 						EquiposSinRevisar orden = new EquiposSinRevisar();
 						
 						orden.setFalla(a.getFalla());
+						orden.setCliente(String.valueOf(a.getCliente().getApellido() + " " + a.getCliente().getNombre()));
+						orden.setEquipo(String.valueOf(a.getEquipo().getImei() + "-" + a.getEquipo().getMarca().getAbreviatura()));
+						orden.setTecnico(String.valueOf(a.getTecnico().getApellido() + " " + a.getTecnico().getNombre()));
+						orden.setNumero(a.getNumero());
+					
+						
 						
 						objectsReport.add(orden);
 						
 					}
 					
 					String nombreArchivo = "C:/reportes"  ;
-					GenerarReporte.generarReporte("report1.jrxml", objectsReport, format, nombreArchivo);
+					GenerarReporte.generarReporte("asistenciaCurso.jrxml", objectsReport, format, nombreArchivo);
 					
 					
 					
