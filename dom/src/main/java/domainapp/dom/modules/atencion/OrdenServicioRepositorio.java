@@ -124,6 +124,15 @@ public class OrdenServicioRepositorio {
 	                        "numero", numero));
 	    }
 	  
+	//Inicio Buscar ultimos
+		@MemberOrder(sequence = "7")
+		public List<OrdenServicio> buscarUltimas() {
+		    return container.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
+		    		"buscarOrdenadasPorFecha"));
+		}
+	//Fin Buscar Ultimos		
+
+	  
 		@Programmatic
 		public static List<OrdenServicio> sinArreglo() {
 			
@@ -154,6 +163,8 @@ public class OrdenServicioRepositorio {
 				container.informUser("No hay equipos en espera de ser revisados.");
 			return lista;
 		}
+		
+		
 	  
 		/**
 		 * Inyección del Contenedor.
