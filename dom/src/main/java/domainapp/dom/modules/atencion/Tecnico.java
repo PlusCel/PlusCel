@@ -27,10 +27,12 @@ import domainapp.dom.modules.servicios.Persona;
         @javax.jdo.annotations.Query(name = "findByDni", language = "JDOQL", value = "SELECT "
                     			+ "FROM dom.modules.atencion.Tecnico " + "WHERE dni == :dni"),
         @javax.jdo.annotations.Query(
-                name = "findByApellido", language = "JDOQL",
+                name = "findByApellidoNombre", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.dom.modules.atencion.Tecnico "
-                        + "WHERE apellido.startsWith(:apellido)")
+                        + "WHERE ((:apellido=='') || (apellido.toLowerCase().indexOf(:apellido) >= 0))" 
+        				+ " && ((:nombre=='') || (nombre.toLowerCase().indexOf(:nombre) >= 0))"
+                        + " order by apellido, nombre asc")
 })
 
 @javax.jdo.annotations.Unique(name="Tecnico_dni_email_UNQ", members = {"dni", "email"})

@@ -40,7 +40,7 @@ public class TecnicoRepositorio {
     }
     //endregion
 
-    //region > findByApellido (action)
+    //region > findByApellidoNombre (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
@@ -48,15 +48,15 @@ public class TecnicoRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public List<Tecnico> buscarPorApellido(
-            @ParameterLayout(named="Apellido")
-            final String apellido
-    ) {
+    public List<Tecnico> buscarPorApellidoNombre(
+    		 @ParameterLayout(named="Apellido") @Parameter(optionality=Optionality.OPTIONAL)    String apellido,
+             @ParameterLayout(named="Nombre") @Parameter(optionality=Optionality.OPTIONAL)   String nombre
+    ) {        
         return container.allMatches(
                 new QueryDefault<>(
-                        Tecnico.class,
-                        "findByApellido",
-                        "apellido", apellido));
+                		Tecnico.class,
+                        "findByApellidoNombre",
+                        "apellido", (apellido==null)?"":apellido,"nombre",(nombre==null)?"":nombre));
     }
     //endregion
 
