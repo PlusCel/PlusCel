@@ -66,15 +66,16 @@ public class ClienteRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "3")
-    public List<Cliente> buscarPorApellido(
-            @ParameterLayout(named="Apellido")
-            final String apellido
+    public List<Cliente> buscarPorApellidoNombre(
+            @ParameterLayout(named="Apellido") @Parameter(optionality=Optionality.OPTIONAL)    String apellido,
+            @ParameterLayout(named="Nombre") @Parameter(optionality=Optionality.OPTIONAL)   String nombre
     ) {
+    	
         return container.allMatches(
                 new QueryDefault<>(
                         Cliente.class,
-                        "findByApellido",
-                        "apellido", apellido));
+                        "findByApellidoNombre",
+                        "apellido", (apellido==null)?"":apellido,"nombre",(nombre==null)?"":nombre));
     }
     //endregion
 

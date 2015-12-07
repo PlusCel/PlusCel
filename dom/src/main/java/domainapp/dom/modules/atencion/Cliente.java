@@ -42,10 +42,12 @@ import domainapp.dom.modules.servicios.Persona;
         @javax.jdo.annotations.Query(name = "findByDni", language = "JDOQL", value = "SELECT "
                     			+ "FROM dom.modules.atencion.Cliente " + "WHERE dni == :dni"),
         @javax.jdo.annotations.Query(
-                name = "findByApellido", language = "JDOQL",
+                name = "findByApellidoNombre", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.dom.modules.atencion.Cliente "
-                        + "WHERE apellido.startsWith(:apellido)"),
+                        + "WHERE ((:apellido=='') || (apellido.toLowerCase().indexOf(:apellido) >= 0))" 
+        				+ " && ((:nombre=='') || (nombre.toLowerCase().indexOf(:nombre) >= 0))"
+        				+ " order by apellido, nombre "),
         @javax.jdo.annotations.Query(
                 name = "ultimosClientes", language = "JDOQL",
                 value = "SELECT "
