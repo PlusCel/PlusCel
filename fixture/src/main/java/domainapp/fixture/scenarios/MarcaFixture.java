@@ -84,7 +84,7 @@ public class MarcaFixture extends FixtureScript {
     
     @SuppressWarnings("deprecation")
 	private Marca create(final String abreviatura, String descripcion, ExecutionContext executionContext) {
-        return executionContext.add(this, Marca.altaMarca(abreviatura, descripcion));
+        return executionContext.add(this, Marca.ingresarMarca(abreviatura, descripcion));
     }
 
     // //////////////////////////////////////

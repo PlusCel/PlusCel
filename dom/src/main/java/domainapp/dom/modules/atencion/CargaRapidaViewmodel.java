@@ -1,13 +1,10 @@
 package domainapp.dom.modules.atencion;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Named;
-import javax.swing.JOptionPane;
+import javax.jdo.annotations.Column;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -147,7 +144,7 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 	            render = RenderType.EAGERLY
 	    )
 	  public List<Marca> getMarca1() {
-			return MarcaRepositorio.listarTodo();
+			return MarcaRepositorio.buscarTodasLasMarcas();
 		}
 //Marca
 	
@@ -182,7 +179,7 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 		//titulo, marca
 		this.title = newMemento.get("titulo", String.class);
 		setMarca(newMemento.get("marca", String.class));
-	
+		
 		try{
 			
 		inicializarListModelos();
@@ -191,17 +188,16 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 					}
 
 				}
-				
+
 				@Programmatic
 				public void inicializarListModelos(){
-					setModelosList(ModeloRepositorio.listarTodos());
+					setModelosList(ModeloRepositorio.buscarTodosLosModelos());
 				}
 							
 				
 				// }} (end region)
-				// //////////////////////////////////////
 				
-				
+				// Inicia region impresion de reportes
 				
 				@Named("Imprimir Reporte")			
 				public String elegirFormato(final @Named("Formato") E_formato formato) throws JRException{
@@ -211,12 +207,10 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 				public E_formato default0ElegirFormato(final @Named("Formato") E_formato formato){
 					return E_formato.PDF;		
 				}
-				
-					
+							
 				public String imprimirReporte(E_formato format) throws JRException{
 					List<Object> objectsReport = new ArrayList<Object>();
-										
-					
+											
 					for(OrdenServicio a: getEquiposSinRevisar()){
 						EquiposSinRevisar orden = new EquiposSinRevisar();
 						
@@ -225,9 +219,7 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 						orden.setEquipo(String.valueOf(a.getEquipo().getImei() + "-" + a.getEquipo().getMarca().getAbreviatura()));
 						orden.setTecnico(String.valueOf(a.getTecnico().getApellido() + " " + a.getTecnico().getNombre()));
 						orden.setNumero(a.getNumero());
-					
-						
-						
+
 						objectsReport.add(orden);
 						
 					}
@@ -235,13 +227,11 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 					String nombreArchivo = "C:/reportes"  ;
 					GenerarReporte.generarReporte("EquiposSinRevisar.jrxml", objectsReport, format, nombreArchivo);
 					
-					
-					
 					return "Reporte Generado.";
 				}			
+				// Fin region impresion de reportes
 
-						
-				
+										
 	@javax.inject.Inject
 	DomainObjectContainer container;
 		

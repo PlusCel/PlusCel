@@ -58,6 +58,14 @@ import org.joda.time.LocalDate;
 				" WHERE tecnico == :tecnico && estado == :estado" +
 				" && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"),
 		
+		@javax.jdo.annotations.Query(name = "OrdenesServiciosPorTecnico", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.modules.atencion.OrdenServicio"+
+				" WHERE tecnico == :tecnico" ),
+		
+		@javax.jdo.annotations.Query(name = "ContarOrdenesServiciosPorTecnico", language = "JDOQL", value = "SELECT count(*) "
+				+ "FROM dom.modules.atencion.OrdenServicio"+
+				" WHERE tecnico == :tecnico"),
+		
 		@javax.jdo.annotations.Query(name = "buscarOrdenadasPorFecha", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio "+
 				" ORDER BY this.fechaHora desc")
@@ -155,10 +163,24 @@ public class OrdenServicio {
  	public void setFechaHora(final LocalDate fechaHora) {
  		this.fechaHora = fechaHora;
  	}
+ 	
+ 	//TipoFalla
+ 		private TipoFalla tipofalla;	
+ 		
+ 		@MemberOrder(sequence = "5")
+ 		@Column(allowsNull = "true")
+ 		public TipoFalla getTipoFalla() {
+ 			return tipofalla;
+ 		}
+
+ 		public void setTipoFalla(final TipoFalla tipofalla) {
+ 			this.tipofalla = tipofalla;
+ 		}
+ 	
  //Descripcion de la Falla
     private String falla;
     @Persistent
-	@MemberOrder(sequence = "5")
+	@MemberOrder(sequence = "6")
     @javax.jdo.annotations.Column(allowsNull="true", length = 300)
     public String getFalla(){
         return falla;

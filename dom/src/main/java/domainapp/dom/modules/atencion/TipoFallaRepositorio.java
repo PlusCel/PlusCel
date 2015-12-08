@@ -16,23 +16,9 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 
 public class TipoFallaRepositorio {
 
-	 //region > listAll (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "1")
-    public List<TipoFalla> listarTodos() {
-        return container.allInstances(TipoFalla.class);
-    }
-    //endregion
-
-
     //region > create (action)
-    @MemberOrder(sequence = "2")
-    public TipoFalla altaTipoFalla(
+    @MemberOrder(sequence = "1")
+    public TipoFalla ingresarTipoFalla(
             final @ParameterLayout(named="Descripcion") String descripcion
   
             ) {
@@ -43,6 +29,20 @@ public class TipoFallaRepositorio {
     }
 
     //endregion
+        
+	 //region > listAll (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "2")
+    public List<TipoFalla> listarTodosLosTiposFallas() {
+        return container.allInstances(TipoFalla.class);
+    }
+    //endregion
+    
 
     //region > injected services
 

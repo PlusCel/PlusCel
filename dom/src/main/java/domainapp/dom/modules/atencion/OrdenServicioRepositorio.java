@@ -33,12 +33,13 @@ public class OrdenServicioRepositorio {
 	}
 	
 	@MemberOrder(sequence = "1")
-    public OrdenServicio altaOrdenDeServicio(   
+    public OrdenServicio ingresarOrdenDeServicio(   
     		 final @ParameterLayout(named="Cliente") Cliente cliente,
     		 final @ParameterLayout(named="Equipo" ) Equipo equipo,             
              final @ParameterLayout(named="Tecnico") @Parameter(optionality=Optionality.OPTIONAL) Tecnico tecnico,
              final @ParameterLayout(named="Fecha") LocalDate  fechaHora,
-             final @ParameterLayout(named="Falla", multiLine=10) @Parameter(optionality=Optionality.OPTIONAL) String falla,
+             final @ParameterLayout(named="Tipo de Falla") TipoFalla tipofalla,
+             final @ParameterLayout(named="Descripcion de la Falla", multiLine=8) @Parameter(optionality=Optionality.OPTIONAL) String falla,
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Comision Tecnico") double comisionTecnico,
              final @ParameterLayout(named="Estado") E_estado estado,
@@ -50,6 +51,7 @@ public class OrdenServicioRepositorio {
         obj.setEquipo(equipo);
         obj.setTecnico(tecnico);
         obj.setFechaHora(fechaHora);
+        obj.setTipoFalla(tipofalla);
         obj.setFalla(falla);
         obj.setImporte(importe);
         obj.setComisionTecnico(comisionTecnico);
@@ -60,58 +62,8 @@ public class OrdenServicioRepositorio {
         return obj;
     }
 	
-	@MemberOrder(sequence = "2")
-    public List<OrdenServicio> buscarTodos() {
-        return container.allInstances(OrdenServicio.class);
-    }
-	
-	  // region > buscarPorEstado (action)
-	  @Action(
-	          semantics = SemanticsOf.SAFE
-	 )
-	  @ActionLayout(
-	          bookmarking = BookmarkPolicy.AS_ROOT
-	  )
-	  @MemberOrder(sequence = "3")
-	  public List<OrdenServicio> buscarPorEstado(
-	          @ParameterLayout(named="Estado")
-	        final E_estado estado
-	  ) {
-	      return container.allMatches(
-	              new QueryDefault<>(
-	            		  OrdenServicio.class,
-	                      "buscarPorEstado",
-	                      "estado", estado));
-	  }
-	  @MemberOrder(sequence = "4")
-	    public List<OrdenServicio> buscarPorReparaciones(Equipo equipo,
-	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde,@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta, Cliente cliente)
-	      {
-	       
-	            return container.allMatches(
-	                    new QueryDefault<>(
-	                    		OrdenServicio.class,
-	                            "BuscarReparacionesFiltro",
-	                            "equipo", equipo,
-	                             "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta,"cliente", cliente));
-	        }
-//Busco para liquidar por tecnico	  
-	  @MemberOrder(sequence = "5")
-	    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico, 
-	    		@ParameterLayout(named="Estado") final E_estado estado,
-	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, @ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
-	      {
-	       
-	            return container.allMatches(
-	                    new QueryDefault<>(
-	                    		OrdenServicio.class,
-	                            "LiquidarReparacionesPorTecnico",
-	                            "tecnico", tecnico,
-	                            "estado", estado,
-	                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
-	        }
-//Busco para liquidar por numero orden de servicio	  
-	  @MemberOrder(sequence = "6")
+	//Busco por por numero orden de servicio	  
+	  @MemberOrder(sequence = "2")
 	    
 	    public List<OrdenServicio> buscarPorNumero(
 	            @ParameterLayout(named="Numero Orden de Servicio")
@@ -123,14 +75,82 @@ public class OrdenServicioRepositorio {
 	                        "buscarPorNumero",
 	                        "numero", numero));
 	    }
+	
+	// region > buscarTodos (action)
+	
+	@MemberOrder(sequence = "3")
+    public List<OrdenServicio> buscarTodasLasOrdenesDeServicio() {
+        return container.allInstances(OrdenServicio.class);
+    }
+	
+	  // region > buscarPorEstado (action)
+	  @Action(
+	          semantics = SemanticsOf.SAFE
+	 )
+	  @ActionLayout(
+	          bookmarking = BookmarkPolicy.AS_ROOT
+	  )
+	  @MemberOrder(sequence = "4")
+	  public List<OrdenServicio> buscarPorEstado(
+	          @ParameterLayout(named="Estado")
+	        final E_estado estado
+	  ) {
+	      return container.allMatches(
+	              new QueryDefault<>(
+	            		  OrdenServicio.class,
+	                      "buscarPorEstado",
+	                      "estado", estado));
+	  }
+	  @MemberOrder(sequence = "5")
+	    public List<OrdenServicio> buscarPorReparaciones(Equipo equipo,
+	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde,@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta, Cliente cliente)
+	      {
+	       
+	            return container.allMatches(
+	                    new QueryDefault<>(
+	                    		OrdenServicio.class,
+	                            "BuscarReparacionesFiltro",
+	                            "equipo", equipo,
+	                             "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta,"cliente", cliente));
+	        }
+
 	  
 	//Inicio Buscar ultimos
-		@MemberOrder(sequence = "7")
+		@MemberOrder(sequence = "6")
 		public List<OrdenServicio> buscarUltimas() {
 		    return container.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
 		    		"buscarOrdenadasPorFecha"));
 		}
-	//Fin Buscar Ultimos		
+	//Fin Buscar Ultimos
+		
+		//Busco equipos asignados por tecnicos	  
+		  @MemberOrder(sequence = "7")
+		    public List<OrdenServicio> BuscarOrdenServicioPorTecnico(Tecnico tecnico)
+		      {
+		       
+		            return container.allMatches(
+		                    new QueryDefault<>(
+		                    		OrdenServicio.class,
+		                            //"OrdenesServiciosPorTecnico",
+		                    		"OrdenesServiciosPorTecnico",
+		                            "tecnico", tecnico));
+		        }	
+		
+		//Busco para liquidar por tecnico	  
+		  @MemberOrder(sequence = "8")
+		    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico, 
+		    		@ParameterLayout(named="Estado") final E_estado estado,
+		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, @ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
+		      {
+		       
+		            return container.allMatches(
+		                    new QueryDefault<>(
+		                    		OrdenServicio.class,
+		                            "LiquidarReparacionesPorTecnico",
+		                            "tecnico", tecnico,
+		                            "estado", estado,
+		                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
+		        }	
 
 	  
 		@Programmatic
@@ -163,9 +183,7 @@ public class OrdenServicioRepositorio {
 				container.informUser("No hay equipos en espera de ser revisados.");
 			return lista;
 		}
-		
-		
-	  
+			  
 		/**
 		 * Inyección del Contenedor.
 		 */

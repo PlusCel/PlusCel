@@ -44,42 +44,7 @@ import domainapp.dom.modules.servicios.Localidad.E_localidades;
 @DomainService(repositoryFor = Cliente.class)
 @DomainServiceLayout(menuOrder = "2" , named="Cliente")
 public class ClienteRepositorio {
-
-    //region > listAll (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "2")
-    public List<Cliente> listarTodos() {
-        return container.allInstances(Cliente.class);
-    }
-    //endregion
-
-    //region > findByApellido (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "3")
-    public List<Cliente> buscarPorApellidoNombre(
-            @ParameterLayout(named="Apellido") @Parameter(optionality=Optionality.OPTIONAL)    String apellido,
-            @ParameterLayout(named="Nombre") @Parameter(optionality=Optionality.OPTIONAL)   String nombre
-    ) {
-    	
-        return container.allMatches(
-                new QueryDefault<>(
-                        Cliente.class,
-                        "findByApellidoNombre",
-                        "apellido", (apellido==null)?"":apellido,"nombre",(nombre==null)?"":nombre));
-    }
-    //endregion
-
-    //region > create (action)
+ //region > create (action)
     @MemberOrder(sequence = "1")
     public Cliente altaCliente(
             final  @ParameterLayout(named="Apellido") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionLetras.PERMITIDOS, maxLength = 40) String apellido,
@@ -120,6 +85,40 @@ public class ClienteRepositorio {
         return obj;
     }
 
+    //end region
+    
+    //region > listAll (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "2")
+    public List<Cliente> listarTodos() {
+        return container.allInstances(Cliente.class);
+    }
+    //endregion
+
+    //region > findByApellido (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "3")
+    public List<Cliente> buscarPorApellidoNombre(
+            @ParameterLayout(named="Apellido") @Parameter(optionality=Optionality.OPTIONAL)    String apellido,
+            @ParameterLayout(named="Nombre") @Parameter(optionality=Optionality.OPTIONAL)   String nombre
+    ) {
+    	
+        return container.allMatches(
+                new QueryDefault<>(
+                        Cliente.class,
+                        "findByApellidoNombre",
+                        "apellido", (apellido==null)?"":apellido,"nombre",(nombre==null)?"":nombre));
+    }
     //endregion
 
     //region > injected services
