@@ -163,9 +163,7 @@ public class OrdenServicioRepositorio {
 				container.informUser("No hay equipos en espera de ser revisados.");
 			return lista;
 		}
-		
-		
-	  
+			  
 		/**
 		 * Inyección del Contenedor.
 		 */
