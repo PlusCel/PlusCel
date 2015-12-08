@@ -101,25 +101,6 @@ public class EquipoRepositorio {
     }
     //endregion
 
-    // region > buscarPorEstado (action)
-  @Action(
-          semantics = SemanticsOf.SAFE
- )
-  @ActionLayout(
-          bookmarking = BookmarkPolicy.AS_ROOT
-  )
-  @MemberOrder(sequence = "5")
-  public List<Equipo> buscarPorEstado(
-          @ParameterLayout(named="Estado")
-        final E_estado estado
-  ) {
-      return container.allMatches(
-              new QueryDefault<>(
-                      Equipo.class,
-                      "buscarPorEstado",
-                      "estado", estado));
-  }
- //endregion
   
 	public static List<Equipo> listAll() {
 		// TODO Auto-generated method stub

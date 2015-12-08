@@ -29,8 +29,7 @@ import org.apache.isis.applib.annotation.MemberOrder;
 	    @javax.jdo.annotations.Query(name = "buscarPorMarca", language = "JDOQL", value = "SELECT "
 	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca.abreviatura == :marca"),	 
 
-	    @javax.jdo.annotations.Query(name = "buscarPorEstado", language = "JDOQL", value = "SELECT "
-	     	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE estado == :estado"),	                    			
+	
                     			
 })
 
