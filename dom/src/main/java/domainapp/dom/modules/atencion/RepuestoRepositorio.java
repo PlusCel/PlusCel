@@ -17,26 +17,12 @@ import org.joda.time.LocalDate;
 import domainapp.dom.modules.servicios.E_tipoRepuesto;
 
 @DomainService(repositoryFor = Repuesto.class)
-@DomainServiceLayout(menuOrder = "4" , named="Repuestos")
+@DomainServiceLayout(menuOrder = "4" , named="Gestion")
 public class RepuestoRepositorio {
-
-    //region > listAll (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "2")
-    public List<Repuesto> listarTodos() {
-        return container.allInstances(Repuesto.class);
-    }
-    //endregion
-
 
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public Repuesto altaRepuestos(
+    public Repuesto ingresarRepuestos(
     		final @ParameterLayout(named="Tipo Repuesto") E_tipoRepuesto tiporepuesto,
             final @ParameterLayout(named="Modelo") String modelo,
             final @ParameterLayout(named="Descripcion" , multiLine=10)  String descripcion,
@@ -59,6 +45,19 @@ public class RepuestoRepositorio {
 
     //endregion
 
+    //region > listAll (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "2")
+    public List<Repuesto> buscarTodosLosRepuestos() {
+        return container.allInstances(Repuesto.class);
+    }
+    //endregion
+    
     //region > injected services
 
     @javax.inject.Inject 

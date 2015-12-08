@@ -74,7 +74,7 @@ public class MarcaCreate extends FixtureScript {
         String abreviatura = checkParam("abreviatura", ec, String.class);
         String descripcion = checkParam("descripcion", ec, String.class);
 
-        this.marca = MarcaRepositorio.altaMarca(abreviatura,descripcion);
+        this.marca = MarcaRepositorio.ingresarMarca(abreviatura,descripcion);
 
         // also make available to UI
         ec.addResult(this, marca);

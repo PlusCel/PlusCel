@@ -84,7 +84,7 @@ public class ModeloFixture extends FixtureScript {
     
     @SuppressWarnings("deprecation")
 	private Modelo create(final Marca marca, String abreviatura, String descripcion,ExecutionContext executionContext) {
-        return executionContext.add(this, Modelo.altaModelo(descripcion, abreviatura,marca, null));
+        return executionContext.add(this, Modelo.ingresarModelo(descripcion, abreviatura,marca, null));
     }
 
     ////////////////////////////////////////

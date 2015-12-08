@@ -131,7 +131,7 @@ public class MarcaModeloViewmodel extends AbstractViewModel {
 				
 				@Programmatic
 				public void inicializarListModelos(){
-					setModelosList(ModeloRepositorio.listarTodos());
+					setModelosList(ModeloRepositorio.buscarTodosLosModelos());
 				}
 				
 	@javax.inject.Inject

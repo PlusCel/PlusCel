@@ -70,7 +70,7 @@ public class TipoFallaFixture extends FixtureScript {
 		
 		 @SuppressWarnings("deprecation")
 			private TipoFalla create(final  String descripcion, ExecutionContext executionContext) {
-		        return executionContext.add(this, TipoFalla.altaTipoFalla(descripcion));
+		        return executionContext.add(this, TipoFalla.ingresarTipoFalla(descripcion));
 		    }
 
 		    // //////////////////////////////////////

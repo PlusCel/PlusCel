@@ -12,13 +12,27 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 
-
 @DomainService(repositoryFor = Equipo.class)
 @DomainServiceLayout(menuOrder = "1" , named="Gestion")
 
 public class MarcaRepositorio {
 	
-	//region > listAll (action)
+    //region > create (action)
+    @MemberOrder(sequence = "1")
+    public Marca ingresarMarca(
+    		final @ParameterLayout(named="Abreviatura") String abreviatura,
+            final @ParameterLayout(named="Descripcion", multiLine=10) String descripcion
+    		) {
+        final Marca obj = container.newTransientInstance(Marca.class);
+        obj.setAbreviatura(abreviatura);
+        obj.setDescripcion(descripcion);  
+        container.persistIfNotAlready(obj);
+        return obj;
+    }
+
+    //endregion
+    
+  //region > listAll (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
@@ -26,7 +40,7 @@ public class MarcaRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public static List<Marca> listarTodo() {
+    public static List<Marca> buscarTodasLasMarcas() {
         return container.allInstances(Marca.class);
     }
     //endregion
@@ -49,21 +63,6 @@ public class MarcaRepositorio {
                         "findByDescripcion",
                         "descripcion", descripcion));
     }
-    //endregion
-
-    //region > create (action)
-    @MemberOrder(sequence = "1")
-    public Marca altaMarca(
-    		final @ParameterLayout(named="Abreviatura") String abreviatura,
-            final @ParameterLayout(named="Descripcion", multiLine=10) String descripcion
-    		) {
-        final Marca obj = container.newTransientInstance(Marca.class);
-        obj.setAbreviatura(abreviatura);
-        obj.setDescripcion(descripcion);  
-        container.persistIfNotAlready(obj);
-        return obj;
-    }
-
     //endregion
 
     //region > injected services
