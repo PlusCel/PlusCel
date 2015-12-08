@@ -33,12 +33,13 @@ public class OrdenServicioRepositorio {
 	}
 	
 	@MemberOrder(sequence = "1")
-    public OrdenServicio altaOrdenDeServicio(   
+    public OrdenServicio ingresarOrdenDeServicio(   
     		 final @ParameterLayout(named="Cliente") Cliente cliente,
     		 final @ParameterLayout(named="Equipo" ) Equipo equipo,             
              final @ParameterLayout(named="Tecnico") @Parameter(optionality=Optionality.OPTIONAL) Tecnico tecnico,
              final @ParameterLayout(named="Fecha") LocalDate  fechaHora,
-             final @ParameterLayout(named="Falla", multiLine=10) @Parameter(optionality=Optionality.OPTIONAL) String falla,
+             final @ParameterLayout(named="Tipo de Falla") TipoFalla tipofalla,
+             final @ParameterLayout(named="Descripcion de la Falla", multiLine=8) @Parameter(optionality=Optionality.OPTIONAL) String falla,
              final @ParameterLayout(named="Importe") double importe,
              final @ParameterLayout(named="Comision Tecnico") double comisionTecnico,
              final @ParameterLayout(named="Estado") E_estado estado,
@@ -50,6 +51,7 @@ public class OrdenServicioRepositorio {
         obj.setEquipo(equipo);
         obj.setTecnico(tecnico);
         obj.setFechaHora(fechaHora);
+        obj.setTipoFalla(tipofalla);
         obj.setFalla(falla);
         obj.setImporte(importe);
         obj.setComisionTecnico(comisionTecnico);
@@ -59,9 +61,10 @@ public class OrdenServicioRepositorio {
         container.persistIfNotAlready(obj);
         return obj;
     }
+	// region > buscarTodos (action)
 	
 	@MemberOrder(sequence = "2")
-    public List<OrdenServicio> buscarTodos() {
+    public List<OrdenServicio> buscarTodasLasOrdenesDeServicio() {
         return container.allInstances(OrdenServicio.class);
     }
 	

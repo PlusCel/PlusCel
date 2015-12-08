@@ -155,10 +155,24 @@ public class OrdenServicio {
  	public void setFechaHora(final LocalDate fechaHora) {
  		this.fechaHora = fechaHora;
  	}
+ 	
+ 	//TipoFalla
+ 		private TipoFalla tipofalla;	
+ 		
+ 		@MemberOrder(sequence = "5")
+ 		@Column(allowsNull = "true")
+ 		public TipoFalla getTipoFalla() {
+ 			return tipofalla;
+ 		}
+
+ 		public void setTipoFalla(final TipoFalla tipofalla) {
+ 			this.tipofalla = tipofalla;
+ 		}
+ 	
  //Descripcion de la Falla
     private String falla;
     @Persistent
-	@MemberOrder(sequence = "5")
+	@MemberOrder(sequence = "6")
     @javax.jdo.annotations.Column(allowsNull="true", length = 300)
     public String getFalla(){
         return falla;
