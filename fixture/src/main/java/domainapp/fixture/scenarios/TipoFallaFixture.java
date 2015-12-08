@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
-import org.apache.isis.applib.fixturescripts.FixtureScript.Discoverability;
-import org.apache.isis.applib.fixturescripts.FixtureScript.ExecutionContext;
 
 import domainapp.dom.modules.atencion.TipoFalla;
 import domainapp.dom.modules.atencion.TipoFallaRepositorio;
 import domainapp.fixture.modules.GenericData;
-import domainapp.fixture.modules.MarcaTearDown;
 import domainapp.fixture.modules.TipoFallaTearDown;
 
 public class TipoFallaFixture extends FixtureScript {

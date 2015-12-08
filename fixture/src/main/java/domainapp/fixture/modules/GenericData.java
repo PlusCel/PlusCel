@@ -21,8 +21,6 @@ package domainapp.fixture.modules;
 
 import java.util.Random;
 
-import domainapp.dom.modules.atencion.Marca;
-
 public class GenericData {
 	
 	private static int	Cantidad=20;

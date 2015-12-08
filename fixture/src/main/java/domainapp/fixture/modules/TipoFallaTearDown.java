@@ -1,7 +1,6 @@
 package domainapp.fixture.modules;
 
 import org.apache.isis.applib.fixturescripts.FixtureScript;
-import org.apache.isis.applib.fixturescripts.FixtureScript.ExecutionContext;
 import org.apache.isis.applib.services.jdosupport.IsisJdoSupport;
 
 public class TipoFallaTearDown  extends FixtureScript {
