@@ -58,6 +58,14 @@ import org.joda.time.LocalDate;
 				" WHERE tecnico == :tecnico && estado == :estado" +
 				" && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"),
 		
+		@javax.jdo.annotations.Query(name = "OrdenesServiciosPorTecnico", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.modules.atencion.OrdenServicio"+
+				" WHERE tecnico == :tecnico" ),
+		
+		@javax.jdo.annotations.Query(name = "ContarOrdenesServiciosPorTecnico", language = "JDOQL", value = "SELECT count(*) "
+				+ "FROM dom.modules.atencion.OrdenServicio"+
+				" WHERE tecnico == :tecnico"),
+		
 		@javax.jdo.annotations.Query(name = "buscarOrdenadasPorFecha", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio "+
 				" ORDER BY this.fechaHora desc")

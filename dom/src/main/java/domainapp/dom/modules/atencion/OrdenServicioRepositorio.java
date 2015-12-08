@@ -121,10 +121,23 @@ public class OrdenServicioRepositorio {
 		    return container.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
 		    		"buscarOrdenadasPorFecha"));
 		}
-	//Fin Buscar Ultimos	
+	//Fin Buscar Ultimos
+		
+		//Busco equipos asignados por tecnicos	  
+		  @MemberOrder(sequence = "7")
+		    public List<OrdenServicio> BuscarOrdenServicioPorTecnico(Tecnico tecnico)
+		      {
+		       
+		            return container.allMatches(
+		                    new QueryDefault<>(
+		                    		OrdenServicio.class,
+		                            //"OrdenesServiciosPorTecnico",
+		                    		"OrdenesServiciosPorTecnico",
+		                            "tecnico", tecnico));
+		        }	
 		
 		//Busco para liquidar por tecnico	  
-		  @MemberOrder(sequence = "7")
+		  @MemberOrder(sequence = "8")
 		    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico, 
 		    		@ParameterLayout(named="Estado") final E_estado estado,
 		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, @ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
