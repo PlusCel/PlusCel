@@ -11,6 +11,7 @@ import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
+import org.apache.isis.applib.annotation.MemberGroupLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 
 import domainapp.dom.modules.servicios.E_estado;
@@ -79,6 +80,9 @@ import org.joda.time.LocalDate;
         bookmarking = BookmarkPolicy.AS_ROOT
 )
 
+@MemberGroupLayout(columnSpans={4,8,0,6}, left={"Orden de Servicio"},
+                   middle={"Falla"})
+
 public class OrdenServicio {
 	
   
@@ -104,7 +108,7 @@ public class OrdenServicio {
 		@javax.jdo.annotations.Column(allowsNull = "false")
 		@javax.jdo.annotations.PrimaryKey(column = "numero")
 		@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT, sequence = "numero")
-		@MemberOrder(sequence = "1")
+		@MemberOrder(name="Orden de Servicio",sequence = "1")
 		public long getNumero() {
 			return numero;
 		}
@@ -113,10 +117,10 @@ public class OrdenServicio {
 			this.numero = numero;
 		}
 		
-		// Tecnico
+		// Tecnico@MemberOrder(name="Informacion De Hardware",sequence = "1")
 		private Tecnico tecnico;
 
-		@MemberOrder(sequence = "1")
+		@MemberOrder(name="Orden de Servicio", sequence = "1")
 		@Column(allowsNull = "true")
 		public Tecnico getTecnico() {
 			return tecnico;
@@ -129,7 +133,7 @@ public class OrdenServicio {
 		
 	private Cliente cliente;	
 	
-	@MemberOrder(sequence = "2")
+	@MemberOrder(name="Orden de Servicio", sequence = "2")
 	@Column(allowsNull = "true")
 	public Cliente getCliente() {
 		return cliente;
@@ -141,7 +145,7 @@ public class OrdenServicio {
 		
 	//Equipo
 	private Equipo equipo;
-	@MemberOrder(sequence = "3")
+	@MemberOrder(name="Orden de Servicio", sequence = "3")
 	@Column(allowsNull = "true")
 	public Equipo getEquipo() {
 		return equipo;
@@ -154,7 +158,7 @@ public class OrdenServicio {
 	// FechaHora
  	private LocalDate fechaHora; 	
  	 	 	
- 	@MemberOrder(sequence = "4")
+ 	@MemberOrder(name="Orden de Servicio", sequence = "4")
  	@Column(allowsNull = "true")
  	public LocalDate getFechaHora() {
  		return fechaHora;
@@ -167,7 +171,7 @@ public class OrdenServicio {
  	//TipoFalla
  		private TipoFalla tipofalla;	
  		
- 		@MemberOrder(sequence = "5")
+ 		@MemberOrder(name="Orden de Servicio", sequence = "5")
  		@Column(allowsNull = "true")
  		public TipoFalla getTipoFalla() {
  			return tipofalla;
@@ -180,7 +184,7 @@ public class OrdenServicio {
  //Descripcion de la Falla
     private String falla;
     @Persistent
-	@MemberOrder(sequence = "6")
+	@MemberOrder(name="Falla", sequence = "6")
     @javax.jdo.annotations.Column(allowsNull="true", length = 300)
     public String getFalla(){
         return falla;
@@ -193,7 +197,7 @@ public class OrdenServicio {
   	private double importe;
  	
   	@Column(allowsNull = "true")
-  	@MemberOrder(sequence = "7")
+  	@MemberOrder(name="Orden de Servicio", sequence = "7")
   	public double getImporte() {
   		return importe;
   	}
@@ -206,7 +210,7 @@ public class OrdenServicio {
   	private double comisionTecnico;
  	
   	@Column(allowsNull = "true")
-  	@MemberOrder(sequence = "8")
+  	@MemberOrder(name="Orden de Servicio", sequence = "8")
   	public double getComisionTecnico() {
   		return comisionTecnico;
   	}
@@ -219,7 +223,7 @@ public class OrdenServicio {
     
   	private E_estado estado;  
     @Persistent
-	@MemberOrder(sequence = "9")
+	@MemberOrder(name="Falla", sequence = "9")
     @javax.jdo.annotations.Column(allowsNull="true", length = 20)
     public E_estado getEstado() {
         return estado;
@@ -227,7 +231,20 @@ public class OrdenServicio {
     public void setEstado(final E_estado estado) {
         this.estado = estado;
     }
-      
+    
+//Estado de la orden de servicio	
+    
+  	private E_estadoGarantia garantia;  
+    @Persistent
+	@MemberOrder(name="Falla", sequence = "10")
+    @javax.jdo.annotations.Column(allowsNull="true", length = 20)
+    public E_estadoGarantia getGarantia() {
+        return garantia;
+    }
+    public void setGarantia(final E_estadoGarantia garantia) {
+        this.garantia = garantia;
+    }
+        
     public OrdenServicio EnviarAlertaSinArreglo() {	
     	if (OrdenServicio.this.estado == E_estado.SIN_ARREGLO) {
     		EnvioCorreo.send("nachocartes@gmail.com",
@@ -250,20 +267,6 @@ public class OrdenServicio {
     					
 		return this;
 	}
-    
-    
-//Estado de la orden de servicio	
-    
-  	private E_estadoGarantia garantia;  
-    @Persistent
-	@MemberOrder(sequence = "9")
-    @javax.jdo.annotations.Column(allowsNull="true", length = 20)
-    public E_estadoGarantia getGarantia() {
-        return garantia;
-    }
-    public void setGarantia(final E_estadoGarantia garantia) {
-        this.garantia = garantia;
-    }
     
 	 //region > injected services
     @javax.inject.Inject
