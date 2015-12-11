@@ -1,5 +1,8 @@
 package domainapp.dom.modules.atencion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
@@ -7,12 +10,17 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
 
+import net.sf.jasperreports.engine.JRException;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 
+import domainapp.dom.modules.reportes.E_formato;
+import domainapp.dom.modules.reportes.EquiposSinRevisar;
+import domainapp.dom.modules.reportes.GenerarReporte;
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoGarantia;
 import domainapp.dom.modules.servicios.EnvioCorreo;
@@ -263,6 +271,32 @@ public class OrdenServicio {
     					
 		return this;
 	}
+    
+    public String imprimirReporte(E_formato format) throws JRException{
+		List<Object> objectsReport = new ArrayList<Object>();
+								
+		
+			EquiposSinRevisar orden = new EquiposSinRevisar();
+			
+			orden.setFalla(getTipoFalla().getDescripcion() + " - " + getFalla() );
+			orden.setCliente(String.valueOf(getCliente().getNombre() + " " + getCliente().getApellido() ));
+			orden.setEquipo(String.valueOf("Imei: " + getEquipo().getImei() + "  " + "Marca: " + getEquipo().getMarca().getAbreviatura()+ "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura()));		
+			
+			orden.setTecnico(String.valueOf(getTecnico().getApellido() + " " + getTecnico().getNombre()));
+			orden.setNumero(getNumero());
+
+			objectsReport.add(orden);
+			
+			
+		String nombreArchivo = "C:/reportes"  ;
+		GenerarReporte.generarReporte("OrdenServicio.jrxml", objectsReport, format, nombreArchivo);
+		
+			
+		
+		return "Reporte Generado.";
+	}
+       
+    
     
 	 //region > injected services
     @javax.inject.Inject
