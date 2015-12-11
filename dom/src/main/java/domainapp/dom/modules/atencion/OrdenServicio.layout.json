@@ -10,7 +10,8 @@
                 							"cssClass": "x-key"}
 	                					},
 	                			"cliente": {"typicalLength": {
-                							"value": 25
+                							"value": 25,
+                							"cssClass": "btn btn-primary dropdown-toggle"
               								}},
 	                			"tecnico": {},
 	                			"equipo": {},
@@ -62,7 +63,13 @@
             "actionLayout": {
                 "cssClass": "btn btn-success",
                 "cssClassFa": "fa fa-envelope fa-lg",
-                "describedAs": "Envia mail informando equipo sin revisar al Tecnico asignado"
+                "describedAs": "Envia mail informando equipo sin arreglo al cliente"
+            }
+        },
+     "imprimirReporte": {
+            "actionLayout": {
+                "cssClassFa": "fa fa-print fa-lg",
+                "describedAs": "Imprimir orden de servicio por duplicado"
             }
         }
     }
