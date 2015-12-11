@@ -4,8 +4,14 @@
 	        "span": 6,
 	        "memberGroups": {
 	            "OrdenServicio": {
-	                "members": {"numero": {},
-	                			"cliente": {},
+	                "members": {"numero": {"describedAs": {"value": "Numero unico de Orden de Servicio"},
+	                						"propertyLayout": {
+                							"typicalLength": 25,
+                							"cssClass": "x-key"}
+	                					},
+	                			"cliente": {"typicalLength": {
+                							"value": 25
+              								}},
 	                			"tecnico": {},
 	                			"equipo": {},
 	                			"fechaHora": {},
@@ -18,7 +24,14 @@
 	            
 	            "Fallas": {
 	                "members": {"tipoFalla": {},
-	                			"falla": {}
+	                			"falla": {
+	                						"propertyLayout": {
+                							"typicalLength": 250,
+                							"multiLine": 8,
+                							"cssClass": "x-key",
+                							"describedAs": "Agregar descripcion muy detallada del error o problema del equipo"
+                							}
+                						}
 	                			}
 	                			}
 	            }
@@ -41,13 +54,15 @@
     "EnviarAlertaSinArreglo": {
             "actionLayout": {
                 "cssClass": "btn btn-danger",
-                "cssClassFa": "fa fa-envelope fa-lg"
+                "cssClassFa": "fa fa-envelope fa-lg",
+                "describedAs": "Envia mail informando equipo sin arreglo al cliente"
             }
         },
      "EnviarAlertaTecnico": {
             "actionLayout": {
                 "cssClass": "btn btn-success",
-                "cssClassFa": "fa fa-envelope fa-lg"
+                "cssClassFa": "fa fa-envelope fa-lg",
+                "describedAs": "Envia mail informando equipo sin revisar al Tecnico asignado"
             }
         }
     }
