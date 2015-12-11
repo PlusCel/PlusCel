@@ -251,7 +251,7 @@ public class OrdenServicio {
         
     public OrdenServicio EnviarAlertaSinArreglo() {	
     	if (OrdenServicio.this.estado == E_estado.SIN_ARREGLO) {
-    		EnvioCorreo.send("nachocartes@gmail.com",
+    		EnvioCorreo.send(getCliente().getEmail(),
     				"ESTADO ORDEN DE SERVICIO", 
     				"Orden de Servicio :" + OrdenServicio.this.numero + " Estado : "+ OrdenServicio.this.estado);
     	}
@@ -262,7 +262,7 @@ public class OrdenServicio {
     //Enviamos alerta via mail al tecnico para informar de un nuevo equipo.
     public OrdenServicio EnviarAlertaTecnico() {	
     	if (OrdenServicio.this.estado == E_estado.SIN_REVISAR) {
-    		EnvioCorreo.send("nachocartes@gmail.com",
+    		EnvioCorreo.send(getTecnico().getEmail(),
     				"Nuevo equipo para revisar", 
     				"La Orden de Servicio :" + OrdenServicio.this.numero +
     				" con el Estado : "+ OrdenServicio.this.estado + 
