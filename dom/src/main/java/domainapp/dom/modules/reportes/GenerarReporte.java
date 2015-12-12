@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -33,7 +35,10 @@ public class GenerarReporte {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		//Levanta el jrxml
-		File file = new File(nombreArchivo,jrxml);
+		
+		
+		File file = new File(jrxml);
+
 		
 		//Almacena el array de datos
 		JRBeanArrayDataSource jArray= new JRBeanArrayDataSource(parametros.toArray());

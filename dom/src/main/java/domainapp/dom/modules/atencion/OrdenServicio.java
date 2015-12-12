@@ -9,6 +9,7 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
+import javax.swing.JOptionPane;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -284,12 +285,14 @@ public class OrdenServicio {
 			
 			orden.setTecnico(String.valueOf(getTecnico().getApellido() + " " + getTecnico().getNombre()));
 			orden.setNumero(getNumero());
+			
 
 			objectsReport.add(orden);
 			
 			
-		String nombreArchivo = "C:/reportes"  ;
-		GenerarReporte.generarReporte("OrdenServicio.jrxml", objectsReport, format, nombreArchivo);
+		String nombreArchivo ="reportes/OrdenServicio" + String.valueOf(orden.getNumero()) ;
+
+		GenerarReporte.generarReporte("reportes/OrdenServicio.jrxml", objectsReport, format, nombreArchivo);
 		
 			
 		
