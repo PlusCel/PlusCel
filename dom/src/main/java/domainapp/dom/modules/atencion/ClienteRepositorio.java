@@ -46,7 +46,7 @@ import domainapp.dom.modules.servicios.Localidad.E_localidades;
 public class ClienteRepositorio {
  //region > create (action)
     @MemberOrder(sequence = "1")
-    public Cliente altaCliente(
+    public Cliente ingresarCliente(
             final  @ParameterLayout(named="Apellido") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionLetras.PERMITIDOS, maxLength = 40) String apellido,
             final @ParameterLayout(named="Nombre") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionLetras.PERMITIDOS, maxLength = 40)  String nombre,
             final @ParameterLayout(named="Dni")@Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionNumerica.PERMITIDOS, maxLength = 12)  int dni,

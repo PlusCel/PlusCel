@@ -280,7 +280,7 @@ public class OrdenServicio {
 			
 			orden.setFalla(getTipoFalla().getDescripcion() + " - " + getFalla() );
 			orden.setCliente(String.valueOf(getCliente().getNombre() + " " + getCliente().getApellido() ));
-			orden.setEquipo(String.valueOf("Imei: " + getEquipo().getImei() + "  " + "Marca: " + getEquipo().getMarca().getAbreviatura()+ "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura()));		
+			orden.setEquipo(String.valueOf("Imei: " + getEquipo().getImei() + "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura()+ "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura()));		
 			
 			orden.setTecnico(String.valueOf(getTecnico().getApellido() + " " + getTecnico().getNombre()));
 			orden.setNumero(getNumero());

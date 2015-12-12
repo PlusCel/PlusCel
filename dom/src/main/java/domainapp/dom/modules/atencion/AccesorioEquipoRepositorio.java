@@ -21,22 +21,9 @@ import domainapp.dom.modules.servicios.E_accesorioParte;
 
 public class AccesorioEquipoRepositorio {
 	
-	//region > listarTodos (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "2")
-   public List<AccesorioEquipo> listarTodos() {
-        return container.allInstances(AccesorioEquipo.class);
-    }
-    //endregion
-
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public AccesorioEquipo AltaAccesorioEquipo(
+    public AccesorioEquipo ingresarAccesorioEquipo(
             final @ParameterLayout(named="Equipo") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionAlfanumerico.PERMITIDOS, maxLength = 10) Equipo equipo,    		           
             final @ParameterLayout(named="Memoria") E_accesorioParte memoria, 
             final @ParameterLayout(named="Chip") E_accesorioParte chip,  
@@ -54,8 +41,22 @@ public class AccesorioEquipoRepositorio {
 
     //endregion
     
+	//region > listarTodos (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "2")
+   public List<AccesorioEquipo> listarTodos() {
+        return container.allInstances(AccesorioEquipo.class);
+    }
+    //endregion
+
+    
     @MemberOrder(sequence = "3")
-    public List<AccesorioEquipo> listaAccesorioDeEquipo(Equipo equipo)
+    public List<AccesorioEquipo> buscarAccesorioPorEquipo(Equipo equipo)
   {
         return container.allMatches(
                 new QueryDefault<>(

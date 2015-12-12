@@ -27,15 +27,10 @@ import org.apache.isis.applib.annotation.MemberOrder;
                     			+ "FROM dom.modules.atencion.Equipo " + "WHERE imei == :imei"),
 
 	    @javax.jdo.annotations.Query(name = "buscarPorMarca", language = "JDOQL", value = "SELECT "
-	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca.abreviatura == :marca"),	 
-
-	
-                    			
+	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca.abreviatura == :marca"),	                    			
 })
 
-
 @javax.jdo.annotations.Unique(name="Equipo_name_UNQ", members = {"imei","marca"})
-
 
 @DomainObject(
 		bounded=true,
@@ -82,11 +77,10 @@ public class Equipo {
         this.modelo = modelo;
     }
            
- 
-    //{{ Imei (property)
+    //IMEI
     private String imei;
     @Persistent
-	@MemberOrder(sequence = "6")
+	@MemberOrder(sequence = "3")
     @javax.jdo.annotations.Column(allowsNull="false", length = 40)
     public String getImei(){
         return imei;
@@ -94,11 +88,9 @@ public class Equipo {
     public void setImei(final String imei) {
         this.imei = imei;
     }      
-       
-    
+   
    //}}
 	@javax.inject.Inject
-
 	private DomainObjectContainer container;
 
 }

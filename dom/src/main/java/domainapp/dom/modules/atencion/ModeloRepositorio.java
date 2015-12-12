@@ -70,7 +70,7 @@ public class ModeloRepositorio {
                         "descripcion", descripcion));
     }
     @MemberOrder(sequence = "4")
-    public List<Modelo> crearListaModelosXMarca(final Marca marca) {
+    public List<Modelo> buscarModelosXMarca(final Marca marca) {
 
 		return container.allMatches(new QueryDefault<Modelo>(Modelo.class,
 				"findByMarca","marca", marca));

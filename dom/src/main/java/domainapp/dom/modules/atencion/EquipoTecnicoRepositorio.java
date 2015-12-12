@@ -15,7 +15,7 @@ public class EquipoTecnicoRepositorio {
 	
     //region > create (action)
     @MemberOrder(sequence = "1")
-    public EquipoTecnico altaEquipoTecnico(
+    public EquipoTecnico ingresarEquipoTecnico(
             final @ParameterLayout(named="Equipo") Equipo equipo,
             final @ParameterLayout(named="Tecnico") Tecnico tecnico) {
     	
@@ -33,7 +33,7 @@ public class EquipoTecnicoRepositorio {
     //endregion
     
     @MemberOrder(sequence = "4")
-    public List<EquipoTecnico> listaTecnicoDeEquipo(Equipo equipo)
+    public List<EquipoTecnico> buscarTecnicoDeEquipo(Equipo equipo)
   {
         return container.allMatches(
                 new QueryDefault<>(

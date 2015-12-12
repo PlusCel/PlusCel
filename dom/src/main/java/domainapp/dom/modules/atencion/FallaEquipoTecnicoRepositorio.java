@@ -40,7 +40,7 @@ public class FallaEquipoTecnicoRepositorio {
     //endregion
     
     @MemberOrder(sequence = "4")
-    public List<FallaEquipoTecnico> listadoFallaPorEquipo(Tecnico tecnico)
+    public List<FallaEquipoTecnico> buscarFallaXEquipo(Tecnico tecnico)
   {
         return container.allMatches(
                 new QueryDefault<>(

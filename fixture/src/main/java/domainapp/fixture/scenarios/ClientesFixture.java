@@ -87,7 +87,7 @@ public class ClientesFixture extends FixtureScript {
     
     @SuppressWarnings("deprecation")
 	private Cliente create(final String apellido, String nombre,int dni,E_sexo sexo,LocalDate nacimiento,E_nacionalidad nacionalidad, E_localidades localidad, String calle, int numero, String piso,String departamento,String  email,String telefono, ExecutionContext executionContext) {
-        return executionContext.add(this, Clientes.altaCliente(apellido, nombre, dni, sexo, nacimiento, nacionalidad, localidad, calle, numero, piso, departamento,email, telefono));
+        return executionContext.add(this, Clientes.ingresarCliente(apellido, nombre, dni, sexo, nacimiento, nacionalidad, localidad, calle, numero, piso, departamento,email, telefono));
     }
 
     // //////////////////////////////////////

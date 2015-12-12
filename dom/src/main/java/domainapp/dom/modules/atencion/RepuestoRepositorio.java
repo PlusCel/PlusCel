@@ -53,7 +53,7 @@ public class RepuestoRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public List<Repuesto> buscarTodosLosRepuestos() {
+    public List<Repuesto> listarTodosLosRepuestos() {
         return container.allInstances(Repuesto.class);
     }
     //endregion

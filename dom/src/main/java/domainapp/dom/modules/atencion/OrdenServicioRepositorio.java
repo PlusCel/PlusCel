@@ -26,8 +26,6 @@ import domainapp.dom.modules.servicios.E_estadoGarantia;
 
 public class OrdenServicioRepositorio {
 	
-	@ActionLayout(cssClassFa="fa fa-plus-circle",bookmarking = BookmarkPolicy.AS_ROOT)
-	
 	public String iconName() {
 		return "fa fa-road";
 	}
@@ -62,8 +60,23 @@ public class OrdenServicioRepositorio {
         return obj;
     }
 	
+	// region > buscarTodos (action)
+	
+		@MemberOrder(sequence = "2")
+	    public List<OrdenServicio> listarTodas() {
+	        return container.allInstances(OrdenServicio.class);
+	    }
+		
+	//Inicio Buscar ultimos
+		@MemberOrder(sequence = "3")
+		public List<OrdenServicio> listar10Ultimas() {
+			return container.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
+		      "buscarOrdenadasPorFecha").withCount(10));
+		}
+	//Fin Buscar Ultimos
+	
 	//Busco por por numero orden de servicio	  
-	  @MemberOrder(sequence = "2")
+	  @MemberOrder(sequence = "4")
 	    
 	    public List<OrdenServicio> buscarPorNumero(
 	            @ParameterLayout(named="Numero Orden de Servicio")
@@ -76,13 +89,6 @@ public class OrdenServicioRepositorio {
 	                        "numero", numero));
 	    }
 	
-	// region > buscarTodos (action)
-	
-	@MemberOrder(sequence = "3")
-    public List<OrdenServicio> buscarTodasLasOrdenesDeServicio() {
-        return container.allInstances(OrdenServicio.class);
-    }
-	
 	  // region > buscarPorEstado (action)
 	  @Action(
 	          semantics = SemanticsOf.SAFE
@@ -90,7 +96,7 @@ public class OrdenServicioRepositorio {
 	  @ActionLayout(
 	          bookmarking = BookmarkPolicy.AS_ROOT
 	  )
-	  @MemberOrder(sequence = "4")
+	  @MemberOrder(sequence = "5")
 	  public List<OrdenServicio> buscarPorEstado(
 	          @ParameterLayout(named="Estado")
 	        final E_estado estado
@@ -101,7 +107,7 @@ public class OrdenServicioRepositorio {
 	                      "buscarPorEstado",
 	                      "estado", estado));
 	  }
-	  @MemberOrder(sequence = "5")
+	  @MemberOrder(sequence = "6")
 	    public List<OrdenServicio> buscarPorReparaciones(Equipo equipo,
 	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde,@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta, Cliente cliente)
 	      {
@@ -113,19 +119,10 @@ public class OrdenServicioRepositorio {
 	                            "equipo", equipo,
 	                             "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta,"cliente", cliente));
 	        }
-
-	  
-	//Inicio Buscar ultimos
-		@MemberOrder(sequence = "6")
-		public List<OrdenServicio> buscarUltimas() {
-		    return container.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
-		    		"buscarOrdenadasPorFecha"));
-		}
-	//Fin Buscar Ultimos
 		
 		//Busco equipos asignados por tecnicos	  
 		  @MemberOrder(sequence = "7")
-		    public List<OrdenServicio> BuscarOrdenServicioPorTecnico(Tecnico tecnico)
+		    public List<OrdenServicio> buscarOrdenServicioPorTecnico(Tecnico tecnico)
 		      {
 		       
 		            return container.allMatches(
@@ -151,8 +148,7 @@ public class OrdenServicioRepositorio {
 		                            "estado", estado,
 		                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
 		        }	
-
-	  
+ 
 		@Programmatic
 		public static List<OrdenServicio> sinArreglo() {
 			

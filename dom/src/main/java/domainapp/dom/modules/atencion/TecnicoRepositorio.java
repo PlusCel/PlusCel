@@ -27,39 +27,6 @@ import domainapp.dom.modules.servicios.Localidad;
 
 public class TecnicoRepositorio {
 
-	 //region > listAll (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "3")
-    public List<Tecnico> listarTodos() {
-        return container.allInstances(Tecnico.class);
-    }
-    //endregion
-
-    //region > findByApellidoNombre (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "2")
-    public List<Tecnico> buscarPorApellidoNombre(
-    		 @ParameterLayout(named="Apellido") @Parameter(optionality=Optionality.OPTIONAL)    String apellido,
-             @ParameterLayout(named="Nombre") @Parameter(optionality=Optionality.OPTIONAL)   String nombre
-    ) {        
-        return container.allMatches(
-                new QueryDefault<>(
-                		Tecnico.class,
-                        "findByApellidoNombre",
-                        "apellido", (apellido==null)?"":apellido,"nombre",(nombre==null)?"":nombre));
-    }
-    //endregion
-
     //region > create (action)
     @MemberOrder(sequence = "1")
     public Tecnico altaTecnico(
@@ -104,6 +71,39 @@ public class TecnicoRepositorio {
         return obj;
     }
 
+    //endregion
+    
+    //region > listAll (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "2")
+    public List<Tecnico> listarTodos() {
+        return container.allInstances(Tecnico.class);
+    }
+    //endregion
+    
+  //region > findByApellidoNombre (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "3")
+    public List<Tecnico> buscarPorApellidoNombre(
+    		 @ParameterLayout(named="Apellido") @Parameter(optionality=Optionality.OPTIONAL)    String apellido,
+             @ParameterLayout(named="Nombre") @Parameter(optionality=Optionality.OPTIONAL)   String nombre
+    ) {        
+        return container.allMatches(
+                new QueryDefault<>(
+                		Tecnico.class,
+                        "findByApellidoNombre",
+                        "apellido", (apellido==null)?"":apellido,"nombre",(nombre==null)?"":nombre));
+    }
     //endregion
 
     //region > injected services

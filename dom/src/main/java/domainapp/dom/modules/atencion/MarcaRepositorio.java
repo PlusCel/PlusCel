@@ -40,7 +40,7 @@ public class MarcaRepositorio {
             bookmarking = BookmarkPolicy.AS_ROOT
     )
     @MemberOrder(sequence = "2")
-    public static List<Marca> buscarTodasLasMarcas() {
+    public static List<Marca> listarTodas() {
         return container.allInstances(Marca.class);
     }
     //endregion

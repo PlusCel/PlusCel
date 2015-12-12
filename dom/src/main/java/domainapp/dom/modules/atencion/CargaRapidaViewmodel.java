@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Named;
-import javax.jdo.annotations.Column;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -12,6 +11,7 @@ import org.apache.isis.applib.AbstractViewModel;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Collection;
 import org.apache.isis.applib.annotation.CollectionLayout;
+import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.Editing;
 import org.apache.isis.applib.annotation.MemberGroupLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -26,16 +26,21 @@ import org.joda.time.LocalDate;
 
 import domainapp.dom.modules.atencion.Cliente;
 import domainapp.dom.modules.atencion.ClienteRepositorio;
+import domainapp.dom.modules.atencion.Equipo;
 import domainapp.dom.modules.atencion.Marca;
 import domainapp.dom.modules.atencion.MarcaRepositorio;
 import domainapp.dom.modules.atencion.Modelo;
 import domainapp.dom.modules.atencion.ModeloRepositorio;
 import domainapp.dom.modules.atencion.OrdenServicio;
 import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
+import domainapp.dom.modules.atencion.Tecnico;
 import domainapp.dom.modules.reportes.E_formato;
 import domainapp.dom.modules.reportes.EquiposSinRevisar;
 import domainapp.dom.modules.reportes.GenerarReporte;
 
+@DomainServiceLayout(menuOrder = "8" , 
+menuBar = DomainServiceLayout.MenuBar.SECONDARY
+,named="Vistas Rapidas")
 
 @MemberGroupLayout(columnSpans = { 4, 0, 0, 9 })
 public class CargaRapidaViewmodel extends AbstractViewModel {
@@ -44,16 +49,16 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 	private String memento;
 	
 	// {{ Marca (property)
-	private String marca;
+	//private String marca;
 
-	@MemberOrder(sequence = "1")
+	/*@MemberOrder(sequence = "1")
 	public String getMarca() {
 		return marca;
 	}
 
 	public void setMarca(final String marca) {
 		this.marca = marca;
-	}
+	}*/
 	// Agrego cliente datos basicos
 	
 	@MemberOrder(sequence = "1")
@@ -144,7 +149,7 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 	            render = RenderType.EAGERLY
 	    )
 	  public List<Marca> getMarca1() {
-			return MarcaRepositorio.buscarTodasLasMarcas();
+			return MarcaRepositorio.listarTodas();
 		}
 //Marca
 	
@@ -178,7 +183,7 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 		Memento newMemento = mementoService.parse(memento);
 		//titulo, marca
 		this.title = newMemento.get("titulo", String.class);
-		setMarca(newMemento.get("marca", String.class));
+		//setMarca(newMemento.get("marca", String.class));
 		
 		try{
 			

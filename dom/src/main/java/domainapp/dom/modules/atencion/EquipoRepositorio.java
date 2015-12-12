@@ -17,50 +17,21 @@ import domainapp.dom.modules.atencion.Modelo;
 import domainapp.dom.modules.atencion.Marca;
 import domainapp.dom.modules.atencion.ModeloRepositorio;
 
-import domainapp.dom.modules.servicios.E_estado;
-
 @DomainService(repositoryFor = Equipo.class)
 @DomainServiceLayout(menuOrder = "3" , named="Equipo")
 
-
 public class EquipoRepositorio {
-	@ActionLayout(cssClassFa="fa fa-mobile",bookmarking = BookmarkPolicy.AS_ROOT)
+	@ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT)
 	
 	//region > listarTodos (action)
     @Action(
             semantics = SemanticsOf.SAFE
     )
-    
-    @MemberOrder(sequence = "1")
-    public List<Equipo> listarTodos() {
-        return container.allInstances(Equipo.class);
-    }
-    //endregion
-
-   // region > buscarPorMarca (action)
-    @Action(
-            semantics = SemanticsOf.SAFE
-    )
-    @ActionLayout(
-            bookmarking = BookmarkPolicy.AS_ROOT
-    )
-    @MemberOrder(sequence = "2")
-    public List<Equipo> buscarPorMarca(
-            @ParameterLayout(named="Marca")
-            final String marca
-    ) {
-        return container.allMatches(
-                new QueryDefault<>(
-                        Equipo.class,
-                        "buscarPorMarca",
-                        "marca", marca));
-    }
-  // endregion   
 
     //region > create (action)
-    @MemberOrder(sequence = "3")
+    @MemberOrder(sequence = "1")
 
-    public Equipo altaEquipo(
+    public Equipo ingresarEquipo(
     		
             final @ParameterLayout(named="Marca") Marca marca,    		           
             final @ParameterLayout(named="Modelo") Modelo modelo,            
@@ -75,11 +46,32 @@ public class EquipoRepositorio {
         container.persistIfNotAlready(obj);
         return obj;
     }
-    
-	public List<Modelo> choices1AltaEquipo( @ParameterLayout(named="Marca") final Marca marca)
-	{
-		return modeloRepositorio.crearListaModelosXMarca(marca);
-	}
+	
+	@MemberOrder(sequence = "2")
+    public List<Equipo> listarTodos() {
+        return container.allInstances(Equipo.class);
+    }
+    //endregion
+
+   // region > buscarPorMarca (action)
+    @Action(
+            semantics = SemanticsOf.SAFE
+    )
+    @ActionLayout(
+            bookmarking = BookmarkPolicy.AS_ROOT
+    )
+    @MemberOrder(sequence = "3")
+    public List<Equipo> buscarPorMarca(
+            @ParameterLayout(named="Marca")
+            final String marca
+    ) {
+        return container.allMatches(
+                new QueryDefault<>(
+                        Equipo.class,
+                        "buscarPorMarca",
+                        "marca", marca));
+    }
+  // endregion   
 
     // region > buscarPorImei (action)
     @Action(
@@ -100,12 +92,6 @@ public class EquipoRepositorio {
                         "imei", imei));
     }
     //endregion
-
-  
-	public static List<Equipo> listAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
     //region > injected services
 
