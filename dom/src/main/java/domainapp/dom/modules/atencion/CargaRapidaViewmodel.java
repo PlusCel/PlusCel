@@ -202,39 +202,7 @@ public class CargaRapidaViewmodel extends AbstractViewModel {
 				
 				// }} (end region)
 				
-				// Inicia region impresion de reportes
 				
-				@Named("Imprimir Reporte")			
-				public String elegirFormato(final @Named("Formato") E_formato formato) throws JRException{
-					return imprimirReporte(formato);		
-				}
-				
-				public E_formato default0ElegirFormato(final @Named("Formato") E_formato formato){
-					return E_formato.PDF;		
-				}
-							
-				public String imprimirReporte(E_formato format) throws JRException{
-					List<Object> objectsReport = new ArrayList<Object>();
-											
-					for(OrdenServicio a: getEquiposSinRevisar()){
-						EquiposSinRevisar orden = new EquiposSinRevisar();
-						
-						orden.setFalla(a.getFalla());
-						orden.setCliente(String.valueOf(a.getCliente().getApellido() + " " + a.getCliente().getNombre()));
-						orden.setEquipo(String.valueOf(a.getEquipo().getImei() + "-" + a.getEquipo().getMarca().getAbreviatura()));
-						orden.setTecnico(String.valueOf(a.getTecnico().getApellido() + " " + a.getTecnico().getNombre()));
-						orden.setNumero(a.getNumero());
-
-						objectsReport.add(orden);
-						
-					}
-					
-					String nombreArchivo = "C:/reportes"  ;
-					GenerarReporte.generarReporte("EquiposSinRevisar.jrxml", objectsReport, format, nombreArchivo);
-					
-					return "Reporte Generado.";
-				}			
-				// Fin region impresion de reportes
 
 										
 	@javax.inject.Inject
