@@ -11,6 +11,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 import domainapp.dom.modules.atencion.Modelo;
@@ -46,6 +47,11 @@ public class EquipoRepositorio {
         container.persistIfNotAlready(obj);
         return obj;
     }
+	@Programmatic
+	public List<Modelo> choices1AltaEquipo(final Marca marca)
+		{
+			return modeloRepositorio.buscarModelosXMarca(marca);
+		}
 	
 	@MemberOrder(sequence = "2")
     public List<Equipo> listarTodos() {
