@@ -9,6 +9,8 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
+import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
@@ -25,7 +27,7 @@ public class ModeloRepositorio {
             final @ParameterLayout(named="Abreviatura") String abreviatura,
             final @ParameterLayout(named="Descripcion", multiLine=10) String descripcion,
             final @ParameterLayout(named="Marca") Marca marca,
-            final @ParameterLayout(named="Imagen") Blob attachment
+            final @ParameterLayout(named="Imagen") @Parameter(optionality=Optionality.OPTIONAL) Blob attachment
     		) {
         final Modelo obj = container.newTransientInstance(Modelo.class);
         obj.setAbreviatura(abreviatura);
