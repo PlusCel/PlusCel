@@ -10,14 +10,16 @@ import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Where;
 import domainapp.dom.modules.atencion.Falla;
+import domainapp.dom.modules.servicios.E_estado;
+
 @SuppressWarnings("unused")
 @javax.jdo.annotations.PersistenceCapable(identityType = IdentityType.DATASTORE)
 @javax.jdo.annotations.DatastoreIdentity(strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 
 
-@javax.jdo.annotations.Query(name = "listadoFallaPorEquipo", language = "JDOQL", value = "SELECT "
-		+ "FROM dom.modules.atencion.FallaEquipotecnico " + "WHERE tecnico == :tecnico")
+@javax.jdo.annotations.Query(name = "registroDeMovimientoPorOrden", language = "JDOQL", value = "SELECT "
+		+ "FROM dom.modules.atencion.FallaEquipotecnico " + "WHERE orden == :orden")
 
 
 @DomainObject(
@@ -34,6 +36,20 @@ public class FallaEquipoTecnico {
 	public String title() {		
 		return getEquipo().title() + " - " + getTecnico().title() ;
 	}
+
+	private OrdenServicio orden;
+
+	@javax.jdo.annotations.Column(allowsNull = "false")
+	@MemberOrder(name="Orden de Servicio",sequence = "1")
+	public OrdenServicio getOrdenServicio() {
+		return orden;
+	}
+
+	public void setOrdenServicio(final OrdenServicio orden) {
+		this.orden = orden;
+	}
+	
+	
 	
 	// {{ Falla (property)
 
@@ -75,6 +91,20 @@ public class FallaEquipoTecnico {
 	public void setEquipo(final Equipo equipo) {
 		this.equipo =equipo;
 	}
+	
+ //Estado de la orden de servicio	
+    
+  	private E_estado estado;  
+    @Persistent
+	@MemberOrder(sequence = "4")
+    @javax.jdo.annotations.Column(allowsNull="true", length = 20)
+    public E_estado getEstado() {
+        return estado;
+    }
+    public void setEstado(final E_estado estado) {
+        this.estado = estado;
+    }
+    
 
 
 }
