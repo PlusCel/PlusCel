@@ -69,6 +69,7 @@ public class ModeloRepositorio {
                         "findByDescripcion",
                         "descripcion", descripcion));
     }
+    
     @MemberOrder(sequence = "4")
     public List<Modelo> buscarModelosXMarca(final Marca marca) {
 

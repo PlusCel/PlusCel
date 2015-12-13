@@ -23,7 +23,9 @@ import org.apache.isis.applib.annotation.MemberOrder;
                 name = "find", language = "JDOQL",
                 value = "SELECT "
                         + "FROM domainapp.dom.modules.atencion.TipoFalla "),
-    
+
+        @javax.jdo.annotations.Query(name = "buscarTipoFallaXOrden", language = "JDOQL", value = "SELECT   "
+        				+"FROM dom.modules.atencion.TipoFalla WHERE descripcion == :descripcion")
 })
 
 @DomainObject(

@@ -44,8 +44,6 @@ public class TecnicoRepositorio {
             final @ParameterLayout(named="Email") @Parameter(optionality=Optionality.OPTIONAL)  String email,
             final @ParameterLayout(named="Teléfono") String telefono,
             final @Parameter(optionality=Optionality.OPTIONAL) @ParameterLayout(named="Local")String local
-            
-            
     		) {
         final Tecnico obj = container.newTransientInstance(Tecnico.class);
         final Direccion dire = new Direccion();

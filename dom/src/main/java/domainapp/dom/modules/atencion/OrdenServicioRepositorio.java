@@ -61,7 +61,6 @@ public class OrdenServicioRepositorio {
     }
 	
 	// region > buscarTodos (action)
-	
 		@MemberOrder(sequence = "2")
 	    public List<OrdenServicio> listarTodas() {
 	        return container.allInstances(OrdenServicio.class);
@@ -179,7 +178,7 @@ public class OrdenServicioRepositorio {
 				container.informUser("No hay equipos en espera de ser revisados.");
 			return lista;
 		}
-			  
+		
 		/**
 		 * Inyección del Contenedor.
 		 */

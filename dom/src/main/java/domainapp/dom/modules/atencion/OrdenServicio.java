@@ -77,7 +77,11 @@ import org.joda.time.LocalDate;
 		
 		@javax.jdo.annotations.Query(name = "buscarOrdenadasPorFecha", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio "+
-				" ORDER BY this.fechaHora desc")
+				" ORDER BY this.fechaHora desc")/*,
+		@javax.jdo.annotations.Query(name = "buscarFallasXOrden", language = "JDOQL", value = "SELECT tipoFalla "
+				+ "FROM dom.modules.atencion.OrdenServicio "
+				+ " WHERE numero == :numero")		*/
+		
 })
 
 @DomainObject(
