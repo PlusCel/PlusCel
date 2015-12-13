@@ -78,8 +78,7 @@ public class ClienteRepositorio {
         obj.setFechaNacimiento(nacimiento);
         obj.setDireccion(dire);
         obj.setEmail(email);
-        obj.setTelefono(telefono);
-        obj.setHabilitado('-');
+        obj.setTelefono(telefono);        
         obj.setApellido(apellido);
         container.persistIfNotAlready(obj);
         return obj;

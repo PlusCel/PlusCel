@@ -180,18 +180,4 @@ public class Persona {
 	// }}
 
 
-	private char habilitado;
-	
-	@Persistent
-	@javax.jdo.annotations.Column(allowsNull = "true")
-	//@Hidden
-	public char getHabilitado() {
-		return habilitado;
-	}
-
-	public void setHabilitado(char habilitado) {
-		this.habilitado = habilitado;
-	}
-	
-
 }
