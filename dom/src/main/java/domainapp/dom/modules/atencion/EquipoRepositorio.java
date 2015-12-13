@@ -16,6 +16,7 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 import domainapp.dom.modules.atencion.Modelo;
 import domainapp.dom.modules.atencion.Marca;
+import domainapp.dom.modules.atencion.OrdenServicio;
 import domainapp.dom.modules.atencion.ModeloRepositorio;
 
 @DomainService(repositoryFor = Equipo.class)
@@ -48,7 +49,7 @@ public class EquipoRepositorio {
         return obj;
     }
 	@Programmatic
-	public List<Modelo> choices1AltaEquipo(final Marca marca)
+	public List<Modelo> choices1IngresarEquipo(final Marca marca)
 		{
 			return modeloRepositorio.buscarModelosXMarca(marca);
 		}
@@ -78,6 +79,7 @@ public class EquipoRepositorio {
                         "marca", marca));
     }
   // endregion   
+    
 
     // region > buscarPorImei (action)
     @Action(

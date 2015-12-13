@@ -27,7 +27,9 @@ import org.apache.isis.applib.annotation.MemberOrder;
                     			+ "FROM dom.modules.atencion.Equipo " + "WHERE imei == :imei"),
 
 	    @javax.jdo.annotations.Query(name = "buscarPorMarca", language = "JDOQL", value = "SELECT "
-	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca.abreviatura == :marca"),	                    			
+	                    			+ "FROM dom.modules.atencion.Equipo " + "WHERE marca.abreviatura == :marca"),	
+	   
+
 })
 
 @javax.jdo.annotations.Unique(name="Equipo_name_UNQ", members = {"imei","marca"})
