@@ -12,10 +12,7 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 import domainapp.dom.modules.atencion.TipoFalla;
-import domainapp.dom.modules.atencion.OrdenServicio;
 
-import java.util.ArrayList;
-import java.util.List;
 @DomainService(repositoryFor = TipoFalla.class)
 @DomainServiceLayout(menuOrder = "1" , named="Gestion")
 

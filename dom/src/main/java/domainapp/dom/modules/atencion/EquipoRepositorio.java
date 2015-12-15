@@ -16,7 +16,6 @@ import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 import domainapp.dom.modules.atencion.Modelo;
 import domainapp.dom.modules.atencion.Marca;
-import domainapp.dom.modules.atencion.OrdenServicio;
 import domainapp.dom.modules.atencion.ModeloRepositorio;
 
 @DomainService(repositoryFor = Equipo.class)

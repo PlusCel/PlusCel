@@ -9,7 +9,6 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
-import javax.swing.JOptionPane;
 
 import net.sf.jasperreports.engine.JRException;
 
