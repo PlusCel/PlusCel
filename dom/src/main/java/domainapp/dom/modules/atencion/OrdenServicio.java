@@ -126,7 +126,7 @@ public class OrdenServicio {
 			this.numero = numero;
 		}
 		
-		// Tecnico@MemberOrder(name="Informacion De Hardware",sequence = "1")
+		
 		private Tecnico tecnico;
 
 		@MemberOrder(sequence = "1")
@@ -277,7 +277,7 @@ public class OrdenServicio {
 		return this;
 	}
     
-    public String imprimirReporte(E_formato format) throws JRException{
+    public String imprimirOrden() throws JRException{
 		List<Object> objectsReport = new ArrayList<Object>();
 								
 		
@@ -296,7 +296,7 @@ public class OrdenServicio {
 			
 		String nombreArchivo ="reportes/OrdenServicio" + String.valueOf(orden.getNumero()) ;
 
-		GenerarReporte.generarReporte("reportes/OrdenServicio.jrxml", objectsReport, format, nombreArchivo);
+		GenerarReporte.generarReporte("reportes/OrdenServicio.jrxml", objectsReport, nombreArchivo);
 		
 			
 		
