@@ -25,8 +25,11 @@ public class GenericData {
 	
 	private static int	Cantidad=20;
 	
-	private static String Nombre="Santiago,Sebastián,Matías,Nicolás,Samuel,Alejandro,Mateo,Diego,Benjamín,Daniel,Joaquín,Tomás,Gabriel,Lucas,Martín,Emmanuel,Alexander,David,Emiliano,Carlos,JuanJosé,Andrés,Felipe,Ignacio,Leonardo,Adrián,Francisco,Rodrigo,Alvaro,MiguelÁngel,Fernando,Santino,Bautista,Agustín,JuanPablo,Vicente,Thiago,Maximiliano,Pablo,Eduardo,Christopher,Kevin,Isaac,JuanDiego,Aarón,Dylan,Jesús,Esteban,Manuel,JuanSebastián,Franco,Lautaro,Miguel,JuanDavid,Ricardo,Bruno,Luciano,Juan,Emilio,JuanEsteban,Julián,Valentino,Javier,Joshua,Rafael,Jorge,José,Luis,DiegoAlejandro,Gael,Óscar,Nahuel,Máximo,Axel,Facundo,Jonathan,Ian,Josué,Camilo,Sergio,Jerónimo,Álex,Mauricio,JuanCamilo,Alonso,Anthony,Dante,Christian,Simón,Patricio,Héctor,Iván,Marcos,Ramiro,Alberto,Matthew,Pedro,Mario,Alan,Arturo,Adrian,Manuel,Jose,Gogo,Pedro,Mariano,Leandro,Gonzalo,Roberto,Daniel,Fernando,Damian,Oscar,Lautaro,Miguel,Diego,Pablo,Raul,Ricardo,Matias,Hector,Juan,Emiliano,Cesar,Gerardo,Emiliano,Francisco,Martin,Leonardo";
-	private static String Apellido="Lala,González,Rodríguez,Lolo,Gómez,Fernández,López,Torroija,Díaz,Martínez,Pérez,García,Sánchez,Romero,Sosa,Álvarez,Torres,Ruiz,Ramírez,Flores,Acosta,Benítez,Medina,Suárez,Herrera,Aguirre,Pereyra,Gutiérrez,Giménez,Molina,Silva,Benigar,Castro,Rojas,Ortíz,Núñez,Luna,Juárez,Cabrera,Ríos,Ferreyra,Godoy,Morales,Domínguez,Moreno,Peralta,Vega,Carrizo,Quiroga,Garcia Pacek,Castillo,Ledesma,Muñoz,Ojeda,Ponce,Vera,Vázque,Villalba,Cardozo,Navarro,Ramos,Arias,Coronel,Córdoba,Figueroa,Correa,Cáceres,Vargas,Maldonado,Mansilla,Farías,Rivero,Paz,Miranda,Roldán,Méndez,Lucero,Cruz,Hernández,Agüero,Páez,Blanco,Mendoza,Barrios,Escobar,Ávila,Soria,Leiva,Acuña,Martin,Maidana,Moyano,Cola,Campos,Olivera,Duarte,Soto,Franco,Bravo,Valdéz,Toledo,Andrada,Andrade,Montenegro,Leguizamón,Chávez,Arce,Valdez,Yong Wong";	
+	private static String Nombre="Pablo,Armando,Emiliano,Don Nacho,Samuel,Alejandro,Mateo,Carlos,Benjamín,Daniel,Joaquín,Tomás,Gabriel,Lucas,Martín,Emmanuel,Alexander,David,Emiliano,Carlos,JuanJosé,Andrés,Felipe,Ignacio,Leonardo,Adrián,Francisco,Rodrigo,Alvaro,MiguelÁngel,Fernando,Santino,Bautista,Agustín,JuanPablo,Vicente,Thiago,Maximiliano,Pablo,Eduardo,Christopher,Kevin,Isaac,JuanDiego,Aarón,Dylan,Jesús,Esteban,Manuel,JuanSebastián,Franco,Lautaro,Miguel,JuanDavid,Ricardo,Bruno,Luciano,Juan,Emilio,JuanEsteban,Julián,Valentino,Javier,Joshua,Rafael,Jorge,José,Luis,DiegoAlejandro,Gael,Óscar,Nahuel,Máximo,Axel,Facundo,Jonathan,Ian,Josué,Camilo,Sergio,Jerónimo,Álex,Mauricio,JuanCamilo,Alonso,Anthony,Dante,Christian,Simón,Patricio,Héctor,Iván,Marcos,Ramiro,Alberto,Matthew,Pedro,Mario,Alan,Arturo,Adrian,Manuel,Jose,Gogo,Pedro,Mariano,Leandro,Gonzalo,Roberto,Daniel,Fernando,Damian,Oscar,Lautaro,Miguel,Diego,Pablo,Raul,Ricardo,Matias,Hector,Juan,Emiliano,Cesar,Gerardo,Emiliano,Francisco,Martin,Leonardo";
+	private static String Apellido="Picheira,Bosso,Pereyra,Cartes,Gómez,Fernández,López,Torroija,Estevez,Martínez,Pérez,García,Sánchez,Romero,Sosa,Álvarez,Torres,Ruiz,Ramírez,Flores,Acosta,Benítez,Medina,Suárez,Herrera,Aguirre,Pereyra,Gutiérrez,Giménez,Molina,Silva,Benigar,Castro,Rojas,Ortíz,Núñez,Luna,Juárez,Cabrera,Ríos,Ferreyra,Godoy,Morales,Domínguez,Moreno,Peralta,Vega,Carrizo,Quiroga,Garcia Pacek,Castillo,Ledesma,Muñoz,Ojeda,Ponce,Vera,Vázque,Villalba,Cardozo,Navarro,Ramos,Arias,Coronel,Córdoba,Figueroa,Correa,Cáceres,Vargas,Maldonado,Mansilla,Farías,Rivero,Paz,Miranda,Roldán,Méndez,Lucero,Cruz,Hernández,Agüero,Páez,Blanco,Mendoza,Barrios,Escobar,Ávila,Soria,Leiva,Acuña,Martin,Maidana,Moyano,Cola,Campos,Olivera,Duarte,Soto,Franco,Bravo,Valdéz,Toledo,Andrada,Andrade,Montenegro,Leguizamón,Chávez,Arce,Valdez,Yong Wong";	
+	private static String Telefono="2994298317,2994235818,299,2994681860";	
+	private static String Mail="nachocartes@gmail.com, bossoar@gmail.com, pincheirapabloj@gmail.com, marcelo_j_m@hotmail.com";
+	
 	private static String Calle="Jujuy,La Rioja,Salta,Pampa,Misiones,Buenos Ahires,Bahia Blanca,Mendoza,Santafe,Boedo,San Martin,Belgrano,Aconcagua,Domene,Chile,España,Godoy,Perito Moreno";
 	private static String Letras="A,B,C,D,E,F,G,H";
 	private static String MarcaAbreviatura="APPLE,Nokia,Motorola,Sony,SonyEriccson,Kyocera,Alcatel,HTC,Samsung,BlackBerry,Pantech,ZTE,Huawei";
@@ -44,13 +47,6 @@ public class GenericData {
 		return Cantidad;
 	}
 	
-	
-//	public static String ObtenerPlan()
-//	{
-//		return ObtenerValor(Plan);
-//	}
-//	
-	
 	public static String ObtenerNombre()
 	{
 		return ObtenerValor(Nombre);
@@ -61,6 +57,15 @@ public class GenericData {
 		return ObtenerValor(Apellido);
 	}
 	
+	public static String ObtenerTelefono()
+	{
+		return ObtenerValor(Telefono);
+	}
+	
+	public static String ObtenerMail()
+	{
+		return ObtenerValor(Mail);
+	}
 		
 	public static String ObtenerCalle()
 	{

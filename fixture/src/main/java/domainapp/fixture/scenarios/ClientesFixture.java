@@ -43,10 +43,9 @@ public class ClientesFixture extends FixtureScript {
     @Override
     protected void execute(ExecutionContext executionContext) {
 
-
     	BorrarDBClientes(executionContext);
         
-        int Cantidad=GenericData.ObtenerCantidad()*14;
+        int Cantidad=GenericData.ObtenerCantidad()*10;
         
         List<Cliente> listAl=new ArrayList<Cliente>();
         
@@ -56,12 +55,16 @@ public class ClientesFixture extends FixtureScript {
         	Cliente al=new Cliente();
         	al.setNombre(GenericData.ObtenerNombre());
         	al.setApellido(GenericData.ObtenerApellido());
+        	al.setTelefono(GenericData.ObtenerTelefono());
+        	al.setEmail(GenericData.ObtenerMail());
         	
         	listAl.add(al);
         	
         }
         for(Cliente al:removerrepetidos(listAl))
-        create(al.getApellido(),al.getNombre(),GenericData.Random(40000000, 60000000),E_sexo.MASCULINO,LocalDate.now(),E_nacionalidad.ARGENTINA, E_localidades.NEUQUEN,GenericData.ObtenerCalle(), GenericData.Random(1, 9999),null,null,null,String.valueOf(GenericData.Random(10000000, 88888888)), executionContext);
+        create(GenericData.Random(40000000, 60000000),al.getNombre(), al.getApellido(),
+        		E_sexo.MASCULINO,LocalDate.now(),E_nacionalidad.ARGENTINA, E_localidades.NEUQUEN,GenericData.ObtenerCalle(), GenericData.Random(1, 9999),
+        		null,al.getTelefono(),al.getEmail(), null, executionContext);
     }
 
     // //////////////////////////////////////
@@ -74,7 +77,8 @@ public class ClientesFixture extends FixtureScript {
 				for(int y=x+1;y<listaCliente.size();y++)
 				{
 					
-					if(listaCliente.get(x).getNombre().equals(listaCliente.get(y).getNombre()) && listaCliente.get(x).getApellido().equals(listaCliente.get(y).getApellido()))
+					if(listaCliente.get(x).getNombre().equals(listaCliente.get(y).getNombre()) && 
+							listaCliente.get(x).getApellido().equals(listaCliente.get(y).getApellido()))
 					{
 						listaCliente.remove(y);
 					}
@@ -86,10 +90,28 @@ public class ClientesFixture extends FixtureScript {
 	}
     
     @SuppressWarnings("deprecation")
-	private Cliente create(final String apellido, String nombre,int dni,E_sexo sexo,LocalDate nacimiento,E_nacionalidad nacionalidad, E_localidades localidad, String calle, int numero, String piso,String departamento,String  email,String telefono, ExecutionContext executionContext) {
-        return executionContext.add(this, Clientes.ingresarCliente(apellido, nombre, dni, sexo, nacimiento, nacionalidad, localidad, calle, numero, piso, departamento,email, telefono));
+	private Cliente create(final 	int dni,
+									String apellido, 
+									String nombre,
+									E_sexo sexo,
+									LocalDate nacimiento,
+									E_nacionalidad nacionalidad, 
+									E_localidades localidad, 
+									String calle, 
+									int numero, 
+									String piso,
+									String departamento,
+									String telefono,
+									String email,
+									ExecutionContext executionContext) {
+        
+    	return executionContext.add(this, Clientes.ingresarCliente(nombre, apellido, 
+    			dni, sexo, nacimiento, nacionalidad, 
+    			localidad, calle, numero, piso, departamento,
+    			telefono, email));
+        //return executionContext.add(this, Clientes.ingresarCliente("Cartes", "Don Nacho", 30987632, E_sexo.MASCULINO, null, E_nacionalidad.ARGENTINA, E_localidades.NEUQUEN, "Roca", 545, "PB", "A","nachocartes@gmail.com", "2994681860"));
     }
-
+   
     // //////////////////////////////////////
 
     @SuppressWarnings("deprecation")
@@ -99,10 +121,8 @@ public class ClientesFixture extends FixtureScript {
     	
        return;
     }
-    
-    
+       
     @javax.inject.Inject
     private ClienteRepositorio Clientes;
-
 
 }
