@@ -3,10 +3,6 @@ package domainapp.dom.modules.atencion;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Named;
-
-import net.sf.jasperreports.engine.JRException;
-
 import org.apache.isis.applib.AbstractViewModel;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Collection;
@@ -34,9 +30,7 @@ import domainapp.dom.modules.atencion.ModeloRepositorio;
 import domainapp.dom.modules.atencion.OrdenServicio;
 import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
 import domainapp.dom.modules.atencion.Tecnico;
-import domainapp.dom.modules.reportes.E_formato;
-import domainapp.dom.modules.reportes.EquiposSinRevisar;
-import domainapp.dom.modules.reportes.GenerarReporte;
+
 
 @DomainServiceLayout(menuOrder = "8" , 
 menuBar = DomainServiceLayout.MenuBar.SECONDARY
