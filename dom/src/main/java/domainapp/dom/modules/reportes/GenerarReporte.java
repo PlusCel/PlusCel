@@ -1,8 +1,10 @@
 package domainapp.dom.modules.reportes;
 
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +31,7 @@ import org.apache.isis.applib.DomainObjectContainer;
 
 public class GenerarReporte {
 	
-	public static void generarReporte(String jrxml, List<Object> parametros, E_formato formato, String nombreArchivo)  throws JRException{
+	public static void generarReporte(String jrxml, List<Object> parametros, String nombreArchivo)  throws JRException{
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		//Levanta el jrxml
@@ -59,30 +61,21 @@ public class GenerarReporte {
 		JasperPrint print = JasperFillManager.fillReport(reporte, map, jArray);
 		
 		//Lo muestra con el jasperviewer
-		JasperViewer.viewReport(print, false);
+		//JasperViewer.viewReport(print, false);
+		
+		
+		JasperExportManager.exportReportToPdfFile(print, nombreArchivo + ".pdf");
+		
+		//Abre el reporte recien generado
+		try {
+		     File path = new File (nombreArchivo + ".pdf");
+		     Desktop.getDesktop().open(path);
+		}catch (IOException ex) {
+		     ex.printStackTrace();
+		}
 
 							
-		if(formato == E_formato.HojadeCálculo){
-			
-				JRXlsExporter exporterXLS = new JRXlsExporter();
-				
-				exporterXLS.setExporterInput(new SimpleExporterInput(print));
-				exporterXLS.setExporterOutput(new SimpleOutputStreamExporterOutput(nombreArchivo + ".xls"));
-				
-				SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
-				configuration.setOnePagePerSheet(true);
-				configuration.setDetectCellType(true);
-				configuration.setCollapseRowSpan(false);
-				
-				exporterXLS.setConfiguration(configuration);
-				exporterXLS.exportReport();
-				
-		}else{
-			if(formato == E_formato.PDF){				
-				JasperExportManager.exportReportToPdfFile(print, nombreArchivo + ".pdf" );				
-				
-			}
-		}
+
 		
 	}	
 	
