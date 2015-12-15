@@ -359,10 +359,13 @@
         	<groupId>org.isisaddons.module.security</groupId>
         	<artifactId>isis-module-security-dom</artifactId>
         	<version>1.9.0</version>
-    	</dependency>
-
-
-        </dependencies>
+    </dependency>
+            <dependency>
+        	<groupId>org.apache.httpcomponents</groupId>
+        	<artifactId>httpclient</artifactId>
+        	<version>4.5.1</version>
+        </dependency>
+    </dependencies>
     </dependencyManagement>
 
 

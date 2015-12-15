@@ -1,5 +1,6 @@
 package domainapp.dom.modules.atencion;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,13 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 import domainapp.dom.modules.reportes.E_formato;
 import domainapp.dom.modules.reportes.EquiposSinRevisar;
@@ -262,6 +270,39 @@ public class OrdenServicio {
     					
 		return this;
 	}
+    
+    public OrdenServicio EnviarSmsSinArreglo() {	
+    	if (OrdenServicio.this.estado == E_estado.SIN_ARREGLO) {
+    		
+    		String url = "http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&relogin=1&usuario=SMSDEMO77832&clave=SMSDEMO77832666&tos=" + getCliente().getTelefono() + "&idinterno=&texto=PlusCel+nacho+desde+web";
+
+    		HttpClient client = HttpClientBuilder.create().build();
+    		HttpPost post = new HttpPost(url);
+    		// add header
+    		//post.setHeader("User-Agent", USER_AGENT);
+
+    		//List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
+    		//urlParameters.add(new BasicNameValuePair("sn", "C02G8416DRJM"));
+    		//urlParameters.add(new BasicNameValuePair("cn", ""));
+    		//urlParameters.add(new BasicNameValuePair("locale", ""));
+    		//urlParameters.add(new BasicNameValuePair("caller", ""));
+    		//urlParameters.add(new BasicNameValuePair("num", "12345"));
+
+    		//post.setEntity(new UrlEncodedFormEntity(urlParameters));
+
+    		try {
+				HttpResponse response = client.execute(post);
+			} catch (ClientProtocolException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+    	
+    	}
+    					
+		return this;
+	}
+    
     
     //Enviamos alerta via mail al tecnico para informar de un nuevo equipo.
     public OrdenServicio EnviarAlertaTecnico() {	
