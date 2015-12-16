@@ -268,10 +268,9 @@ public class OrdenServicio {
 		return this;
 	}
     
-    public OrdenServicio EnviarSmsSinArreglo() {	
-    	if (OrdenServicio.this.estado == E_estado.SIN_ARREGLO) {
+    public OrdenServicio EnviarSMS() {	
     		
-    		String url = "http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&relogin=1&usuario=SMSDEMO77832&clave=SMSDEMO77832666&tos=" + getCliente().getTelefono() + "&idinterno=&texto=Puede+retirar+su+celular+X+8300+Comunicaciones";
+    		String url = "http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&relogin=1&usuario=SMSDEMO77832&clave=SMSDEMO77832666&tos=" + getCliente().getTelefono() + "&idinterno=&texto=Puede+retirar+su+celular+" + OrdenServicio.this.estado + "+X+8300+Comunicaciones";
 
     		HttpClient client = HttpClientBuilder.create().build();
     		HttpPost post = new HttpPost(url);
@@ -294,8 +293,6 @@ public class OrdenServicio {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-    	
-    	}
     					
 		return this;
 	}
