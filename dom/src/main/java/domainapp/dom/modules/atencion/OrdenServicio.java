@@ -10,6 +10,7 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
+import javax.swing.JOptionPane;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -324,8 +325,8 @@ public class OrdenServicio {
 			EquiposSinRevisar orden = new EquiposSinRevisar();
 			
 			orden.setFalla(getTipoFalla().getDescripcion() + " - " + getFalla() );
-			orden.setCliente(String.valueOf(getCliente().getNombre() + " " + getCliente().getApellido() ));
-			orden.setEquipo(String.valueOf("Imei: " + getEquipo().getImei() + "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura()+ "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura()));		
+			orden.setCliente(String.valueOf((getCliente().getNombre() + " " + getCliente().getApellido() + "  " +" DNI:"  + getCliente().getDni())));
+			orden.setEquipo(String.valueOf("Imei: " + getEquipo().getImei()+ "  " + "Marca: " + getEquipo().getMarca().getAbreviatura()) + "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura());		
 			
 			orden.setTecnico(String.valueOf(getTecnico().getApellido() + " " + getTecnico().getNombre()));
 			orden.setNumero(getNumero());
