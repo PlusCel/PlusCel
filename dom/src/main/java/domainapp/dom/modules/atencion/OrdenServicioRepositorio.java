@@ -108,7 +108,8 @@ public class OrdenServicioRepositorio {
 	  }
 	  @MemberOrder(sequence = "6")
 	    public List<OrdenServicio> buscarPorReparaciones(Equipo equipo,
-	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde,@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta, Cliente cliente)
+	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde,
+	    		@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta, Cliente cliente)
 	      {
 	       
 	            return container.allMatches(
@@ -127,7 +128,6 @@ public class OrdenServicioRepositorio {
 		            return container.allMatches(
 		                    new QueryDefault<>(
 		                    		OrdenServicio.class,
-		                            //"OrdenesServiciosPorTecnico",
 		                    		"OrdenesServiciosPorTecnico",
 		                            "tecnico", tecnico));
 		        }	
@@ -135,8 +135,8 @@ public class OrdenServicioRepositorio {
 		//Busco para liquidar por tecnico	  
 		  @MemberOrder(sequence = "8")
 		    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico, 
-		    		@ParameterLayout(named="Estado") final E_estado estado,
-		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, @ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
+		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, 
+		    		@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
 		      {
 		       
 		            return container.allMatches(
@@ -144,7 +144,6 @@ public class OrdenServicioRepositorio {
 		                    		OrdenServicio.class,
 		                            "LiquidarReparacionesPorTecnico",
 		                            "tecnico", tecnico,
-		                            "estado", estado,
 		                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
 		        }	
  

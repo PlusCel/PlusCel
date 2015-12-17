@@ -69,7 +69,7 @@ import org.joda.time.LocalDate;
                      			
 		@javax.jdo.annotations.Query(name = "LiquidarReparacionesPorTecnico", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio"+
-				" WHERE tecnico == :tecnico && estado == :estado" +
+				" WHERE tecnico == :tecnico && estado == 'REPARADO' " +
 				" && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"),
 		
 		@javax.jdo.annotations.Query(name = "OrdenesServiciosPorTecnico", language = "JDOQL", value = "SELECT "
