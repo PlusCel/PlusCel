@@ -3,16 +3,13 @@ package domainapp.dom.modules.atencion;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
-
 import net.sf.jasperreports.engine.JRException;
-
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
@@ -25,7 +22,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
-
 import domainapp.dom.modules.reportes.E_formato;
 import domainapp.dom.modules.reportes.EquiposSinRevisar;
 import domainapp.dom.modules.reportes.GenerarReporte;
