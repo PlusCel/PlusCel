@@ -3,6 +3,7 @@ package domainapp.dom.modules.atencion;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
@@ -10,7 +11,9 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
 import javax.swing.JOptionPane;
+
 import net.sf.jasperreports.engine.JRException;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
@@ -21,10 +24,10 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
-import domainapp.dom.modules.reportes.E_formato;
 
-import domainapp.dom.modules.reportes.EquiposSinRevisar;
+import domainapp.dom.modules.reportes.E_formato;
 import domainapp.dom.modules.reportes.GenerarReporte;
+import domainapp.dom.modules.reportes.OrdenServicioReporte;
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoGarantia;
 import domainapp.dom.modules.servicios.EnvioCorreo;
@@ -311,7 +314,7 @@ public class OrdenServicio {
 		List<Object> objectsReport = new ArrayList<Object>();
 								
 		
-			EquiposSinRevisar orden = new EquiposSinRevisar();
+		OrdenServicioReporte orden = new OrdenServicioReporte();
 			
 			orden.setFalla(getTipoFalla().getDescripcion() + " - " + getFalla() );
 			orden.setCliente(String.valueOf((getCliente().getNombre() + " " + getCliente().getApellido() + "  " +" DNI:"  + getCliente().getDni())));

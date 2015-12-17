@@ -1,6 +1,6 @@
 package domainapp.dom.modules.reportes;
 
-public class EquiposSinRevisar {
+public class OrdenServicioReporte {
 	
 	// {{ Titulo (property)
 		private String titulo;
