@@ -7,18 +7,18 @@ import org.apache.isis.applib.services.memento.MementoService.Memento;
 
 @DomainService
 
-public class CargaRapidaServices {
+public class Novedades {
 	
 	public String getId() {
 		return "Vistas Rapidas";
 	}
 
-	public CargaRapidaViewmodel cargaRapida(
+	public NovedadesViewmodel Novedades(
 			){
 		
 		Memento newMemento = mementoService.create();
 			
-		final CargaRapidaViewmodel newView = container.newViewModelInstance(CargaRapidaViewmodel.class, newMemento.asString());
+		final NovedadesViewmodel newView = container.newViewModelInstance(NovedadesViewmodel.class, newMemento.asString());
 		return newView;
 		
 	}	

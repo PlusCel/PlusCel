@@ -37,7 +37,7 @@ menuBar = DomainServiceLayout.MenuBar.SECONDARY
 ,named="Vistas Rapidas")
 
 @MemberGroupLayout(columnSpans = { 4, 0, 0, 9 })
-public class CargaRapidaViewmodel extends AbstractViewModel {
+public class NovedadesViewmodel extends AbstractViewModel {
 
 	private String title;
 	private String memento;
