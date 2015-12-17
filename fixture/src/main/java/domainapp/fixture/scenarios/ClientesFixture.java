@@ -62,9 +62,11 @@ public class ClientesFixture extends FixtureScript {
         	
         }
         for(Cliente al:removerrepetidos(listAl))
-        create(GenericData.Random(40000000, 60000000),al.getNombre(), al.getApellido(),
-        		E_sexo.MASCULINO,LocalDate.now(),E_nacionalidad.ARGENTINA, E_localidades.NEUQUEN,GenericData.ObtenerCalle(), GenericData.Random(1, 9999),
-        		null,al.getTelefono(),al.getEmail(), null, executionContext);
+        	create(al.getApellido(),al.getNombre(),GenericData.Random(40000000, 60000000),
+        			E_sexo.MASCULINO,LocalDate.now(),E_nacionalidad.ARGENTINA, 
+        			E_localidades.NEUQUEN,GenericData.ObtenerCalle(), 
+        			GenericData.Random(1, 9999),null,null,al.getEmail(),
+        			al.getTelefono(), executionContext);	
     }
 
     // //////////////////////////////////////
@@ -89,27 +91,26 @@ public class ClientesFixture extends FixtureScript {
 		return listaCliente;
 	}
     
+	
+	
     @SuppressWarnings("deprecation")
-	private Cliente create(final 	int dni,
-									String apellido, 
-									String nombre,
-									E_sexo sexo,
-									LocalDate nacimiento,
-									E_nacionalidad nacionalidad, 
-									E_localidades localidad, 
-									String calle, 
-									int numero, 
-									String piso,
-									String departamento,
-									String telefono,
-									String email,
-									ExecutionContext executionContext) {
-        
-    	return executionContext.add(this, Clientes.ingresarCliente(nombre, apellido, 
-    			dni, sexo, nacimiento, nacionalidad, 
-    			localidad, calle, numero, piso, departamento,
-    			telefono, email));
-        //return executionContext.add(this, Clientes.ingresarCliente("Cartes", "Don Nacho", 30987632, E_sexo.MASCULINO, null, E_nacionalidad.ARGENTINA, E_localidades.NEUQUEN, "Roca", 545, "PB", "A","nachocartes@gmail.com", "2994681860"));
+    	private Cliente create(final String apellido, 
+    								String nombre,
+    								int dni,
+    								E_sexo sexo,
+    								LocalDate nacimiento,
+    								E_nacionalidad nacionalidad, 
+    								E_localidades localidad, 
+    								String calle, 
+    								int numero, 
+    								String piso,
+    								String departamento,
+    								String  email,
+    								String telefono, ExecutionContext executionContext) {
+         return executionContext.add(this, Clientes.ingresarCliente(apellido, 
+        		 nombre, dni, sexo, nacimiento, nacionalidad, localidad, calle, numero, piso, departamento,email, telefono));    
+       
+
     }
    
     // //////////////////////////////////////

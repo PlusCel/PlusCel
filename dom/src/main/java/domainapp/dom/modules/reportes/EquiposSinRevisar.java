@@ -60,5 +60,16 @@ public class EquiposSinRevisar {
 		        this.numero = numero;
 		 }
 		 
+		 private String dni;
+			
+		 public String getDNI() {
+		        return dni;
+		 }
+		 public void setDNI(final String dni) {
+		        this.dni = dni;
+		 }		 
+		 
+
+
 		
 }

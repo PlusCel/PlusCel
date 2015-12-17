@@ -9,6 +9,7 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
@@ -16,13 +17,12 @@ import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import domainapp.dom.modules.reportes.E_formato;
+
 import domainapp.dom.modules.reportes.EquiposSinRevisar;
 import domainapp.dom.modules.reportes.GenerarReporte;
 import domainapp.dom.modules.servicios.E_estado;
@@ -67,7 +67,7 @@ import org.joda.time.LocalDate;
                      			
 		@javax.jdo.annotations.Query(name = "LiquidarReparacionesPorTecnico", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio"+
-				" WHERE tecnico == :tecnico && estado == :estado" +
+				" WHERE tecnico == :tecnico && estado == 'REPARADO' " +
 				" && fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"),
 		
 		@javax.jdo.annotations.Query(name = "OrdenesServiciosPorTecnico", language = "JDOQL", value = "SELECT "
@@ -80,10 +80,7 @@ import org.joda.time.LocalDate;
 		
 		@javax.jdo.annotations.Query(name = "buscarOrdenadasPorFecha", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.modules.atencion.OrdenServicio "+
-				" ORDER BY this.fechaHora desc")/*,
-		@javax.jdo.annotations.Query(name = "buscarFallasXOrden", language = "JDOQL", value = "SELECT tipoFalla "
-				+ "FROM dom.modules.atencion.OrdenServicio "
-				+ " WHERE numero == :numero")		*/
+				" ORDER BY this.fechaHora desc")
 		
 })
 
@@ -267,10 +264,9 @@ public class OrdenServicio {
 		return this;
 	}
     
-    public OrdenServicio EnviarSmsSinArreglo() {	
-    	if (OrdenServicio.this.estado == E_estado.SIN_ARREGLO) {
+    public OrdenServicio EnviarSMS() {	
     		
-    		String url = "http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&relogin=1&usuario=SMSDEMO77832&clave=SMSDEMO77832666&tos=" + getCliente().getTelefono() + "&idinterno=&texto=PlusCel+nacho+desde+web";
+    		String url = "http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&relogin=1&usuario=SMSDEMO77832&clave=SMSDEMO77832666&tos=" + getCliente().getTelefono() + "&idinterno=&texto=Puede+retirar+su+celular+" + OrdenServicio.this.estado + "+X+8300+Comunicaciones";
 
     		HttpClient client = HttpClientBuilder.create().build();
     		HttpPost post = new HttpPost(url);
@@ -293,8 +289,6 @@ public class OrdenServicio {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-    	
-    	}
     					
 		return this;
 	}
@@ -320,8 +314,8 @@ public class OrdenServicio {
 			EquiposSinRevisar orden = new EquiposSinRevisar();
 			
 			orden.setFalla(getTipoFalla().getDescripcion() + " - " + getFalla() );
-			orden.setCliente(String.valueOf(getCliente().getNombre() + " " + getCliente().getApellido() ));
-			orden.setEquipo(String.valueOf("Imei: " + getEquipo().getImei() + "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura()+ "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura()));		
+			orden.setCliente(String.valueOf((getCliente().getNombre() + " " + getCliente().getApellido() + "  " +" DNI:"  + getCliente().getDni())));
+			orden.setEquipo(String.valueOf("Imei: " + getEquipo().getImei()+ "  " + "Marca: " + getEquipo().getMarca().getAbreviatura()) + "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura());		
 			
 			orden.setTecnico(String.valueOf(getTecnico().getApellido() + " " + getTecnico().getNombre()));
 			orden.setNumero(getNumero());
