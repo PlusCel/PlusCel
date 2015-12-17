@@ -5,7 +5,7 @@ import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.VersionStrategy;
-
+import org.joda.time.LocalDate;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Where;
@@ -19,7 +19,7 @@ import domainapp.dom.modules.servicios.E_estado;
 
 
 @javax.jdo.annotations.Query(name = "registroDeMovimientoPorOrden", language = "JDOQL", value = "SELECT "
-		+ "FROM dom.modules.atencion.FallaEquipotecnico " + "WHERE orden == :orden")
+		+ "FROM dom.modules.atencion.FallaEquipotecnico  " + "WHERE orden.numero == :numero")
 
 
 @DomainObject(
@@ -34,7 +34,7 @@ public class FallaEquipoTecnico {
 	 * @return the string
 	 */
 	public String title() {		
-		return getEquipo().title() + " - " + getTecnico().title() ;
+		return getFechaHora() + " - " + getEstado() ;
 	}
 
 	private OrdenServicio orden;
@@ -54,7 +54,7 @@ public class FallaEquipoTecnico {
 	// {{ Falla (property)
 
     private Falla falla;
-	@MemberOrder(sequence = "1")
+	@MemberOrder(sequence = "2")
 	@Column(allowsNull = "true")	
     public Falla getFalla() {
         return falla;
@@ -68,7 +68,7 @@ public class FallaEquipoTecnico {
 	// {{ Tecnico (property)
 	private Tecnico tecnico;
 
-	@MemberOrder(sequence = "2")
+	@MemberOrder(sequence = "3")
 	@Column(allowsNull = "true")
 	public Tecnico getTecnico() {
 		return tecnico;
@@ -79,24 +79,25 @@ public class FallaEquipoTecnico {
 	}
 	// }}
 	
-	// {{ Equipo (property)
-	private Equipo equipo;
-	//@Hidden(where = Where.ALL_TABLES)
-	@MemberOrder(sequence = "3")
-	@Column(allowsNull = "true")
-	public Equipo getEquipo() {
-		return equipo;
-	}
+	// FechaHora
+ 	private LocalDate fechaHora; 	
+ 	 	 	
+ 	@MemberOrder( sequence = "4")
+ 	@Column(allowsNull = "true")
+ 	public LocalDate getFechaHora() {
+ 		return fechaHora;
+ 	}
 
-	public void setEquipo(final Equipo equipo) {
-		this.equipo =equipo;
-	}
+ 	public void setFechaHora(final LocalDate fechaHora) {
+ 		this.fechaHora = fechaHora;
+ 	}
+
 	
  //Estado de la orden de servicio	
     
   	private E_estado estado;  
     @Persistent
-	@MemberOrder(sequence = "4")
+	@MemberOrder(sequence = "5")
     @javax.jdo.annotations.Column(allowsNull="true", length = 20)
     public E_estado getEstado() {
         return estado;

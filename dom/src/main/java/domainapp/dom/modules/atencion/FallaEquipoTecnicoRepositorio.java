@@ -10,7 +10,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
-
+import org.joda.time.LocalDate;
 import org.apache.isis.applib.query.QueryDefault;
 import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.atencion.TipoFalla;
@@ -33,10 +33,10 @@ public class FallaEquipoTecnicoRepositorio {
     //region > create (action)
     @MemberOrder(sequence = "1")
     public FallaEquipoTecnico ingresarRegistroDeReparacion(
-    		final @ParameterLayout(named="Número de orden") OrdenServicio orden,
-    		final @ParameterLayout(named="Tipo de Falla") TipoFalla tipoFalla,
-            final @ParameterLayout(named="Equipo") Equipo equipo,
+    		final @ParameterLayout(named="Numero de orden") OrdenServicio orden,
+    		final @ParameterLayout(named="Fecha") LocalDate  fechaHora,
             final @ParameterLayout(named="Tecnico") Tecnico tecnico,
+            final @ParameterLayout(named="Tipo de Falla") TipoFalla tipoFalla,
             final @ParameterLayout(named="Falla descripcion", multiLine=10) String fallaDesc,
             final @ParameterLayout(named="Estado") E_estado estado) {
     	
@@ -46,7 +46,7 @@ public class FallaEquipoTecnicoRepositorio {
         fallaCel.setTipoFalla(tipoFalla);
         fallaCel.setDescripcion(fallaDesc);
         obj.setFalla(fallaCel);
-        obj.setEquipo(equipo);
+        obj.setFechaHora(fechaHora);
         obj.setTecnico(tecnico);
         obj.setEstado(estado);   
         container.persistIfNotAlready(obj);
@@ -65,13 +65,14 @@ public class FallaEquipoTecnicoRepositorio {
     //endregion
     
     @MemberOrder(sequence = "4")
-    public List<FallaEquipoTecnico> buscarRegistroDeMovimientoPorOrden(final OrdenServicio orden)
+    public List<FallaEquipoTecnico> buscarRegistroDeMovimientoPorOrden(           @ParameterLayout(named="Numero Orden de Servicio")
+    final long numero)
   {
         return container.allMatches(
                 new QueryDefault<>(
                 		FallaEquipoTecnico.class,
                         "registroDeMovimientoPorOrden",
-                        "orden", orden));
+                        "numero", numero));
     }
 
 	
