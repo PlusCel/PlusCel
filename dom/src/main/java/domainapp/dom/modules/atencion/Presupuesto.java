@@ -1,16 +1,30 @@
 package domainapp.dom.modules.atencion;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
+import javax.swing.JOptionPane;
+
+import net.sf.jasperreports.engine.JRException;
+
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+
+import domainapp.dom.modules.reportes.GenerarReporte;
+import domainapp.dom.modules.reportes.OrdenServicioReporte;
+import domainapp.dom.modules.reportes.PresupuestoReporte;
+import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
+import domainapp.dom.modules.servicios.EnvioCorreo;
+
 import org.joda.time.LocalDate;
 
 
@@ -241,8 +255,39 @@ public class Presupuesto {
     }      
    //}}
    
-        	
-    
+   
+   public String imprimirPresupuesto() throws JRException{
+		List<Object> objectsReport = new ArrayList<Object>();
+								
+		
+		PresupuestoReporte presupuesto = new PresupuestoReporte();
+			
+		
+		presupuesto.setCliente(String.valueOf((getCliente().getNombre() + " " + getCliente().getApellido() + "  " +" DNI:"  + getCliente().getDni())));
+		presupuesto.setEquipo(String.valueOf("Imei: " + getEquipo().getImei()+ "  " + "Marca: " + getEquipo().getMarca().getAbreviatura()) + "  " + "Modelo: " + getEquipo().getModelo().getAbreviatura());		
+			
+		presupuesto.setImporte(getImporte());
+		presupuesto.setNumero(getNumero());
+		presupuesto.setDiagnostico(getDiagnostico());
+		presupuesto.setObservacion(getObservacion());
+		presupuesto.setFecha(String.valueOf(getFechaHora()));
+		presupuesto.setRequerida(getReparacionRequerida());
+
+			objectsReport.add(presupuesto);
+			
+		String nombreArchivo ="reportes/Presupuesto" + String.valueOf(presupuesto.getNumero()) ;
+
+		GenerarReporte.generarReporte("reportes/Presupuesto.jrxml", objectsReport, nombreArchivo);
+		
+			
+		
+		return "Reporte Generado.";
+	}
+   
+   
+   
+      
+
 	 //region > injected services
     @javax.inject.Inject
 		private DomainObjectContainer container;
