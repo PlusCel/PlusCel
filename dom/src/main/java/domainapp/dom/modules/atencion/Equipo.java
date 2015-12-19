@@ -83,7 +83,7 @@ public class Equipo {
     private String imei;
     @Persistent
 	@MemberOrder(sequence = "3")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="false", length = 20)
     public String getImei(){
         return imei;
     }

@@ -69,7 +69,7 @@ public class Falla {
     
     @Persistent
 	@MemberOrder(sequence = "2")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="false", length = 255)
 	
     public String getDescripcion() {
         return descripcion;

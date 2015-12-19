@@ -94,7 +94,7 @@ public class Modelo {
   
   @Persistent
 	@MemberOrder(sequence = "3")
-  @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+  @javax.jdo.annotations.Column(allowsNull="false", length = 255)
 	
   public String getDescripcion() {
       return descripcion;

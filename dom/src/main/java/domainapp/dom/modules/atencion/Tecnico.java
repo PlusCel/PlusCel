@@ -68,7 +68,7 @@ public class Tecnico extends Persona implements Comparable<Tecnico> {
 	private String Local;
     @Persistent
 	@MemberOrder(sequence = "6")
-    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="true", length = 50)
     public String getLocal(){
         return Local;
     }

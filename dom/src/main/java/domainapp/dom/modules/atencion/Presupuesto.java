@@ -149,7 +149,7 @@ public class Presupuesto {
     private String diagnostico;
     @Persistent
 	@MemberOrder(sequence = "5")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="false", length = 255)
     public String getDiagnostico(){
         return diagnostico;
     }
@@ -162,7 +162,7 @@ public class Presupuesto {
     private String reparacionRequerida;
     @Persistent
 	@MemberOrder(sequence = "6")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="false", length = 255)
     public String getReparacionRequerida(){
         return reparacionRequerida;
     }
@@ -188,7 +188,7 @@ public class Presupuesto {
     private String observacion;
     @Persistent
 	@MemberOrder(sequence = "8")
-    @javax.jdo.annotations.Column(allowsNull="false", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="false", length = 255)
     public String getObservacion(){
         return observacion;
     }

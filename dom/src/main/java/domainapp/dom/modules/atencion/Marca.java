@@ -71,7 +71,7 @@ public class Marca {
     
     @Persistent
 	@MemberOrder(sequence = "2")
-    @javax.jdo.annotations.Column(allowsNull="true", length = 40)
+    @javax.jdo.annotations.Column(allowsNull="true", length = 255)
 	
     public String getDescripcion() {
         return descripcion;

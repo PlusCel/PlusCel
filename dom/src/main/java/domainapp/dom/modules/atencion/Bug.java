@@ -81,7 +81,7 @@ public class Bug {
 		 private String proceso;
 		    @Persistent
 			@MemberOrder(sequence = "3")
-		    @javax.jdo.annotations.Column(allowsNull="false", length = 255)
+		    @javax.jdo.annotations.Column(allowsNull="false", length = 600)
 		    public String getProceso(){
 		        return proceso;
 		    }
@@ -94,7 +94,7 @@ public class Bug {
 			 private String error;
 			    @Persistent
 				@MemberOrder(sequence = "4")
-			    @javax.jdo.annotations.Column(allowsNull="false", length = 255)
+			    @javax.jdo.annotations.Column(allowsNull="false", length = 600)
 			    public String getError(){
 			        return error;
 			    }
