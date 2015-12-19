@@ -26,7 +26,8 @@ import org.apache.isis.applib.value.Blob;
                 value = "SELECT "
                         + "FROM domainapp.dom.modules.atencion.Modelo "),
         @javax.jdo.annotations.Query(name = "findByDescripcion", language = "JDOQL", value = "SELECT "
-                    			+ "FROM dom.modules.atencion.Descripcion " + "WHERE descripcion == :descripcion"),
+                    			+ "FROM domainapp.dom.modules.atencion.Modelo " + 
+        		" WHERE ((:descripcion=='') || (descripcion.toLowerCase().indexOf(:descripcion) >= 0))"),
 
         @javax.jdo.annotations.Query(name = "findByMarca", language = "JDOQL", value = "SELECT "
                             			+ "FROM dom.modules.atencion.Modelo " + "WHERE marca == :marca"),

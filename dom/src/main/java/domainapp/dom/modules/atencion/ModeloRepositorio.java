@@ -15,6 +15,8 @@ import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.value.Blob;
+import org.apache.isis.applib.annotation.Parameter;
+import org.apache.isis.applib.annotation.ParameterLayout;
 
 @DomainService(repositoryFor = Modelo.class)
 @DomainServiceLayout(menuOrder = "1" , named="Gestion")
@@ -62,14 +64,14 @@ public class ModeloRepositorio {
     )
     @MemberOrder(sequence = "3")
     public List<Modelo> buscarPorDescripcion(
-            @ParameterLayout(named="Descripcion")
+            @ParameterLayout(named="Descripcion")  @Parameter(optionality=Optionality.OPTIONAL)
             final String descripcion
     ) {
         return container.allMatches(
                 new QueryDefault<>(
                         Modelo.class,
                         "findByDescripcion",
-                        "descripcion", descripcion));
+                         "descripcion", descripcion==null?"":descripcion));
     }
     
     @MemberOrder(sequence = "4")

@@ -8,7 +8,10 @@ import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Optionality;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.annotation.Parameter;
+import org.apache.isis.applib.annotation.Programmatic;
 import org.apache.isis.applib.annotation.SemanticsOf;
 import org.apache.isis.applib.query.QueryDefault;
 
@@ -54,14 +57,14 @@ public class MarcaRepositorio {
     )
     @MemberOrder(sequence = "3")
     public List<Marca> buscarPorDescripcion(
-            @ParameterLayout(named="Descripcion")
-            final String descripcion
+            @ParameterLayout(named="Descripcion") @Parameter(optionality=Optionality.OPTIONAL) String descripcion
+     
     ) {
         return container.allMatches(
                 new QueryDefault<>(
                         Marca.class,
                         "findByDescripcion",
-                        "descripcion", descripcion));
+                        "descripcion", descripcion==null?"":descripcion));
     }
     //endregion
 

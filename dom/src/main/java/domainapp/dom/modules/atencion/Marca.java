@@ -3,7 +3,8 @@ package domainapp.dom.modules.atencion;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.VersionStrategy;
-
+import org.apache.isis.applib.annotation.Parameter;
+import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.BookmarkPolicy;
 import org.apache.isis.applib.annotation.DomainObject;
@@ -24,7 +25,8 @@ import org.apache.isis.applib.annotation.MemberOrder;
                 value = "SELECT "
                         + "FROM domainapp.dom.modules.atencion.Marca "),
         @javax.jdo.annotations.Query(name = "findByDescripcion", language = "JDOQL", value = "SELECT "
-                    			+ "FROM dom.modules.atencion.Marca.Descripcion " + "WHERE descripcion == :descripcion"),
+                    			+ "FROM domainapp.dom.modules.atencion.Marca "
+                    			+ " WHERE ((:descripcion=='') || (descripcion.toLowerCase().indexOf(:descripcion) >= 0))"),
     
 })
 
