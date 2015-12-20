@@ -268,7 +268,12 @@ public class OrdenServicio {
 	}
     
     public OrdenServicio EnviarSMS() {	
+    	if (OrdenServicio.this.estado == E_estado.SIN_REVISAR) {
     		
+    		container.informUser("El SMS no se puede enviar si el equipo no fue revisado");}
+    		
+    		else{
+    				
     		String url = "http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&relogin=1&usuario=SMSDEMO77832&clave=SMSDEMO77832666&tos=" + getCliente().getTelefono() + "&idinterno=&texto=Puede+retirar+su+celular+" + OrdenServicio.this.estado + "+X+8300+Comunicaciones";
 
     		HttpClient client = HttpClientBuilder.create().build();
@@ -284,7 +289,7 @@ public class OrdenServicio {
     		//urlParameters.add(new BasicNameValuePair("num", "12345"));
 
     		//post.setEntity(new UrlEncodedFormEntity(urlParameters));
-
+    		container.informUser("El SMS a sido enviado correctamente al cliente");
     		try {
 				HttpResponse response = client.execute(post);
 			} catch (ClientProtocolException e) {
@@ -292,6 +297,7 @@ public class OrdenServicio {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+    		}
     					
 		return this;
 	}
@@ -305,6 +311,8 @@ public class OrdenServicio {
     				"La Orden de Servicio :" + OrdenServicio.this.numero +
     				" con el Estado : "+ OrdenServicio.this.estado + 
     				"Necesita ser chequeada por el tecnico antes de las 48 horas");
+    		
+    		container.informUser("Se envio mail al tecnico correctamente");
     	}
     					
 		return this;
@@ -312,8 +320,7 @@ public class OrdenServicio {
     
     public String imprimirOrden() throws JRException{
 		List<Object> objectsReport = new ArrayList<Object>();
-								
-		
+										
 		OrdenServicioReporte orden = new OrdenServicioReporte();
 			
 			orden.setFalla(getTipoFalla().getDescripcion() + " - " + getFalla() );
@@ -330,13 +337,9 @@ public class OrdenServicio {
 		String nombreArchivo ="reportes/OrdenServicio" + String.valueOf(orden.getNumero()) ;
 
 		GenerarReporte.generarReporte("reportes/OrdenServicio.jrxml", objectsReport, nombreArchivo);
-		
 			
-		
 		return "Reporte Generado.";
-	}
-       
-    
+	}   
     
 	 //region > injected services
     @javax.inject.Inject

@@ -3,6 +3,8 @@ package domainapp.dom.modules.atencion;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jdo.annotations.Column;
+
 import org.apache.isis.applib.AbstractViewModel;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.Collection;
@@ -129,16 +131,30 @@ public class NovedadesViewmodel extends AbstractViewModel {
     }
 	//............
 
-    @Override
-	public void viewModelInit(String memento) {
-		this.memento = memento;
+	@Override
+	public void viewModelInit(String mementoString) {
+		this.memento = mementoString;
 		
-		Memento newMemento = mementoService.parse(memento);
-		//titulo, marca
-		this.title = newMemento.get("titulo", String.class);
+		Memento memento = mementoService.parse(mementoString);
 
-				}
-										
+		title = memento.get("titulo", String.class); //Intervalo de fechas
+		setTecnico(memento.get("tecnico", String.class));
+
+	}
+	
+	// {{ Asistencia (property)
+	private String tecnico;
+
+	@MemberOrder(sequence = "1")
+	@Column(allowsNull = "true")
+	public String getTecnico() {
+		return tecnico;
+	}
+
+	public void setTecnico(final String tecnico) {
+		this.tecnico = tecnico;
+	}
+    									
 	@javax.inject.Inject
 	DomainObjectContainer container;
 		
