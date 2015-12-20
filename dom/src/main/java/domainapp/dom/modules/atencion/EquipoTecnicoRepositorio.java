@@ -23,6 +23,7 @@ public class EquipoTecnicoRepositorio {
         obj.setEquipo(equipo);
         obj.setTecnico(tecnico);
         container.persistIfNotAlready(obj);
+        container.informUser("El Equipo a sido asignado correctamente al tecnico");
         return obj;
     }
     

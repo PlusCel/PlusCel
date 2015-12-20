@@ -45,6 +45,7 @@ public class EquipoRepositorio {
         obj.setImei(imei);
    
         container.persistIfNotAlready(obj);
+        container.informUser("El Equipo a sido cargado correctamente");
         return obj;
     }
 	@Programmatic

@@ -125,7 +125,7 @@ public class NovedadesViewmodel extends AbstractViewModel {
             render = RenderType.EAGERLY
     )
 	public List<Cliente> getUltimosClientes() {
-		return ClienteRepositorio.ultimosClientes();//Filtro los resultados para que devuelva solo 10 clientes
+		return ClienteRepositorio.ultimosClientes();
     }
 	//............
 

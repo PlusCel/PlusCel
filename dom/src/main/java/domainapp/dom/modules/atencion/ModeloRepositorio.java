@@ -37,6 +37,7 @@ public class ModeloRepositorio {
         obj.setDescripcion(descripcion);
         obj.setAttachment(attachment);
         container.persistIfNotAlready(obj);
+        container.informUser("El nuevo modelo a sido cargado correctamente");
         return obj;
     }
 

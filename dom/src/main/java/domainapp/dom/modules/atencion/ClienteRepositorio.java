@@ -62,7 +62,7 @@ public class ClienteRepositorio {
             final @ParameterLayout(named="Teléfono") @Parameter(regexPattern = domainapp.dom.modules.validador.ValidadorCaracteres.ValidacionTel.PERMITIDOS, maxLength = 30) String telefono
             
     		) {
-        final Cliente obj = container.newTransientInstance(Cliente.class);
+        final Cliente obj = container.newTransientInstance(Cliente.class);	
         final Direccion dire = new Direccion();
         final Localidad loca = new Localidad();
         loca.setNombre(localidad);
@@ -81,6 +81,8 @@ public class ClienteRepositorio {
         obj.setTelefono(telefono);        
         obj.setApellido(apellido);
         container.persistIfNotAlready(obj);
+        container.informUser("El cliente a sido cargado correctamente");
+        
         return obj;
     }
 
@@ -111,7 +113,7 @@ public class ClienteRepositorio {
             @ParameterLayout(named="Apellido") @Parameter(optionality=Optionality.OPTIONAL)    String apellido,
             @ParameterLayout(named="Nombre") @Parameter(optionality=Optionality.OPTIONAL)   String nombre
     ) {
-    	
+
         return container.allMatches(
                 new QueryDefault<>(
                         Cliente.class,

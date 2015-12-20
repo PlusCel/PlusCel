@@ -41,6 +41,7 @@ public class PresupuestoRepositorio {
         obj.setEstadoPresupuesto(estado);
         obj.setGarantia(garantia);
         container.persistIfNotAlready(obj);
+        container.informUser("El presupuesto a sido cargado correctamente");
         return obj;
     }
        	

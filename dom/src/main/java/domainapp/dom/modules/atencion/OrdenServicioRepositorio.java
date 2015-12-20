@@ -57,6 +57,7 @@ public class OrdenServicioRepositorio {
         obj.setGarantia(garantia); 
 
         container.persistIfNotAlready(obj);
+        container.informUser("La orden de servicio sido cargado correctamente");
         return obj;
     }
 	

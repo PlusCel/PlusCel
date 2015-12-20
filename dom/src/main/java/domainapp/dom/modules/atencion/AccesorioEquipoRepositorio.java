@@ -36,6 +36,7 @@ public class AccesorioEquipoRepositorio {
         obj.setChip(chip);
         obj.setObservacion(observacion);
         container.persistIfNotAlready(obj);
+        container.informUser("El Accesorio del equipo a sido cargado correctamente");
         return obj;
     }
 

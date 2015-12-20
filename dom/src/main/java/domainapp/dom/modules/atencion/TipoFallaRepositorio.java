@@ -27,6 +27,7 @@ public class TipoFallaRepositorio {
     	  	final TipoFalla obj = container.newTransientInstance(TipoFalla.class);
     		obj.setDescripcion(descripcion);
             container.persistIfNotAlready(obj);
+            container.informUser("El tipo de falla a sido cargado correctamente");
             return obj;
     }
 

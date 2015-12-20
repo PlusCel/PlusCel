@@ -66,6 +66,7 @@ public class TecnicoRepositorio {
         obj.setLocal(local);
 
         container.persistIfNotAlready(obj);
+        container.informUser("El tencnico a sido cargado correctamente");
         return obj;
     }
 
