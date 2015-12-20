@@ -33,7 +33,6 @@ import domainapp.dom.modules.atencion.OrdenServicio;
 import domainapp.dom.modules.atencion.OrdenServicioRepositorio;
 import domainapp.dom.modules.atencion.Tecnico;
 
-
 @DomainServiceLayout(menuOrder = "8" , 
 menuBar = DomainServiceLayout.MenuBar.SECONDARY
 ,named="Vistas Rapidas")
@@ -43,6 +42,7 @@ public class NovedadesViewmodel extends AbstractViewModel {
 
 	private String title;
 	private String memento;
+	private String apellido;
 	
 	// Agrego cliente datos basicos
 	
@@ -116,7 +116,9 @@ public class NovedadesViewmodel extends AbstractViewModel {
             render = RenderType.EAGERLY
     )
 	public List<OrdenServicio> getEquiposIngresadosSinRevisar() {
-		return OrdenServicioRepositorio.sinRevisar();
+    	//return OrdenServicioRepositorio.sinRevisar();
+    	OrdenServicioRepositorio oOrdenRepo =new OrdenServicioRepositorio();
+		return oOrdenRepo.buscarOrdenServicioPorTecnicoa(apellido);
 	}
 	//.............	
     
@@ -138,6 +140,7 @@ public class NovedadesViewmodel extends AbstractViewModel {
 		Memento memento = mementoService.parse(mementoString);
 
 		title = memento.get("titulo", String.class); //Intervalo de fechas
+		apellido=memento.get("apellido", String.class);
 		setTecnico(memento.get("tecnico", String.class));
 
 	}

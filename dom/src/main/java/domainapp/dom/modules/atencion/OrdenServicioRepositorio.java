@@ -178,6 +178,19 @@ public class OrdenServicioRepositorio {
 				container.informUser("No hay equipos en espera de ser revisados.");
 			return lista;
 		}
+		//Busco equipos asignados por tecnicos	  
+		@Programmatic
+		    public List<OrdenServicio> buscarOrdenServicioPorTecnicoa(String apellido)
+		      {
+			final List<OrdenServicio> lista = container
+					.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
+							"buscarOrdenServicioPorTecnicoa","apellido",apellido));
+			if (lista.isEmpty())
+				container.informUser("No hay equipos en espera de ser revisados.");
+			return lista;
+		        }	
+		
+		
 		
 		/**
 		 * Inyección del Contenedor.

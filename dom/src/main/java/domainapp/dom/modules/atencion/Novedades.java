@@ -37,7 +37,8 @@ public class Novedades {
 			Memento memento = mementoService.create();
 
 			memento.set("titulo", "OrdenxTecnico");
-			memento.set("tecnico", tecnico.getApellido() + " " + tecnico.getNombre());
+			memento.set("apellido", tecnico.getApellido());
+//			memento.set("tecnico", tecnico.getApellido() + " " + tecnico.getNombre());
 //			memento.set("marca", marca.getAbreviatura());
 //			memento.set("equipo", equipo.getImei());
 		
