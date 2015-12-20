@@ -42,17 +42,6 @@ public class NovedadesViewmodel extends AbstractViewModel {
 	private String title;
 	private String memento;
 	
-	// {{ Marca (property)
-	//private String marca;
-
-	/*@MemberOrder(sequence = "1")
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(final String marca) {
-		this.marca = marca;
-	}*/
 	// Agrego cliente datos basicos
 	
 	@MemberOrder(sequence = "1")
@@ -76,7 +65,7 @@ public class NovedadesViewmodel extends AbstractViewModel {
 	
 	// Agrego Equipo datos basicos
 	
-		@MemberOrder(sequence = "1")
+		@MemberOrder(sequence = "2")
 		public Equipo altaRapidaEquipo(
 	    		
 	            final @ParameterLayout(named="Marca") Marca marca,    		           
@@ -95,6 +84,7 @@ public class NovedadesViewmodel extends AbstractViewModel {
 
 	    //Equipo basicos
 		//Agrego OrdenServicio datos basicos
+		@MemberOrder(sequence = "3")
 		public OrdenServicio altaOrdenDeServicio(   
 	    		 final @ParameterLayout(named="Cliente") Cliente cliente,
 	    		 final @ParameterLayout(named="Equipo" ) Equipo equipo,             
@@ -116,36 +106,6 @@ public class NovedadesViewmodel extends AbstractViewModel {
 	        return obj;
 	    }	
 		//OrdenServicio datos basicos
-
-	private List<Modelo> modelosList= new ArrayList<Modelo>();
-	  @Collection(
-	            editing = Editing.DISABLED
-	    )
-	    @MemberOrder(sequence = "2")
-	    @CollectionLayout(
-	            render = RenderType.EAGERLY
-	    )
-	public List<Modelo> getModelosList() {
-		return modelosList;
-	}
-
-	public void setModelosList(final List<Modelo> modelosList) {
-		this.modelosList = modelosList;
-	}
-//Marca	
-	
-	private List<Marca> marcaList= new ArrayList<Marca>();
-	  @Collection(
-	            editing = Editing.DISABLED
-	    )
-	    @MemberOrder(sequence = "1")
-	    @CollectionLayout(
-	            render = RenderType.EAGERLY
-	    )
-	  public List<Marca> getMarca1() {
-			return MarcaRepositorio.listarTodas();
-		}
-//Marca
 	
 	//Equipos sin revisar	
 	
@@ -153,7 +113,7 @@ public class NovedadesViewmodel extends AbstractViewModel {
     @CollectionLayout(
             render = RenderType.EAGERLY
     )
-	public List<OrdenServicio> getEquiposSinRevisar() {
+	public List<OrdenServicio> getEquiposIngresadosSinRevisar() {
 		return OrdenServicioRepositorio.sinRevisar();
 	}
 	//.............	
@@ -164,52 +124,26 @@ public class NovedadesViewmodel extends AbstractViewModel {
     @CollectionLayout(
             render = RenderType.EAGERLY
     )
-	public List<Cliente> getCliente() {
-		return ClienteRepositorio.ultimosClientes().subList(0, 10);//Filtro los resultados para que devuelva solo 10 clientes
-    	//return ClienteRepositorio.ultimosClientes().contains()
+	public List<Cliente> getUltimosClientes() {
+		return ClienteRepositorio.ultimosClientes();//Filtro los resultados para que devuelva solo 10 clientes
     }
 	//............
 
-	@Override
+    @Override
 	public void viewModelInit(String memento) {
 		this.memento = memento;
 		
 		Memento newMemento = mementoService.parse(memento);
 		//titulo, marca
 		this.title = newMemento.get("titulo", String.class);
-		//setMarca(newMemento.get("marca", String.class));
-		
-		try{
-			
-		inicializarListModelos();
-					}catch(Exception e){
-						System.out.println(e.getMessage());
-					}
 
 				}
-
-				@Programmatic
-				public void inicializarListModelos(){
-					setModelosList(ModeloRepositorio.buscarTodosLosModelos());
-				}
-							
-				
-				// }} (end region)
-				
-				
-
 										
 	@javax.inject.Inject
 	DomainObjectContainer container;
 		
 	@javax.inject.Inject
 	MementoService mementoService;
-		
-	@javax.inject.Inject
-	ModeloRepositorio modeloRepositorio;
-		
-	@javax.inject.Inject
-	MarcaRepositorio marcaRepositorio;
 	
 	@Override
 	public String viewModelMemento() {
