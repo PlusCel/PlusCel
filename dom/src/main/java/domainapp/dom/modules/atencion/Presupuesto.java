@@ -1,3 +1,24 @@
+/*
+ * This is software for administration and management of mobile equipment repair
+ *
+ * Copyright ( C ) 2015 , Pluscel
+ *
+ * This program is free software ; you can redistribute it and / or
+ * Modify it under the terms of the GNU General Public License
+ * As published by the Free Software Foundation ; either version 2
+ * Of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * But WITHOUT ANY WARRANTY; without even the implied warranty
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Boil
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * Along with this program ; if not, write to the Free Software
+ *
+ *
+ * Foundation , Inc. , 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301 , USA .
+ */
 package domainapp.dom.modules.atencion;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +29,6 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
-import javax.swing.JOptionPane;
-
 import net.sf.jasperreports.engine.JRException;
 
 import org.apache.isis.applib.DomainObjectContainer;
@@ -19,12 +38,8 @@ import org.apache.isis.applib.annotation.DomainObjectLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 
 import domainapp.dom.modules.reportes.GenerarReporte;
-import domainapp.dom.modules.reportes.OrdenServicioReporte;
 import domainapp.dom.modules.reportes.PresupuestoReporte;
-import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoPresupuesto;
-import domainapp.dom.modules.servicios.EnvioCorreo;
-
 import org.joda.time.LocalDate;
 
 
