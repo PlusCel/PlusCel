@@ -135,7 +135,22 @@ public class OrdenServicioRepositorio {
 		
 		//Busco para liquidar por tecnico	  
 		  @MemberOrder(sequence = "8")
-		    public List<OrdenServicio> liquidacionPorTecnico(Tecnico tecnico, 
+		    public String liquidacionPorTecnico(Tecnico tecnico, 
+		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, 
+		    		@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
+		      {
+		       
+		            return container.allMatches(
+		                    new QueryDefault<>(
+		                    		OrdenServicio.class,
+		                            "LiquidarReparacionesPorTecnicoTotal",
+		                            "tecnico", tecnico,
+		                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta)).get(0).toString();
+		        }	
+		  
+		//Busco para liquidar por tecnico	  
+		  @MemberOrder(sequence = "8")
+		    public List<OrdenServicio> liquidacionPorTecnicoII(Tecnico tecnico, 
 		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, 
 		    		@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
 		      {
@@ -147,6 +162,7 @@ public class OrdenServicioRepositorio {
 		                            "tecnico", tecnico,
 		                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
 		        }	
+		  
  
 		@Programmatic
 		public static List<OrdenServicio> sinArreglo() {
