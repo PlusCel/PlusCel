@@ -10,7 +10,6 @@ import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.VersionStrategy;
-import javax.swing.JOptionPane;
 
 import net.sf.jasperreports.engine.JRException;
 
@@ -25,7 +24,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import domainapp.dom.modules.reportes.E_formato;
 import domainapp.dom.modules.reportes.GenerarReporte;
 import domainapp.dom.modules.reportes.OrdenServicioReporte;
 import domainapp.dom.modules.servicios.E_estado;
@@ -91,10 +89,12 @@ import org.joda.time.LocalDate;
 	
 		@javax.jdo.annotations.Query(name = "buscarOrdenServicioPorTecnicoa", language = "JDOQL", value = "SELECT  "
 				+ "FROM dom.modules.atencion.OrdenServicio"+
-				" WHERE tecnico.apellido == :apellido")
+				" WHERE tecnico.apellido == :apellido"),
+		
+		@javax.jdo.annotations.Query(name = "buscarOrdenServicioPorCliente", language = "JDOQL", value = "SELECT  "
+				+ "FROM dom.modules.atencion.OrdenServicio"+
+				" WHERE cliente.dni == :dni" )
 	
-		
-		
 })
 
 @DomainObject(

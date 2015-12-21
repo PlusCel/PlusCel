@@ -189,6 +189,17 @@ public class OrdenServicioRepositorio {
 				container.informUser("No hay equipos en espera de ser revisados.");
 			return lista;
 		        }	
+		//Busco equipos asignados por clientes	  
+				//@Programmatic
+				    public List<OrdenServicio> buscarOrdenServicioPorCliente(String dni)
+				      {
+					final List<OrdenServicio> lista = container
+							.allMatches(new QueryDefault<OrdenServicio>(OrdenServicio.class,
+									"buscarOrdenServicioPorCliente","dni",Integer.parseInt(dni)));
+					if (lista.isEmpty())
+						container.informUser("No hay equipos por cliente.");
+					return lista;
+				        }	
 		
 		
 		

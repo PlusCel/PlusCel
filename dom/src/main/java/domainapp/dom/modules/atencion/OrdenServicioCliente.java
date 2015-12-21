@@ -5,20 +5,21 @@ import javax.inject.Named;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.services.memento.MementoService;
 import org.apache.isis.applib.services.memento.MementoService.Memento;
 
 
 @Named("Orden de Servicio")
 @DomainService
-public class Novedades {
+public class OrdenServicioCliente {
 
 		public String getId() {
-			return "Ordenes de Servicio";
+			return "Ordenes de Servicio Clientes";
 		}
 
 		public String title() {
-			return "OrdenServicioPorTecnico";
+			return "OrdenServicioPorClientes";
 		}
 
 		public String iconName() {
@@ -29,17 +30,17 @@ public class Novedades {
 
 		@MemberOrder(name = "Orden",sequence = "10")
 		
-		public NovedadesViewmodel ordenServicioPorTecnicos(
-				@Named("tecnico") Tecnico tecnico){		
+		public OrdenServicioClienteViewmodel ordenServicioPorCliente(
+				@ParameterLayout(named="DNI")
+				@Named("clientes") String dni){		
 
 			Memento memento = mementoService.create();
 
-			memento.set("titulo", "OrdenxTecnico");
-			memento.set("apellido", tecnico.getApellido());
-			memento.set("tecnico", tecnico.getApellido() + " " + tecnico.getNombre());
-
+			memento.set("titulo", "OrdenServicioPorCliente");
+			memento.set("dni", dni);
+	
 			return container.newViewModelInstance(
-					NovedadesViewmodel.class, memento.asString());
+					OrdenServicioClienteViewmodel.class, memento.asString());
 		}
 				
 		@javax.inject.Inject
