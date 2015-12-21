@@ -56,19 +56,19 @@
 			</textField>
 			<image>
 				<reportElement x="221" y="61" width="65" height="59" uuid="ca3b6cfa-c18c-4dcd-a86a-e8114ef4dcfb"/>
-				<imageExpression><![CDATA["reportes\\personal.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["reportes/personal.jpg"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="222" y="3" width="78" height="58" uuid="0fbf2c96-efb3-416b-ad11-de2c344f5886"/>
-				<imageExpression><![CDATA["reportes\\movistar.png"]]></imageExpression>
+				<imageExpression><![CDATA["reportes/movistar.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="220" y="93" width="66" height="48" uuid="78ce2563-7909-4907-b1cf-e16b8b786683"/>
-				<imageExpression><![CDATA["reportes\\claro.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["reportes/claro.jpg"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="39" y="9" width="165" height="72" uuid="c4e2e0da-ac3d-4b98-ba18-837c6ed02783"/>
-				<imageExpression><![CDATA["reportes\\8300.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA["reportes/8300.jpeg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="26" y="95" width="158" height="20" uuid="a372ba70-6e7b-4141-b154-c65d9dbfb5fc"/>

@@ -154,7 +154,8 @@ public class OrdenServicioRepositorio {
 		                            "tecnico", tecnico));
 		        }	
 		
-		//Busco para liquidar por tecnico	  
+		//Busco para liquidar por tecnico	
+		  @Programmatic
 		  @MemberOrder(sequence = "8")
 		    public String liquidacionPorTecnico(Tecnico tecnico, 
 		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, 
@@ -169,7 +170,8 @@ public class OrdenServicioRepositorio {
 		                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta)).get(0).toString();
 		        }	
 		  
-		//Busco para liquidar por tecnico	  
+		//Busco para liquidar por tecnico
+		  @Programmatic
 		  @MemberOrder(sequence = "8")
 		    public List<OrdenServicio> liquidacionPorTecnicoII(Tecnico tecnico, 
 		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, 
@@ -183,10 +185,9 @@ public class OrdenServicioRepositorio {
 		                            "tecnico", tecnico,
 		                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
 		        }	
-		  
-		  
-		  
-		//Busco para liquidar mensual  
+		  	  
+		//Busco para liquidar mensual
+		  @Programmatic
 		  @MemberOrder(sequence = "8")
 		    public List<OrdenServicio> liquidacionMensual( 
 		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, 
@@ -243,7 +244,7 @@ public class OrdenServicioRepositorio {
 			return lista;
 		        }	
 		//Busco equipos asignados por clientes	  
-				//@Programmatic
+				@Programmatic
 				    public List<OrdenServicio> buscarOrdenServicioPorCliente(String dni)
 				      {
 					final List<OrdenServicio> lista = container
@@ -252,9 +253,7 @@ public class OrdenServicioRepositorio {
 					if (lista.isEmpty())
 						container.informUser("No hay equipos por cliente.");
 					return lista;
-				        }	
-		
-		
+				        }		
 		
 		/**
 		 * Inyección del Contenedor.

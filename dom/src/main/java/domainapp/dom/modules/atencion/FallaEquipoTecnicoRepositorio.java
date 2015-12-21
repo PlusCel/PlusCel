@@ -71,6 +71,7 @@ public class FallaEquipoTecnicoRepositorio {
         obj.setEstado(estado);   
         container.persistIfNotAlready(obj);
         orden.setEstado(estado);
+        orden.setTecnico(tecnico);
         container.persistIfNotAlready(orden);
         container.informUser("La falla a sido cargado correctamente");
               
