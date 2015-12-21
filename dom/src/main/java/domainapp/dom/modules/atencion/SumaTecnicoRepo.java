@@ -16,14 +16,13 @@ import domainapp.dom.modules.servicios.E_estado;
 import domainapp.dom.modules.servicios.E_estadoGarantia;
 
 @DomainService(repositoryFor = SumaTecnico.class)
-@DomainServiceLayout(menuOrder = "6" , named="Suma tecnico")
+@DomainServiceLayout(menuOrder = "6" , named="Liquidaciones/Resultados")
 
 
 public class SumaTecnicoRepo {
 	
-	 public SumaTecnico ingresarOrdenDeServicio(   
-    		 
-    		             
+	 public SumaTecnico ingresarLiquidacionPorTecnico(   
+    		      
              final @ParameterLayout(named="Tecnico") Tecnico tecnico,
              final @ParameterLayout(named="FechaDesde") LocalDate  fechaDesde,
              final @ParameterLayout(named="FechaHasta") LocalDate  fechaHasta
@@ -57,7 +56,7 @@ public class SumaTecnicoRepo {
 	 
 	 //Busco para liquidar por tecnico	  
 	  @MemberOrder(sequence = "8")
-	    public List<SumaTecnico> liquidacionPorTecnico(
+	    public List<SumaTecnico> busquedaLiquidacionPorTecnico(
 	    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, 
 	    		@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
 	      {

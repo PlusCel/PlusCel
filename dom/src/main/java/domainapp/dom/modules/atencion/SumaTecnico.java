@@ -23,8 +23,6 @@ import org.joda.time.LocalDate;
 			@javax.jdo.annotations.Query(name = "ListarLiquidacionTecnicos", language = "JDOQL", value = "SELECT "
 					+ "FROM dom.modules.atencion.SumaTecnico "+
 					" WHERE fechaHora >= :fechaDesde && fechaHora<= :fechaHasta"),
-
-	
 	
 })
 
