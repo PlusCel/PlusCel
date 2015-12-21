@@ -95,8 +95,14 @@ import org.joda.time.LocalDate;
 		
 		@javax.jdo.annotations.Query(name = "buscarOrdenServicioPorCliente", language = "JDOQL", value = "SELECT  "
 				+ "FROM dom.modules.atencion.OrdenServicio"+
-				" WHERE cliente.dni == :dni" )
+				" WHERE cliente.dni == :dni" ),
 	
+		@javax.jdo.annotations.Query(name = "LiquidarReparacionesMensual", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.modules.atencion.OrdenServicio"+
+				" WHERE (estado == 'REPARADO' || estado == 'TERMINADO')" +
+				" && (fechaHora >= :fechaDesde) && (fechaHora<= :fechaHasta)")
+		
+		
 })
 
 @DomainObject(

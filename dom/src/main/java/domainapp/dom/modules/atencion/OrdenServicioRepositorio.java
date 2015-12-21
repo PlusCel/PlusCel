@@ -163,6 +163,22 @@ public class OrdenServicioRepositorio {
 		                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
 		        }	
 		  
+		  
+		  
+		//Busco para liquidar mensual  
+		  @MemberOrder(sequence = "8")
+		    public List<OrdenServicio> liquidacionMensual( 
+		    		@ParameterLayout(named="Fecha Desde")LocalDate fechaDesde, 
+		    		@ParameterLayout(named="Fecha Hasta")LocalDate fechaHasta)
+		      {
+		       
+		            return container.allMatches(
+		                    new QueryDefault<>(
+		                    		OrdenServicio.class,
+		                            "LiquidarReparacionesMensual",
+		                            "fechaDesde" ,fechaDesde,"fechaHasta",fechaHasta));
+		        }	
+		  
  
 		@Programmatic
 		public static List<OrdenServicio> sinArreglo() {
